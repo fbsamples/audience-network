@@ -18,7 +18,7 @@ This section contains code samples on how to use Facebook Audience Network for M
 <li><a href="https://github.com/fbsamples/audience-network-support/tree/master/samples/mobile_web">mweb_like.html</a>: The code implementation demos a native ad and Facebook like button on same page.</li>
 </ul>
 <h3>Testing</h3>
-The raw page can be tested and viewed through <a href="rawgit.com">RawGit</a>.
+The raw page can be tested and viewed through <a href="http://rawgit.com">RawGit</a>.
 <ul>
 <li><a href="https://rawgit.com/fbsamples/audience-network-support/master/samples/mobile_web/mweb_banner.html">mweb_banner.html</li>
 <li><a href="https://rawgit.com/fbsamples/audience-network-support/master/samples/mobile_web/mweb_native.html">mweb_native.html</li>
