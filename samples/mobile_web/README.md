@@ -12,10 +12,10 @@ This section contains code samples on how to use Facebook Audience Network for M
 
 <h3>Files</h3>
 <ul>
-<li>mweb_banner.html: The code implementation demos a ad banner.</li>
-<li>mweb_native.html: The code implementation demos a native ad.</li>
-<li>mweb_dfp.html: The code implementation demos a native ad, and the DFP Passback if the native ad cannot be filled.</li>
-<li>mweb_like.html: The code implementation demos a native ad and Facebook like button on same page.</li>
+<li><a href="https://github.com/fbsamples/audience-network-support/tree/master/samples/mobile_web">mweb_banner.html</a>: The code implementation demos a ad banner.</li>
+<li><a href="https://github.com/fbsamples/audience-network-support/tree/master/samples/mobile_web">mweb_native.html</a>: The code implementation demos a native ad.</li>
+<li><a href="https://github.com/fbsamples/audience-network-support/tree/master/samples/mobile_web">mweb_dfp.html</a>: The code implementation demos a native ad, and the DFP Passback if the native ad cannot be filled.</li>
+<li><a href="https://github.com/fbsamples/audience-network-support/tree/master/samples/mobile_web">mweb_like.html</a>: The code implementation demos a native ad and Facebook like button on same page.</li>
 </ul>
 <h3>Testing</h3>
 The raw page can be tested and viewed through <a href="rawgit.com">RawGit</a>.
