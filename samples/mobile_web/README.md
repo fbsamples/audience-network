@@ -2,12 +2,14 @@
 <h3>Content</h3>
 This section contains code samples on how to use Facebook Audience Network for Mobile Website in mobile web page and integration with DFP Passback tag.
 
+<h3>Get Started</h3>
+<ul>
+<li><a href="https://www.facebook.com/audiencenetwork/get-started/mobile-web">Get Started with Mobile Web</li>
+</ul>
+
 <h3>Implementation Guide</h3>
 <ul>
-<li><a href="https://www.facebook.com/audiencenetwork/get-started/mobile-web">Audience Network for Mobile Web</li>
-<li><a href="https://developers.facebook.com/docs/audience-network/mobileweb/javascript/native-web">Native Ads in Mobile Web</li>
-<li><a href="https://developers.facebook.com/docs/audience-network/mobileweb/javascript">Banners in Mobile Web</li>
-<li><a href="https://developers.facebook.com/docs/audience-network/mobileweb/javascript/dfp">Insert Audience Network JavaScript tag into DFP</li>
+<li><a href="https://www.facebook.com/audiencenetwork/docs">Audience Network for Mobile Web</li>
 </ul>
 
 <h3>Files</h3>
