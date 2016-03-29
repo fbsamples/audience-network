@@ -4,10 +4,10 @@ This section contains code samples on how to use Facebook Audience Network for M
 
 <h3>Product Docs</h3>
 <ul>
-<li><a href="https://develoeprs.facebook.com/docs/audience-network/mobileweb">Audience Network for Mobile Web - Open Beta</li>
-<li><a href="https://develoeprs.facebook.com/docs/audience-network/mobileweb/javascript/native-web">Native Ads in Mobile Web</li>
-<li><a href="https://develoeprs.facebook.com/docs/audience-network/mobileweb/javascript">Banners in Mobile Web</li>
-<li><a href="https://develoeprs.facebook.com/docs/audience-network/mobileweb/javascript/dfp">Insert Audience Network JavaScript tag into DFP</li>
+<li><a href="https://developers.facebook.com/docs/audience-network/mobileweb">Audience Network for Mobile Web - Open Beta</li>
+<li><a href="https://developers.facebook.com/docs/audience-network/mobileweb/javascript/native-web">Native Ads in Mobile Web</li>
+<li><a href="https://developers.facebook.com/docs/audience-network/mobileweb/javascript">Banners in Mobile Web</li>
+<li><a href="https://developers.facebook.com/docs/audience-network/mobileweb/javascript/dfp">Insert Audience Network JavaScript tag into DFP</li>
 </ul>
 
 <h3>Files</h3>
