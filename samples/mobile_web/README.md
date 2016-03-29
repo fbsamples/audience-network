@@ -12,7 +12,7 @@ This section contains code samples on how to use Facebook Audience Network for M
 <li><a href="https://www.facebook.com/audiencenetwork/docs">Audience Network for Mobile Web</li>
 </ul>
 
-<h3>Files</h3>
+<h3>Code</h3>
 <ul>
 <li><a href="https://github.com/fbsamples/audience-network-support/tree/master/samples/mobile_web">mweb_banner.html</a>: The code implementation demos a ad banner.</li>
 <li><a href="https://github.com/fbsamples/audience-network-support/tree/master/samples/mobile_web">mweb_native.html</a>: The code implementation demos a native ad.</li>
