@@ -41,9 +41,11 @@ dependencies {
 }
 ```
 
-<p>
-2, Adding Native Ad Template library into your libs folder<br/>
-Download the library 'audience-network-support.jar' from Facebook Open Source project and copy it into your project's libs folder, and make sure your gradle contains following line:<br/>
+<br/>
+2, Adding Native Ad Template library into your libs folder
+<br/><br/>
+Download the library 'audience-network-support.jar' from Facebook Open Source project and copy it into your project's libs folder, and make sure your gradle contains following line:
+<br/>
 
 ```
 dependencies {
@@ -53,10 +55,10 @@ dependencies {
 ```
 <br/>
 Once added above, please sync the project to reflect the changes.
-</p>
+<br/><br/>
 
 
-3, Implement the code<br/>
+3, Implement the code<br/><br/>
 Add the following code at the top of your activity class in order to import the support library<br/>
 import com.facebook.audiencenetwork.ads.audience_network_support.NativeAdTemplateView;
 <br/>
