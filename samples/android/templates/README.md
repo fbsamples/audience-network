@@ -30,6 +30,7 @@ To integrate Audience Network Native Ad Template, you need to include the suppor
 
 <p>
 If you are already familiar or using Audience Network SDK, then you just need to follow 2 additional steps: add the new support library and add template in the code. If you are new or want review the steps in details, please refer to the following:
+</p>
 <br/>
 1,  Adding Audience Network SDK into your app gradle</br>
 
@@ -40,7 +41,6 @@ dependencies {
 }
 ```
 
-</p>
 <p>
 2, Adding Native Ad Template library into your libs folder<br/>
 Download the library 'audience-network-support.jar' from Facebook Open Source project and copy it into your project's libs folder, and make sure your gradle contains following line:<br/>
@@ -55,7 +55,7 @@ dependencies {
 Once added above, please sync the project to reflect the changes.
 </p>
 
-<p>
+
 3, Implement the code<br/>
 Add the following code at the top of your activity class in order to import the support library<br/>
 import com.facebook.audiencenetwork.ads.audience_network_support.NativeAdTemplateView;
@@ -110,7 +110,7 @@ The complete code looks like below for examples,
         return prefers;
     }
 ```    
-</p>
+
 
 #####Where can I find a sample project or tutorial for this?#####
 <p>
