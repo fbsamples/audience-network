@@ -20,7 +20,7 @@ Audience Network Native Ad Templates are native ad units with predefined layouts
 Audience Network Native Ad Templates are built on top of <a href="https://developers.facebook.com/docs/android">Audience Network SDK</a> and can be deployed in one step by integrating the audience-network-support library. 
 </p>
 
-####Where can I get the Audience Network Support Library?####
+#####Where can I get the Audience Network Support Library?#####
 
 <p>
 To integrate Audience Network Native Ad Template, you need to include the support library in your project. The support library '<a href="https://github.com/fbsamples/audience-network-support/tree/master/samples/android/templates/libs/audience-network-support.jar">audience-network-support.jar</a>' can be downloaded from <a href="https://github.com/fbsamples/audience-network-support/tree/master/samples/android/templates/libs">Facebook Open Source project</a> on GitHub.
@@ -112,16 +112,12 @@ The complete code looks like below for examples,
 ```    
 </p>
 
-<h4>
-Where can I find a sample project or tutorial for this?
-</h4>
+#####Where can I find a sample project or tutorial for this?#####
 <p>
 The sample projects are available on GitHub from Facebook Open Source project: <a href="https://github.com/fbsamples/audience-network-support/tree/master/samples/android/templates">fbsamples/audience-network-support</a>.
 </p>
 
-<h4>
-How do I report an issue or ask a question regarding to Audience Network Native Ad Template?
-</h4>
+#####How do I report an issue or ask a question regarding to Audience Network Native Ad Template?#####
 <p>
 Any issues or question can be submitted from Audience Network Direct Support on your Audience Network Developer Dashboard.
 </p>
