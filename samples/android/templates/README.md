@@ -1,6 +1,13 @@
 ##Quick Start with Native Ad Templates for Audience Network
 <hr/>
 
+#####What are prerequisites for using Audience Network Native Ad Templates?#####
+<p/>
+For new publishers who are interested in or are planning to join Facebook Audience Network, please refer to '<a href=https://www.facebook.com/audiencenetwork/get-started/android>Get Started with Android</a>' on Facebook Audience Network web site. Once you obtained `Facebook App Id</bold>`, `Audience Network Placement Id` and `Audience Network SDK`, please download the `Audience Network Support Library` and sample code listed in section of 'Where can I get the Audience Network Support Library?' to start utilizing native ad templates.
+
+For existing Facebook Audience Network publishers, please downlaod the `Audience Network Support Library` and sample code listed in section of 'Where can I get the Audience Network Support Library?' to start utilizing the native ad templates.
+
+
 #####What are Audience Network Native Ads?#####
 
 <p>
