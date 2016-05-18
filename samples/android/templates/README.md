@@ -3,7 +3,7 @@
 
 #####What are prerequisites for using Audience Network Native Ad Templates?#####
 <p/>
-For new publishers who are interested in or are planning to join Facebook Audience Network, please refer to '<a href=https://www.facebook.com/audiencenetwork/get-started/android>Get Started with Android</a>' on <a href=https://www.facebook.com/audiencenetwork>Facebook Audience Network</a> web site. Once you obtained `Facebook App Id</bold>`, `Audience Network Placement Id` and `Audience Network SDK`, please download the `Audience Network Support Library` and sample code listed in section of 'Where can I get the Audience Network Support Library?' to start utilizing native ad templates.
+For new publishers who are interested in or are planning to join Facebook Audience Network, please refer to '<a href=https://www.facebook.com/audiencenetwork/get-started/android>Get Started with Android</a>' on <a href=https://www.facebook.com/audiencenetwork>Facebook Audience Network</a> web site. Once you obtained `Facebook App Id`, `Audience Network Placement Id` and `Audience Network SDK`, please download the `Audience Network Support Library` and sample code listed in section of 'Where can I get the Audience Network Support Library?' to start utilizing native ad templates.
 
 For existing Facebook Audience Network publishers, please downlaod the `Audience Network Support Library` and sample code listed in section of 'Where can I get the Audience Network Support Library?' to start utilizing the native ad templates.
 
@@ -43,8 +43,8 @@ If you are already familiar or using Audience Network SDK, then you just need to
 
 ```
 dependencies {
-    ...
-    compile **'com.facebook.android:audience-network-sdk:4.+'
+  ...
+  compile 'com.facebook.android:audience-network-sdk:4.+'
 }
 ```
 
@@ -56,8 +56,8 @@ Download the library 'audience-network-support.jar' from Facebook Open Source pr
 
 ```
 dependencies {
-    compile fileTree(dir: **'libs'**, include: [**'*.jar'**])
-    ...
+  compile fileTree(dir: 'libs', include: ['*.jar'])
+  ...
 }
 ```
 <br/>
@@ -73,11 +73,11 @@ Add the following line to create the ad from template
 <br/>
 
 ```
-// create ad view
-        NativeAdTemplateView adView = new NativeAdTemplateView(this,
-                "808505382626354_823834164426809",
-                NativeAdTemplateView.Type.FB_BIG_CIRCLE,
-                getCustomizedAttributes());
+  // create ad view
+  NativeAdTemplateView adView = new NativeAdTemplateView(this,
+    "808505382626354_823834164426809",
+    NativeAdTemplateView.Type.FB_BIG_CIRCLE,
+    getCustomizedAttributes());
 ```
 
 <br/>
@@ -85,39 +85,39 @@ The complete code looks like below for examples,
 <br/>
 
 ```
-@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
 
-        // create ad view
-        NativeAdTemplateView adView = new NativeAdTemplateView(this,
-                "808505382626354_823834164426809",
-                NativeAdTemplateView.Type.FB_BIG_CIRCLE,
-                getCustomizedAttributes());
+    // create ad view
+    NativeAdTemplateView adView = new NativeAdTemplateView(this,
+      "808505382626354_823834164426809",
+      NativeAdTemplateView.Type.FB_BIG_CIRCLE,
+      getCustomizedAttributes());
 
-        // place ad view in main UI
-        placeAdInView(adView);
+    // place ad view in main UI
+    placeAdInView(adView);
+  }
+
+  protected void placeAdInView(NativeAdTemplateView adView) {
+    RelativeLayout iconContainer = (RelativeLayout) findViewById(R.id.ad_container);
+    iconContainer.addView(adView);
+  }
+
+  protected JSONObject getCustomizedAttributes() {
+    JSONObject prefers = new JSONObject();
+    if (CUSTOMIZE_TEMPLATE) {
+      // customize icon and title
+      try {
+        prefers.put("stock_image", true);
+        prefers.put("stock_resource", getResources().getIdentifier("icon_purple", "drawable", getPackageName()));
+      } catch (JSONException e) {
+        e.printStackTrace();
+      }
     }
-
-    protected void placeAdInView(NativeAdTemplateView adView) {
-        RelativeLayout iconContainer = (RelativeLayout) findViewById(R.id.ad_container);
-        iconContainer.addView(adView);
-    }
-
-    protected JSONObject getCustomizedAttributes() {
-        JSONObject prefers = new JSONObject();
-        if (CUSTOMIZE_TEMPLATE) {
-            // customize icon and title
-            try {
-                prefers.put("stock_image", true);
-                prefers.put("stock_resource", getResources().getIdentifier("icon_purple", "drawable", getPackageName()));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-        return prefers;
-    }
+    return prefers;
+  }
 ```    
 
 
