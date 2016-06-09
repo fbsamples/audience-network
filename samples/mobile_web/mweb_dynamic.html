@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <h1>Audience Network - Mobile Web</h1>
+  <p>Load and reload ads through JavaScript dynamically.</p>
+  <div>
+    <button onclick="addMWebAd()">Add Ad</button>
+    <button onclick="clearMWebAd()">Clear Ad</button>
+  </div>
+
+  <br />
+  <hr>
+
+  <iframe id="iframe_mweb" src="about:blank" style="height: 250px; background-color: rgba(255, 0, 0, 0.2);">
+  </iframe>
+
+  <script type="text/javascript">
+    function addMWebAd() {
+      var txt1='<script id="facebook-jssdk" src="https://connect.facebook.net/en_US/sdk/xfbml.ad.js#xfbml=1&version=v2.5&appId=215629088783673">'+
+        '</scr'+'ipt>';
+        var txt3='<script>'+
+          'window.fbAsyncInit = function() {'+
+            'FB.Event.subscribe('+
+              '\'ad.loaded\','+
+              'function(placementID) {'+
+              'console.log(\'ad loaded\');'+
+            '});'+
+            'FB.Event.subscribe('+
+              '\'ad.error\','+
+              'function(errorCode, errorMessage, placementID) {'+
+              'console.log(\'ad error \' + errorCode + \': \' + errorMessage);'+
+            '});'+
+          '};'+
+          '</scr'+'ipt>';
+      var txt2='<div id="fb-root">'+
+        '</div>'+
+        '<fb:'+'ad placementid="215629088783673_215634802116435" format="300x250" testmode="false">'+
+        '</fb:'+'ad>';
+      var doc_mweb = document.getElementById('iframe_mweb').contentWindow.document;
+      doc_mweb.open();
+      doc_mweb.write('<html><head>'+txt1+'</head><body><h3>mWeb Direct</h3>'+txt3+txt2+'</body></html>');
+      doc_mweb.close();
+    }
+
+    function clearMWebAd() {
+      document.getElementById('iframe_mweb').contentWindow.location.reload();
+    }
+  </script>
+<br />
+<hr>
+
+</body>
+</html>
