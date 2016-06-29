@@ -28,7 +28,7 @@ The raw page can be tested and viewed through <a href="http://rawgit.com">RawGit
 <li><a href="https://rawgit.com/fbsamples/audience-network-support/master/samples/mobile_web/mweb_dfp.html">mweb_dfp.html</li>
 <li><a href="https://rawgit.com/fbsamples/audience-network-support/master/samples/mobile_web/mweb_like.html">mweb_like.html</li>
 <li><a href="https://rawgit.com/fbsamples/audience-network-support/master/samples/mobile_web/mweb_dynamic.html">mweb_dynamic.html</li>
-<li><a href="https://rawgit.com/fbsamples/audience-network-support/master/samples/mobile_web/mweb_adexchange.html">mweb_adexchange.html</li>
+</li>
 </ul>
 
 
