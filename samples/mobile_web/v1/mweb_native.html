@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+  <style>
+    #ad_root {
+      font-size: 14px;
+      height: 250px;
+      line-height: 16px;
+      position: relative;
+      width: 300px;
+    }
+    .thirdPartyMediaClass {
+      height: 157px;
+      width: 300px;
+    }
+    .thirdPartyTitleClass {
+      font-weight: 600;
+      font-size: 16px;
+      margin: 8px 0 4px 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .thirdPartyBodyClass {
+      display: -webkit-box;
+      height: 32px;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+    .thirdPartyCallToActionClass {
+      color: #326891;
+      font-family: sans-serif;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+    #fb-root {
+   		display: none;
+ 	  }
+  </style>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.Event.subscribe(
+        'ad.loaded',
+        function(placementId) {
+          console.log('Audience Network (2) ad loaded');
+        }
+      );
+      FB.Event.subscribe(
+        'ad.error',
+        function(errorCode, errorMessage, placementId) {
+          console.log('Audience Network (2) error (' + errorCode + ') ' + errorMessage);
+        }
+      );
+    };
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk/xfbml.ad.js#xfbml=1&version=v2.5&appId=215629088783673";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+</head>
+<body>
+  <h3>Facebook Audience Network for Mobile Web</h3>
+  <hr/>
+  <h3>Native Ad Display</h3>
+  <hr/>
+  <div>
+    <fb:ad placementid="215629088783673_215635105449738" format="native" nativeadid="ad_root"></fb:ad>
+	  <div id="ad_root">
+      <a class="fbAdLink">
+        <div class="fbAdMedia thirdPartyMediaClass"></div>
+        <div class="fbAdTitle thirdPartyTitleClass"></div>
+        <div class="fbAdBody thirdPartyBodyClass"></div>
+        <div class="fbAdCallToAction thirdPartyCallToActionClass"></div>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
