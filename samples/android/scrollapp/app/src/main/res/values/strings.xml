@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ScrollApp</string>
+    <string name="api_key">DEMO_KEY</string>
+</resources>
