@@ -46,7 +46,7 @@ public class BannerActivity extends AppCompatActivity {
         // Instantiate an AdView view
         adView = new AdView(this, "YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50);
 
-        // Find the main layout of your activity
+        // Find the Ad container
         LinearLayout adContainer = (LinearLayout) findViewById(R.id.banner_container);
 
         // Add the ad view to container
