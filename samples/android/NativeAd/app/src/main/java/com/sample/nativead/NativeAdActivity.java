@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,9 +17,12 @@ import com.facebook.ads.AdListener;
 import com.facebook.ads.MediaView;
 import com.facebook.ads.NativeAd;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NativeAdActivity extends AppCompatActivity {
     private NativeAd nativeAd;
-    private LinearLayout  nativeAdContainer;
+    private LinearLayout nativeAdContainer;
     private LinearLayout adView;
 
     @Override
@@ -72,8 +76,11 @@ public class NativeAdActivity extends AppCompatActivity {
                 AdChoicesView adChoicesView = new AdChoicesView(NativeAdActivity.this, nativeAd, true);
                 adChoicesContainer.addView(adChoicesView);
 
-                // Register the entire view to listen for clicks.
-                nativeAd.registerViewForInteraction(adView);
+                // Register the Title and CTA button to listen for clicks.
+                List<View> clickableViews = new ArrayList<>();
+                clickableViews.add(nativeAdTitle);
+                clickableViews.add(nativeAdCallToAction);
+                nativeAd.registerViewForInteraction(nativeAdContainer, clickableViews);
             }
 
             @Override
