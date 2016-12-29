@@ -13,6 +13,7 @@
 		7D2299161DD10BFD0092A50C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D2299141DD10BFD0092A50C /* Main.storyboard */; };
 		7D2299181DD10BFD0092A50C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D2299171DD10BFD0092A50C /* Assets.xcassets */; };
 		7D22991B1DD10BFD0092A50C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D2299191DD10BFD0092A50C /* LaunchScreen.storyboard */; };
+		7DCA814D1E15B07A00A7A7C7 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DCA814C1E15B07A00A7A7C7 /* FBAudienceNetwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		7D2299171DD10BFD0092A50C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D22991A1DD10BFD0092A50C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7D22991C1DD10BFD0092A50C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7DCA814C1E15B07A00A7A7C7 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DCA814D1E15B07A00A7A7C7 /* FBAudienceNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +61,7 @@
 		7D22990A1DD10BFD0092A50C /* NativeAd */ = {
 			isa = PBXGroup;
 			children = (
+				7DCA814C1E15B07A00A7A7C7 /* FBAudienceNetwork.framework */,
 				7D22990E1DD10BFD0092A50C /* AppDelegate.h */,
 				7D22990F1DD10BFD0092A50C /* AppDelegate.m */,
 				7D2299111DD10BFD0092A50C /* ViewController.h */,
@@ -274,9 +278,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = V9WTTPBFK9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NativeAd",
+				);
 				INFOPLIST_FILE = NativeAd/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sample.NativeAd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sample.BannerAd.defer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -286,9 +294,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = V9WTTPBFK9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/NativeAd",
+				);
 				INFOPLIST_FILE = NativeAd/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.sample.NativeAd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sample.BannerAd.defer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -312,6 +324,7 @@
 				7D2299211DD10BFD0092A50C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
