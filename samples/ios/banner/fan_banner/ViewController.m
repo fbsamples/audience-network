@@ -29,23 +29,22 @@
 
 @implementation ViewController
 
-static NSString *adPlacementId = @"893127754073705_909121259141021";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self loadBanner];
-}
-
-- (void) loadBanner {
-
-    FBAdView *adView = [[FBAdView alloc] initWithPlacementID:adPlacementId adSize:kFBAdSizeHeight50Banner rootViewController:self];
+    //Replace YOUR_PLACEMENT_ID with your own placement id string.
+    //If you don't have a placement id or don't know how to get one, refer to the Getting Started Guide.
+    //https://developers.facebook.com/docs/audience-network/getting-started#placement_ids
+    FBAdView *adView = [[FBAdView alloc] initWithPlacementID:@"YOUR_PLACEMENT_ID"
+                                                      adSize:kFBAdSizeHeight50Banner
+                                          rootViewController:self];
+    adView.frame = CGRectMake(0, 20, adView.bounds.size.width, adView.bounds.size.height);
     adView.delegate = self;
     [adView loadAd];
-    
     [self.view addSubview:adView];
-    adView.frame = CGRectOffset(adView.frame, 0, 42);
 }
+
 
 - (void)adView:(FBAdView *)adView didFailWithError:(NSError *)error {
     NSLog(@"Ad failed to load: %i", (int)error.code);
@@ -55,15 +54,5 @@ static NSString *adPlacementId = @"893127754073705_909121259141021";
     NSLog(@"Ad was loaded and ready to be displayed");
 }
 
-
--(BOOL)prefersStatusBarHidden {
-    return YES;
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end

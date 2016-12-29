@@ -12,7 +12,7 @@
 		2264CD021C20ED2800AFF5F6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2264CD011C20ED2800AFF5F6 /* ViewController.m */; };
 		2264CD051C20ED2800AFF5F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2264CD031C20ED2800AFF5F6 /* Main.storyboard */; };
 		2264CD071C20ED2800AFF5F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2264CD061C20ED2800AFF5F6 /* Assets.xcassets */; };
-		2264CD2E1C20ED5000AFF5F6 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2264CD2D1C20ED5000AFF5F6 /* FBAudienceNetwork.framework */; };
+		7DCA81471E15AB0700A7A7C7 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DCA81461E15AB0700A7A7C7 /* FBAudienceNetwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +44,7 @@
 		2264CD0B1C20ED2800AFF5F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2264CD101C20ED2800AFF5F6 /* fan_bannerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fan_bannerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2264CD1B1C20ED2800AFF5F6 /* fan_bannerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = fan_bannerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2264CD2D1C20ED5000AFF5F6 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
+		7DCA81461E15AB0700A7A7C7 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2264CD2E1C20ED5000AFF5F6 /* FBAudienceNetwork.framework in Frameworks */,
+				7DCA81471E15AB0700A7A7C7 /* FBAudienceNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,7 +76,6 @@
 		2264CCEE1C20ED2800AFF5F6 = {
 			isa = PBXGroup;
 			children = (
-				2264CD2D1C20ED5000AFF5F6 /* FBAudienceNetwork.framework */,
 				2264CCF91C20ED2800AFF5F6 /* fan_banner */,
 				2264CCF81C20ED2800AFF5F6 /* Products */,
 			);
@@ -95,6 +94,7 @@
 		2264CCF91C20ED2800AFF5F6 /* fan_banner */ = {
 			isa = PBXGroup;
 			children = (
+				7DCA81461E15AB0700A7A7C7 /* FBAudienceNetwork.framework */,
 				2264CCFD1C20ED2800AFF5F6 /* AppDelegate.h */,
 				2264CCFE1C20ED2800AFF5F6 /* AppDelegate.m */,
 				2264CD001C20ED2800AFF5F6 /* ViewController.h */,
@@ -182,6 +182,7 @@
 				TargetAttributes = {
 					2264CCF61C20ED2800AFF5F6 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = V9WTTPBFK9;
 					};
 					2264CD0F1C20ED2800AFF5F6 = {
 						CreatedOnToolsVersion = 7.2;
@@ -377,9 +378,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = V9WTTPBFK9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/fan_banner",
 				);
 				INFOPLIST_FILE = fan_banner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -393,9 +396,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = V9WTTPBFK9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/fan_banner",
 				);
 				INFOPLIST_FILE = fan_banner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
