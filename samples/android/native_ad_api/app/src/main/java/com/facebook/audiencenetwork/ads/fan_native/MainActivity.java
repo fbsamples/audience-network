@@ -37,7 +37,7 @@ import com.facebook.ads.*;
 
 public class MainActivity extends AppCompatActivity implements AdListener, View.OnClickListener {
 
-    private String adPlacementId = "893127754073705_909205119132635";
+    private String adPlacementId = "YOUR_PLACEMENT_ID";
     private NativeAd nativeAd;
     private LinearLayout adView;
     private AdChoicesView adChoicesView;
