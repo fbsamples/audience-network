@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <h1>mWeb Test for AdExchnage Passback</h1>
+
+  <!--Below is the required Adx script -->
+  <script>var inDapIF = false;</script>
+  <script>
+      window.fbAsyncInit = function() {
+        FB.Event.subscribe(
+          'ad.loaded',
+          function(placementId) {
+            console.log('Audience Network ad loaded');
+          }
+        );
+        FB.Event.subscribe(
+          'ad.error',
+          function(errorCode, errorMessage, placementId) {
+            console.log('Audience Network error (' + errorCode + ') ' + errorMessage);
+
+            <!--Below is where you setup your own passback -->
+            var iframe_obj = document.createElement("iframe");
+            var iframe_html = "<!DOCTYPE html><head><scr"+"ipt type='text/javascript'>google_ad_client='ca-pub-3684297456958751';google_ad_slot = '8064252055';google_ad_width = 300;google_ad_height = 250;<\/scr"+"ipt>";
+            iframe_html += "<scr"+"ipt type='text/javascript' language='javascript' src='//pagead2.googlesyndication.com/pagead/show_ads.js'><\/scr"+"ipt></head></html>";
+            iframe_obj.srcdoc = iframe_html;
+            iframe_obj.width = 300;
+            iframe_obj.height = 250;
+            iframe_obj.frameBorder = 0;
+            iframe_obj.marginWidth = 0;
+            iframe_obj.marginHeight = 0;
+            iframe_obj.hSpace = 0;
+            iframe_obj.vSpace = 0;
+            iframe_obj.scrolling = 'no';
+            document.getElementsByClassName('passback_fb')[0].appendChild(iframe_obj);
+            document.getElementsByClassName('passback_fb')[0].style.display = 'block';
+          }
+        );
+        FB.XFBML.parse();
+      };
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk/xfbml.ad.js#xfbml=1&version=v2.5&appId=215629088783673";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div class="fb-ad" data-placementid="215629088783673_215634802116435" data-format="300x250" data-testmode="false"></div>
+     <!-- DIV that will display the passback returned elements if no ad from Audience network-->
+    <div class="passback_fb" style="display: none;"></div>
+</body>
+</html>

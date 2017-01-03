@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Facebook Audience Network Example</title>
+</head>
+
+<body>
+  <script>
+      window.fbAsyncInit = function() {
+        FB.Event.subscribe(
+          'ad.loaded',
+          function(placementId) {
+            console.log('Audience Network (2) ad loaded');
+          }
+        );
+        FB.Event.subscribe(
+          'ad.error',
+          function(errorCode, errorMessage, placementId) {
+            console.log('Audience Network (2) error (' + errorCode + ') ' + errorMessage);
+          }
+        );
+      };
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk/xfbml.ad.js#xfbml=1&version=v2.5&appId=215629088783673";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <h3>Facebook Audience Network for Mobile Web</h3>
+  <hr/>
+  <h3>Native Ad Display with Like Button</h3>
+  <hr/>
+  <div>
+    <fb:ad placementid="215629088783673_215635105449738" format="native" nativeadid="ad_root"></fb:ad>
+	<div id="ad_root">
+      <a class="fbAdLink">
+        <div class="fbAdMedia thirdPartyMediaClass"></div>
+        <div class="fbAdTitle thirdPartyTitleClass"></div>
+        <div class="fbAdBody thirdPartyBodyClass"></div>
+        <div class="fbAdCallToAction thirdPartyCallToActionClass"></div>
+      </a>
+    </div>
+  </div>
+  <div id="fb-root"></div>
+  <div class="fb-like" 
+    data-href="https://github.com/fbsamples/audience-network-support/tree/master/samples/mobile_web" 
+    data-width="62" 
+    data-layout="button_count" 
+    data-action="like" 
+    data-show-faces="true" 
+    data-share="true">
+  </div>
+
+</body>
+</html>
