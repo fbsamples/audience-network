@@ -29,41 +29,61 @@
 
 @implementation ViewController
 
-static NSString *adPlacementId = @"893127754073705_909121259141021";
+// Testing placement id
+static NSString *adPlacementId = @"893127754073705_909205119132635";
+
+FBNativeAd *nativeAd;
+FBAdChoicesView *adChoicesView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self loadBanner];
+    // Do any additional setup after loading the view, typically from a nib.
+    [self loadNativeAd];
 }
 
-- (void) loadBanner {
+- (void)loadNativeAd {
+    nativeAd = [[FBNativeAd alloc] initWithPlacementID:adPlacementId];
+    nativeAd.delegate = self;
+    [nativeAd loadAd];
+}
 
-    FBAdView *adView = [[FBAdView alloc] initWithPlacementID:adPlacementId adSize:kFBAdSizeHeight50Banner rootViewController:self];
-    adView.delegate = self;
-    [adView loadAd];
+- (void)nativeAdDidLoad:(FBNativeAd *)nativeAd{
     
-    [self.view addSubview:adView];
-    adView.frame = CGRectOffset(adView.frame, 0, 42);
+    [self.adTitleLabel setText:nativeAd.title];
+    [self.adBodyLabel setText:nativeAd.body];
+    [self.adSocialContextLabel setText:nativeAd.socialContext];
+    [self.adCallToActionButton setTitle:nativeAd.callToAction forState:UIControlStateNormal];
+    
+    [nativeAd.icon loadImageAsyncWithBlock:^(UIImage *image) {
+        [self.adIconImageView setImage:image];
+    }];
+    
+    // Allocate a FBMediaView to contain the cover image or native video asset
+    [self.adCoverMediaView setNativeAd:nativeAd];
+    
+    // Add adChoicesView
+    adChoicesView = [[FBAdChoicesView alloc] initWithNativeAd:nativeAd];
+    [self.adView addSubview:adChoicesView];
+    [adChoicesView updateFrameFromSuperview];
+    
+    // Register the native ad view and its view controller with the native ad instance
+    [nativeAd registerViewForInteraction:self.adView withViewController:self];
+    
 }
 
-- (void)adView:(FBAdView *)adView didFailWithError:(NSError *)error {
-    NSLog(@"Ad failed to load: %i", (int)error.code);
+- (void)nativeAd:(FBNativeAd *)nativeAd didFailWithError:(NSError *)error{
+    NSLog(@"Ad failed to load with error: %@", error);
 }
 
-- (void)adViewDidLoad:(FBAdView *)adView {
-    NSLog(@"Ad was loaded and ready to be displayed");
-}
-
-
--(BOOL)prefersStatusBarHidden {
+- (BOOL) prefersStatusBarHidden {
     return YES;
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end
