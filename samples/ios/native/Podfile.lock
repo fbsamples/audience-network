@@ -1,0 +1,12 @@
+PODS:
+  - FBAudienceNetwork (4.18.0)
+
+DEPENDENCIES:
+  - FBAudienceNetwork
+
+SPEC CHECKSUMS:
+  FBAudienceNetwork: 56c08468fbd5366f06c84037d859964403d83ce3
+
+PODFILE CHECKSUM: 64cd53dd5a0c89a40e340dd6d3df67f44538aeca
+
+COCOAPODS: 1.1.1

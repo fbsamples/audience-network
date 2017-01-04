@@ -25,12 +25,12 @@
 
 @interface ViewController ()
 
+@property (nonatomic, strong) FBInterstitialAd *interstitialAd;
+
 @end
 
 @implementation ViewController
 
-static NSString *adPlacementId = @"893127754073705_909204815799332";
-FBInterstitialAd *interstitialAd;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,29 +39,26 @@ FBInterstitialAd *interstitialAd;
 }
 
 -(void) loadInterstitialAd {
-    interstitialAd = [[FBInterstitialAd alloc] initWithPlacementID:adPlacementId];
-    interstitialAd.delegate = self;
-    [interstitialAd loadAd];
+    
+    //Replace YOUR_PLACEMENT_ID with your own placement id string.
+    //If you don't have a placement id or don't know how to get one,
+    //refer to the Getting Started Guide
+    
+    //https://developers.facebook.com/docs/audience-network/getting-started#placement_ids
+    self.interstitialAd = [[FBInterstitialAd alloc] initWithPlacementID:@"YOUR_PLACEMENT_ID"];
+    self.interstitialAd.delegate = self;
+    [self.interstitialAd loadAd];
 }
 
 - (void)interstitialAdDidLoad:(FBInterstitialAd *)interstitialAd {
     NSLog(@"Ad is loaded and ready to be displayed");
     
     // You can now display the full screen ad using this code:
-    [interstitialAd showAdFromRootViewController:self];
+    [self.interstitialAd showAdFromRootViewController:self];
 }
 
 - (void)interstitialAd:(FBInterstitialAd *)interstitialAd didFailWithError:(NSError *)error {
     NSLog(@"Ad failed to load");
-}
-
-- (BOOL)prefersStatusBarHidden {
-    return YES;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)handleButtonClick:(id)sender {
