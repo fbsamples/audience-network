@@ -1,0 +1,15 @@
+PODS:
+  - FBAudienceNetwork (4.18.0)
+  - Google-Mobile-Ads-SDK (7.16.0)
+
+DEPENDENCIES:
+  - FBAudienceNetwork
+  - Google-Mobile-Ads-SDK
+
+SPEC CHECKSUMS:
+  FBAudienceNetwork: 56c08468fbd5366f06c84037d859964403d83ce3
+  Google-Mobile-Ads-SDK: 92dff0e9ce1cfdfe640d9d80ab86d5e4371e478f
+
+PODFILE CHECKSUM: 5bb86e61085c4d624787c2fde496a2fe3d69e069
+
+COCOAPODS: 1.1.1
