@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AdMobWrapper</string>
+
+    <!-- AdMob App ID in the format of ca-app-pub-xxxx~yyyy, replace with your own -->
+    <string name="admob_app_id">ca-app-pub-xxxx~yyyy</string>
+    <!-- AdMob ad unit IDs in the format of ca-app-pub-xxxx/yyyy, replace with your own -->
+    <string name="banner_ad_unit_id">ca-app-pub-xxxx/yyyy</string>
+    <string name="interstitial_ad_unit_id">ca-app-pub-xxxx/yyyy</string>
+</resources>
