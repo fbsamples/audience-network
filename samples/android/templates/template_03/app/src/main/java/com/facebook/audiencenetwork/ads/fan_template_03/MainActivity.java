@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         // create ad view
         NativeAdTemplateView adView = new NativeAdTemplateView(this,
-                "808505382626354_823834164426809",
+                "YOUR_PLACEMENT_ID",
                 NativeAdTemplateView.Type.FB_HALF_FRAME,
                 getCustomizedAttributes());
 

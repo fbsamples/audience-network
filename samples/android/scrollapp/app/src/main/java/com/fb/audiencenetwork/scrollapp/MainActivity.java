@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -100,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements NasaRequester.Nas
     }
 
     public void LoadAds() {
-        String placement_id = "893127754073705_909205119132635";
+        String placement_id = "YOUR_PLACEMENT_ID";
         mAds = new NativeAdsManager(this, placement_id, 1);
         mAds.loadAds();
     }
