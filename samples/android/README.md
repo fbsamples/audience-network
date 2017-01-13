@@ -26,9 +26,12 @@ This sample shows an example of integrating native ad unit as a native part of y
 ### [AdMobWrapper](./AdMobWrapper)
 When using mediation platforms, in order to get the most value out from Facebook Audience Network, it is recommended to use a placement ID optimized for CPM, as well as another placement ID optimized for fill rate in the same waterfall as fall back. When using AdMob as a mediation platform, you could only specify one placement ID from Audience Network for an AdMob ad unit. However by utilizing the [AdMob Custom Events][6] you can add a second Audience Network placement ID for one ad unit. This sample demonstrates how you can do that by adding a custom event and implement the wrapper yourself.  
 
+### [NativeTransition](./NativeTransition)
+This sample shows how you can use the Native Ad unit elements to make your own styled full screen ad at the app entrance, and use the Android shared element transition to shrink the same ad to some Native Ad unit on your application main screen, to add interest to the ad unit and get more attention from your user to improve the ad performance.
+
 [1]: https://developers.facebook.com/docs/audience-network/getting-started
 [2]: https://developers.facebook.com/docs/audience-network/android
-[3]: https://developers.intern.facebook.com/docs/audience-network/android-banners
-[4]: https://developers.intern.facebook.com/docs/audience-network/android-interstitial
-[5]: https://developers.intern.facebook.com/docs/audience-network/android-native
+[3]: https://developers.facebook.com/docs/audience-network/android-banners
+[4]: https://developers.facebook.com/docs/audience-network/android-interstitial
+[5]: https://developers.facebook.com/docs/audience-network/android-native
 [6]: https://firebase.google.com/docs/admob/android/custom-events

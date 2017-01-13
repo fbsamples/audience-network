@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="com.sample.nativetransition.NativeAdActivity">
+
+    <RelativeLayout
+        android:id="@+id/topPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:id="@+id/ad_choices_container"
+            android:transitionName="@string/shared_native_ad_choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"/>
+
+        <Button
+            android:text="Skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/skip_ad"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/capsule"
+            android:textSize="10sp"
+            android:padding="3dp"
+            android:minHeight="0dp"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/native_ad_unit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/topPanel">
+
+        <com.facebook.ads.MediaView
+            android:id="@+id/native_ad_media"
+            android:transitionName="@string/shared_native_media_view"
+            android:gravity="center"
+            android:layout_height="160dp"
+            android:layout_width="match_parent"/>
+
+        <ImageView
+            android:id="@+id/native_ad_icon"
+            android:transitionName="@string/shared_native_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"/>
+
+        <TextView
+            android:id="@+id/native_ad_title"
+            android:transitionName="@string/shared_native_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            tools:text="Ad Title"
+            android:textStyle="normal|bold"/>
+
+        <TextView
+            android:id="@+id/native_ad_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:lines="2"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            tools:text="Ad Body"
+            android:textAlignment="center"/>
+
+        <Button
+            android:id="@+id/native_ad_call_to_action"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="#4286F4"
+            android:transitionName="@string/shared_native_cta"
+            android:gravity="center"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:textColor="@android:color/white"
+            android:textSize="11sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Native Transition Sample"
+            android:textSize="18sp"
+            android:layout_margin="10dp"/>
+    </LinearLayout>
+
+</RelativeLayout>

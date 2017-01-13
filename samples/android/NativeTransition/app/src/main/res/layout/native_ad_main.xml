@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/native_ad"
+    android:layout_margin="5dp"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp">
+
+        <com.facebook.ads.MediaView
+            android:id="@+id/native_ad_media"
+            android:transitionName="@string/shared_native_media_view"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="160dp"/>
+
+        <LinearLayout
+            android:id="@+id/ad_choices_container"
+            android:transitionName="@string/shared_native_ad_choice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/native_ad_icon"
+            android:layout_gravity="center"
+            android:transitionName="@string/shared_native_icon"
+            android:layout_width="35dp"
+            android:layout_height="35dp"/>
+
+        <Button
+            android:id="@+id/cta_button"
+            android:layout_alignParentRight="true"
+            android:text="Install Now"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:textSize="10dp"
+            android:textAlignment="gravity"
+            android:layout_gravity="center"
+            android:transitionName="@string/shared_native_cta"
+            android:background="#4286F4"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:minHeight="35dp"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:transitionName="@string/shared_native_title"
+            android:layout_toRightOf="@id/native_ad_icon"
+            android:layout_toLeftOf="@id/cta_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:gravity="center_vertical"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:layout_marginStart="5dp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

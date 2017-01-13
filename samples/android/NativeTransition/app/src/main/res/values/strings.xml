@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Native Transition Sample</string>
+
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="splash_text">Your\nBrand\nImage</string>
+
+    <string name="native_placement_id">YOUR_PLACEMENT_ID</string>
+
+    <string name="shared_native_icon">native_icon</string>
+    <string name="shared_native_media_view">native_media_view</string>
+    <string name="shared_native_title">native_title</string>
+    <string name="shared_native_ad_choice">native_ad_choice</string>
+    <string name="shared_native_cta">native_cta</string>
+</resources>
