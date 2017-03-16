@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/topPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:paddingTop="30dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp">
+
+        <LinearLayout
+            android:id="@+id/ad_choices_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"/>
+
+        <Button
+            android:text="SKIP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/skip_ad"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/capsule"
+            android:textSize="10sp"
+            android:minHeight="0dp"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@android:color/white"
+            android:elevation="4dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/native_ad_unit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/topPanel"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:id="@+id/native_ad_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:text="Ad Title"
+            android:textStyle="normal|bold"
+            android:textAlignment="center"/>
+
+        <ImageView
+            android:id="@+id/native_ad_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/native_ad_title"
+            android:layout_centerHorizontal="true"
+            android:elevation="8dp"
+            android:src="@mipmap/ic_launcher"/>
+
+        <com.facebook.ads.MediaView
+            android:id="@+id/native_ad_media"
+            android:elevation="4dp"
+            android:layout_below="@+id/native_ad_title"
+            android:gravity="center"
+            android:layout_height="180dp"
+            android:layout_width="match_parent"
+            android:background="@color/black_overlay"
+            android:layout_marginTop="40dp"
+            />
+
+        <TextView
+            android:id="@+id/native_ad_body"
+            android:layout_below="@+id/native_ad_media"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:lines="2"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            android:text="Some description for the product. You should try now!"
+            android:textAlignment="center"
+            />
+
+        <com.sample.flipanimation.ShiningButton
+            android:id="@+id/native_ad_shining_cta"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_below="@+id/native_ad_body"
+            android:layout_centerHorizontal="true"
+            android:text="test"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            custom:color="@color/button_color"
+            custom:efx="@drawable/white_gradient"
+            custom:efx_width="60dp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

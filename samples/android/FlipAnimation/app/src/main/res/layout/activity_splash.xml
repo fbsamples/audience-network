@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.sample.flipanimation.SplashActivity"
+             android:background="@android:color/background_light">
+
+    <RelativeLayout
+        android:id="@+id/native_ad_card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/splash_app_name"
+        android:background="#f0f0f0">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/native_ad_card_background"
+            android:scaleType="centerCrop"
+            />
+
+        <include
+            layout="@layout/view_native_ad"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/brand_card"
+        android:layout_above="@+id/splash_app_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/holo_blue_dark">
+
+        <include
+            layout="@layout/view_brand"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/splash_app_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="30sp"
+        android:textColor="@android:color/background_light"
+        android:layout_alignParentBottom="true"
+        android:textAlignment="center"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:background="@android:color/holo_blue_dark"/>
+
+</RelativeLayout>

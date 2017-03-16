@@ -32,6 +32,9 @@ When using mediation platforms, in order to get the most value out from Facebook
 ### [NativeTransition](./NativeTransition)
 This sample shows how you can use the Native Ad unit elements to make your own styled full screen ad at the app entrance, and use the Android shared element transition to shrink the same ad to some Native Ad unit on your application main screen, to add interest to the ad unit and get more attention from your user to improve the ad performance.
 
+### [FlipAnimation](./FlipAnimation)
+This is another sample that shows how you can use the Native Ad unit elements to make your own styled full screen ad at the app entrance. After the brand image launch screen, the brand image will transit into a full screen native ad with a flipping animation, in order to keep the users' attention at the center of the screen and improve the performance of the placement.
+
 [1]: https://developers.facebook.com/docs/audience-network/getting-started
 [2]: https://developers.facebook.com/docs/audience-network/android
 [3]: https://developers.facebook.com/docs/audience-network/android-banners

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Flip Animation Sample</string>
+
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="splash_text">Your\nBrand\nImage</string>
+
+    <string name="native_placement_id">YOUR_PLACEMENT_ID</string>
+</resources>

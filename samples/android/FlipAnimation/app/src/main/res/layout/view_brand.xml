@@ -1,0 +1,15 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.sample.flipanimation.SplashActivity">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+    <ImageView
+        android:src="@mipmap/ic_launcher"
+        android:layout_gravity="center"
+        android:layout_width="160dp"
+        android:layout_height="160dp"/>
+</FrameLayout>
