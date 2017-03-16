@@ -3,6 +3,8 @@
 This sample demonstrates another implementation idea of full screen ad
 unit during app launch.
 
+![Demo](./screencast.gif)
+
 In this sample the full screen ad unit is made from elements of an
 [Native Ad][1], similar to the [NativeTransition][2] sample.
 
