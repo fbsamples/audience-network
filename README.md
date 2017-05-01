@@ -24,7 +24,7 @@ These are sample code and app demonstrate the usage of Facebook's <a href="https
       <li>Ad Banner</li>
       <li>Native Ad</li>
       <li>DFP Passback</li>
-      <li>Facebook Social Plugin (like, login, comment, ...)</li>
+      <li>Facebook Social Plugin (like, login, comment, share,  ...)</li>
     </ul>
   </li>
  </ul> 
