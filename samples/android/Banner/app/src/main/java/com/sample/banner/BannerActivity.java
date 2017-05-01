@@ -68,6 +68,11 @@ public class BannerActivity extends AppCompatActivity {
             public void onAdClicked(Ad ad) {
                 Toast.makeText(BannerActivity.this, "Ad clicked!", Toast.LENGTH_LONG).show();
             }
+
+            @Override
+            public void onLoggingImpression(Ad ad) {
+                Toast.makeText(BannerActivity.this, "Impression logged!", Toast.LENGTH_LONG).show();
+            }
         });
 
         // Request an ad

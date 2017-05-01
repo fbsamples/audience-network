@@ -185,4 +185,9 @@ public class SplashActivity extends Activity
     public void onAdClicked(Ad ad) {
 
     }
+
+    @Override
+    public void onLoggingImpression(Ad ad) {
+
+    }
 }

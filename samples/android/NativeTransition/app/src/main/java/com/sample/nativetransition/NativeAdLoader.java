@@ -47,6 +47,11 @@ public class NativeAdLoader {
             public void onAdClicked(Ad ad) {
 
             }
+
+            @Override
+            public void onLoggingImpression(Ad ad) {
+
+            }
         });
 
         mNativeAd.loadAd();

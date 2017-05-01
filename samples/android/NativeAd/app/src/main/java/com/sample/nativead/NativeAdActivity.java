@@ -1,8 +1,7 @@
 package com.sample.nativead;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -86,6 +85,11 @@ public class NativeAdActivity extends AppCompatActivity {
             @Override
             public void onAdClicked(Ad ad) {
                 // Ad clicked callback
+            }
+
+            @Override
+            public void onLoggingImpression(Ad ad) {
+                // On logging impression callback
             }
         });
 
