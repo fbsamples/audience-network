@@ -149,7 +149,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 ((AdHolder)holder).bindView(mAd);
             }
             else if (mAds != null && mAds.isLoaded()) {
-                mAd = mAds.nextNativeAd();
+                NativeAd mAd = mAds.nextNativeAd();
                 ((AdHolder)holder).bindView(mAd);
             }
             else {
