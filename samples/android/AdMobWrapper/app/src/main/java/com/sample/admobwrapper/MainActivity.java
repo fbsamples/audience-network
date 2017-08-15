@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -36,7 +37,11 @@ import com.google.android.gms.ads.MobileAds;
 
 public class MainActivity extends AppCompatActivity {
 
-    InterstitialAd mInterstitialAd;
+    private final static String TAG = MainActivity.class.getSimpleName();
+
+    private AdView mAdView;
+    private InterstitialAd mInterstitialAd;
+    private TextView mInterstitialStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,35 +51,35 @@ public class MainActivity extends AppCompatActivity {
         MobileAds.initialize(getApplicationContext(), getString(R.string.admob_app_id));
 
         // Banner
-        AdView mAdView = (AdView) findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-            .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-            .build();
-        mAdView.loadAd(adRequest);
-
-        // Interstitial
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
-
-        mInterstitialAd.setAdListener(new AdListener() {
+        Button refreshBanner = (Button) findViewById(R.id.refresh_banner);
+        refreshBanner.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onAdClosed() {
-                requestNewInterstitial();
-            }
-
-            public void onAdFailedToLoad(int var1) {
-                Log.e("Main", "Error code: " + var1);
+            public void onClick(View v) {
+                MainActivity.this.refreshBanner();
             }
         });
 
-        requestNewInterstitial();
+        mAdView = (AdView)findViewById(R.id.adView);
+        refreshBanner();
+
+        // Interstitial
+        mInterstitialStatus = (TextView)findViewById(R.id.interstitial_status);
+        mInterstitialStatus.setText("Click button to load interstitial!");
+
+        Button loadInterstitial = (Button)findViewById(R.id.load_interstitial);
+        loadInterstitial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.requestNewInterstitial();
+            }
+        });
 
         // Button to show interstitial
         Button button = (Button) findViewById(R.id.show_interstitial);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mInterstitialAd.isLoaded()) {
+                if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
                 }
             }
@@ -82,10 +87,42 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void requestNewInterstitial() {
+        // Interstitial
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                Log.d(TAG, "Interstitial closed");
+                mInterstitialStatus.setText("Click button to load interstitial!");
+            }
+
+            @Override
+            public void onAdFailedToLoad(int var1) {
+                Log.e(TAG, "Interstitial Error code: " + var1);
+                mInterstitialStatus.setText("Error! " + var1);
+            }
+
+            @Override
+            public void onAdLoaded() {
+                Log.e(TAG, "Interstitial loaded");
+                mInterstitialStatus.setText("Ad loaded, click button to show!");
+            }
+        });
+
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .build();
 
+        mInterstitialStatus.setText("Loading ad...");
         mInterstitialAd.loadAd(adRequest);
+    }
+
+    private void refreshBanner() {
+        AdRequest request = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+        mAdView.loadAd(request);
     }
 }

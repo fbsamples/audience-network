@@ -34,7 +34,7 @@ import com.google.android.gms.ads.mediation.customevent.CustomEventInterstitialL
 public class FacebookCustomEventInterstitialForwarder implements InterstitialAdListener {
     private CustomEventInterstitialListener mInterstitialListener;
 
-    private final static String TAG = "FBCustomInterstitial";
+    private final static String TAG = FacebookCustomEventInterstitialForwarder.class.getSimpleName();
 
     public FacebookCustomEventInterstitialForwarder(CustomEventInterstitialListener listener) {
         this.mInterstitialListener = listener;
@@ -72,15 +72,21 @@ public class FacebookCustomEventInterstitialForwarder implements InterstitialAdL
 
     @Override
     public void onAdLoaded(Ad ad) {
-        Log.e(TAG, "FacebookCustomEventInterstitial loaded!");
+        Log.d(TAG, "FacebookCustomEventInterstitial loaded!");
         mInterstitialListener.onAdLoaded();
     }
 
     @Override
     public void onAdClicked(Ad ad) {
-        Log.e(TAG, "FacebookCustomEventInterstitial clicked!");
+        Log.d(TAG, "FacebookCustomEventInterstitial clicked!");
         // Ad clicked callback
         mInterstitialListener.onAdClicked();
         mInterstitialListener.onAdLeftApplication();
     }
+
+    @Override
+    public void onLoggingImpression(Ad ad) {
+        Log.d(TAG, "FacebookCustomEventInterstitial impression logged!");
+    }
+
 }

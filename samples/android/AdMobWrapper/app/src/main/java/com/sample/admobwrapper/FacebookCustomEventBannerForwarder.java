@@ -33,7 +33,7 @@ import com.google.android.gms.ads.mediation.customevent.CustomEventBannerListene
 
 class FacebookCustomEventBannerForwarder implements AdListener {
 
-    private final static String TAG = "FBCustomBanner";
+    private final static String TAG = FacebookCustomEventBannerForwarder.class.getSimpleName();
     private CustomEventBannerListener mBannerListener;
     private AdView mAdView;
 
@@ -71,5 +71,10 @@ class FacebookCustomEventBannerForwarder implements AdListener {
                 mBannerListener.onAdFailedToLoad(AdRequest.ERROR_CODE_NO_FILL);
                 break;
         }
+    }
+
+    @Override
+    public void onLoggingImpression(Ad ad) {
+        Log.d(TAG, "FacebookCustomEventBanner impression logged!");
     }
 }
