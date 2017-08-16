@@ -28,7 +28,13 @@
 static NSString *const MyBannerAdUnitID = @"ca-app-pub-xxxx/yyyy";
 static NSString *const MyInterstitialAdUnitID = @"ca-app-pub-xxxx/yyyy";
 
+static NSString *const ClickToLoadInterstital = @"Click to load interstitial";
+static NSString *const InterstitalLoading = @"Interstitial loading...";
+static NSString *const InterstitalLoaded = @"Interstitial loaded! Click to show!";
+
+
 @implementation ViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,14 +42,13 @@ static NSString *const MyInterstitialAdUnitID = @"ca-app-pub-xxxx/yyyy";
     // Load the banner
     self.bannerView.adUnitID = MyBannerAdUnitID;
     self.bannerView.rootViewController = self;
-    GADRequest *request = [GADRequest request];
-    [self.bannerView loadRequest:request];
+    [self refreshBanner];
     
-    // Load the first interstital
-    self.interstitial = [self createAndLoadInterstitial];
+    // Interstital
+    self.interstitialStatus.text = ClickToLoadInterstital;
 }
 
-- (IBAction)handleButtonClick:(id)sender {
+- (IBAction)onShowInterstitial:(id)sender {
     if (self.interstitial.isReady) {
         [self.interstitial presentFromRootViewController:self];
     } else {
@@ -51,26 +56,46 @@ static NSString *const MyInterstitialAdUnitID = @"ca-app-pub-xxxx/yyyy";
     }
 }
 
+- (IBAction)onLoadInterstitial:(id)sender {
+    [self requestInterstitial];
+}
+
+- (IBAction)onRefreshBanner:(id)sender {
+    [self refreshBanner];
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (GADInterstitial *)createAndLoadInterstitial {
-    GADInterstitial *interstitial =
+- (void)refreshBanner {
+    GADRequest *request = [GADRequest request];
+    [self.bannerView loadRequest:request];
+}
+
+- (void)requestInterstitial {
+    self.interstitial =
     [[GADInterstitial alloc] initWithAdUnitID:MyInterstitialAdUnitID];
-    interstitial.delegate = self;
+    self.interstitial.delegate = self;
     
     GADRequest *request = [GADRequest request];
-    [interstitial loadRequest:request];
-    return interstitial;
+    [self.interstitial loadRequest:request];
+
+    self.interstitialStatus.text = InterstitalLoading;
+}
+
+- (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
+    self.interstitialStatus.text = InterstitalLoaded;
 }
 
 - (void)interstitialDidDismissScreen:(GADInterstitial *)ad {
-    self.interstitial = [self createAndLoadInterstitial];
+    self.interstitialStatus.text = ClickToLoadInterstital;
 }
 
 - (void)interstitial:(GADInterstitial *)ad didFailToReceiveAdWithError:(GADRequestError *)error {
+    self.interstitialStatus.text = ClickToLoadInterstital;
     NSLog(@"%ld", (long)error.code);
 }
 @end

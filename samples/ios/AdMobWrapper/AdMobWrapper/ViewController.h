@@ -24,6 +24,7 @@
 
 @interface ViewController : UIViewController <GADInterstitialDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *interstitialStatus;
 @property (weak, nonatomic) IBOutlet GADBannerView *bannerView;
 @property (weak, nonatomic) IBOutlet UIButton *showInterstitial;
 

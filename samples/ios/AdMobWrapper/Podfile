@@ -8,4 +8,5 @@ target 'AdMobWrapper' do
   # Pods for AdMobWrapper
   pod 'FBAudienceNetwork'
   pod 'Google-Mobile-Ads-SDK'
+  pod 'GoogleMobileAdsMediationFacebook'
 end
