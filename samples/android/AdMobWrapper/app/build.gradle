@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.1"
     defaultConfig {
         applicationId "com.sample.admobwrapper"
-        minSdkVersion 11
+        minSdkVersion 14
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -27,6 +27,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.google.firebase:firebase-ads:10.0.1'
     compile 'com.facebook.android:audience-network-sdk:4.+'
+    compile 'com.google.ads.mediation:facebook:4.+'
     testCompile 'junit:junit:4.12'
 }
 
