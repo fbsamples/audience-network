@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_native_ad"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:paddingTop="50dp"
+    >
+
+    <LinearLayout
+        android:id="@+id/native_ad_container"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+
+</RelativeLayout>

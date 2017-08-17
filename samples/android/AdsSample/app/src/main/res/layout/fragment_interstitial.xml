@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_interstitial"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <Button
+        android:id="@+id/btn_load_interstitial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="135dp"
+        android:text="Load Interstitial"/>
+
+    <Button
+        android:id="@+id/btn_show_interstitial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/btn_load_interstitial"
+        android:layout_below="@+id/btn_load_interstitial"
+        android:layout_marginTop="19dp"
+        android:enabled="false"
+        android:text="Show Interstitial"/>
+</RelativeLayout>
