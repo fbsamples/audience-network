@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_banner_fragment"
+            android:title="Banner"/>
+        <item
+            android:id="@+id/nav_interstitial_fragment"
+            android:title="Interstitial"/>
+        <item
+            android:id="@+id/nav_native_fragment"
+            android:title="Native"/>
+        <item
+            android:id="@+id/nav_horizontal_scroll_fragment"
+            android:title="Horizontal Scroll"/>
+
+    </group>
+</menu>

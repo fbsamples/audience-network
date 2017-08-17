@@ -8,20 +8,8 @@ Please make sure that you have completed the [Audience Network Getting Started][
 Sample list
 -----------
 
-### [Banner](./Banner)
-This sample demonstrates the implementation of a banner ad placement. You can also refer to the [Banner Ads implementation guide][3] for more details about this placement.
-
-### [Interstitial](./Interstitial)
-This sample demonstrates the implementation of an interstitial ad unit. You can also refer to the [Interstitial Ads implementation guide][4] for more details about this placement.
-
-### [NativeAd](./NativeAd)
-This sample demonstrates the implementation of a native ad unit. You can also refer to the [Native Ads implementation guide][5] for more details about this placement.
-
-### [native_ad_api](./native_ad_api)
-This is another sample that demonstrates the implementation of a native ad unit. This sample also demonstrates how you can dynamically load and render native ads dynamically on `Button` clicks. You can also refer to the [Native Ads implementation guide][5] for more details about this placement.
-
-### [HorizontalScroll](./HorizontalScroll)
-This sample demonstrates the implementation of a horizontal scroll using the Native Ads Manager.  You can also refer to the Horizontal Scroll Ads section of the [Native Ads Manager implementation guide][7] for more details about this placement.
+### [Ads Sample](./AdsSample)
+This sample app demonstrates the implementation of [Banners][3], [Interstitials][4], [Native Ads][5], and [Horizontal Scroll][7].
 
 ### [scrollapp](./scrollapp)
 This sample shows an example of integrating native ad unit as a native part of your app experience. The sample uses Android `RecyclerView` to display a list of stories, and render a native ad as one of the story. You can also refer to the [Native Ads implementation guide][5] for more details about the native ad placement.
