@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Buttermilk Fried Chicken",
+    "description": "A crispy golden way to prepare your favorite bird!  This recipe calls for two cups of all purpose flour.",
+    "categories": ["Meat"],
+    "image_path": "fried_chicken.jpg"
+  },
+  {
+    "name": "Pork Belly",
+    "description": "Fatty, rich, and succulent, braised to perfection.  You will need two pounds of fresh pork belly.",
+    "categories": ["Meat"],
+    "image_path": "pork_belly.jpg"
+  },
+  {
+    "name": "Hainan Chicken Rice",
+    "description": "Delicious poached chicken served over rice.  The most important ingredient is the chicken.",
+    "categories": ["Meat","Carbs"],
+    "image_path": "hainan_chicken_rice.jpg"
+  },
+  {
+    "name": "Noodles with Meat Sauce",
+    "description": "Noodles with a beefy sauce and cold cut vegetables.  Start by bringing a pot of water to a boil.",
+    "categories": ["Meat","Carbs","Veggie"],
+    "image_path": "noodles_meat_sauce.jpg"
+  },
+  {
+    "name": "Grilled Steak",
+    "description": "Sizzling its way to your heart, this recipe makes the perfect steak.  Start by picking up a high-quality cut of beef.",
+    "categories": ["Meat"],
+    "image_path": "steak.jpg"
+  },
+  {
+    "name": "Strawberry Waffle",
+    "description": "An amazing waffle topped with fresh ripe strawberries is a delightful summer treat.  You'll need two cups of flour to make the batter.",
+    "categories": ["Carbs"],
+    "image_path": "strawberry_waffle.jpg"
+  },
+  {
+    "name": "Sushi Platter",
+    "description": "No need to go to the sushi bar when you have this recipe!  Sashimi grade fish can be found in many Asian supermarkets.",
+    "categories": ["Meat", "Carbs"],
+    "image_path": "sushi.jpg"
+  },
+  {
+    "name": "Raspberry Delight",
+    "description": "A half sphere of pure fruity goodness.  Indulge your sweet tooth with this amazing recipe.",
+    "categories": ["Carbs"],
+    "image_path": "raspberry_delight.jpg"
+  }
+]
