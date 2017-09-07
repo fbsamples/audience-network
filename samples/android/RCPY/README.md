@@ -1,6 +1,6 @@
 # RCPY - Native Ads RecyclerView example 
 
-![App with Ad gif](app-with-ad.gif)![App with Ad Wireframe](app-with-ad-wireframe.png)
+![App with Ad gif](app-with-ad.gif =399x699) ![App with Ad Wireframe](app-with-ad-wireframe.png =399x699)
 
 This is an example of integrating a [Native Ad](https://developers.facebook.com/docs/audience-network/android-native) in a Recycler View.
 
