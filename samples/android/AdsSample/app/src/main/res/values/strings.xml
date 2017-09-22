@@ -2,4 +2,6 @@
     <string name="app_name">Audience Network Samples</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="show_ad">Show!</string>
+    <string name="load_rewarded_video">Load Rewarded Video</string>
 </resources>
