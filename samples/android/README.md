@@ -9,7 +9,7 @@ Sample list
 -----------
 
 ### [Ads Sample](./AdsSample)
-This sample app demonstrates the implementation of [Banners][3], [Interstitials][4], [Native Ads][5], and [Horizontal Scroll][7].
+This sample app demonstrates the implementation of [Banners][3], [Interstitials][4], [Native Ads][5], [Rewarded Videos][8] and [Horizontal Scroll][7].
 
 ### [scrollapp](./scrollapp)
 This sample shows an example of integrating native ad unit as a native part of your app experience. The sample uses Android `RecyclerView` to display a list of stories, and render a native ad as one of the story. You can also refer to the [Native Ads implementation guide][5] for more details about the native ad placement.
@@ -30,3 +30,4 @@ This is another sample that shows how you can use the Native Ad unit elements to
 [5]: https://developers.facebook.com/docs/audience-network/android-native
 [6]: https://firebase.google.com/docs/admob/android/custom-events
 [7]: https://developers.facebook.com/docs/audience-network/android/nativeadsmanager
+[8]: https://developers.facebook.com/docs/audience-network/android/rewarded-video
