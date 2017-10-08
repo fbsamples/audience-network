@@ -16,12 +16,18 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+NS_ASSUME_NONNULL_BEGIN
+@protocol ORTBSource
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@property (nonatomic, readonly) NSString *platformID; // app id if client bidding; otherwise auction platform id
+@property (nonatomic, readonly) NSString *publisherID; //app id
+@property (nonatomic, readonly) NSString *tagID; //placement id
 
-@property (strong, nonatomic) UIWindow *window;
-
-
+- (instancetype)initWith:(NSString *)platformID
+             publisherID:(NSString *)publisherID
+                   tagID:(NSString *)tagID;
+- (NSDictionary *)ortbRequestParameters;
+- (NSString *)endPoint;
 @end
-
+NS_ASSUME_NONNULL_END

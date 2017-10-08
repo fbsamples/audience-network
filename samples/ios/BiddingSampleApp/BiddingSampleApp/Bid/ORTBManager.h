@@ -16,12 +16,17 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "ORTBSource.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
-
+NS_ASSUME_NONNULL_BEGIN
+@interface ORTBManager : NSObject
++ (ORTBManager*)sharedManager;
+- (void)requestBid:(id<ORTBSource>)ORTBSource
+         onSuccess:(void (^)(NSString *payload, NSNumber * __nullable price))onSuccess;
 @end
+
+NS_ASSUME_NONNULL_END
+
 

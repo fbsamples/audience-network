@@ -16,12 +16,20 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "ORTBSource.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+NS_ASSUME_NONNULL_BEGIN
+@interface FBORTBSource : NSObject<ORTBSource>
+@property (nonatomic, readonly) NSString *platformID;
+@property (nonatomic, readonly) NSString *publisherID;
+@property (nonatomic, readonly) NSString *tagID;
 
-@property (strong, nonatomic) UIWindow *window;
-
-
+- (instancetype)initWith:(NSString *)platformID
+             publisherID:(NSString *)publisherID
+                   tagID:(NSString *)tagID;
+- (NSDictionary *)ortbRequestParameters;
+- (NSString *)endPoint;
 @end
-
+NS_ASSUME_NONNULL_END
