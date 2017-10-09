@@ -18,18 +18,6 @@
 
 #import <UIKit/UIKit.h>
 NS_ASSUME_NONNULL_BEGIN
-#define weakify(arg) \
-_Pragma("clang diagnostic push") \
-_Pragma("clang diagnostic ignored \"-Wshadow\"") \
-__typeof__(arg) __weak mn_weak_##arg = arg \
-_Pragma("clang diagnostic pop")
-
-#define strongify(arg) \
-_Pragma("clang diagnostic push") \
-_Pragma("clang diagnostic ignored \"-Wshadow\"") \
-__typeof__(arg) arg = mn_weak_##arg \
-_Pragma("clang diagnostic pop")
-
 @interface NSNumberFormatter (BidUtility)
 + (instancetype)defaultFormatter;
 - (nullable NSNumber *)safeNumberFromString:(nullable NSString *)string;

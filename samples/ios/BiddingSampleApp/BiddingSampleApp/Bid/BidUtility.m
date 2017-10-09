@@ -22,19 +22,9 @@
 NS_ASSUME_NONNULL_BEGIN
 @implementation NSNumberFormatter (BidUtility)
 
-#ifndef FB_INITIALIZE_AND_RETURN_STATIC
-#define FB_INITIALIZE_AND_RETURN_STATIC(...) ({ \
-static __typeof__(__VA_ARGS__) static_storage__; \
-void (^initialization_block__)(void) = ^{ static_storage__ = (__VA_ARGS__); }; \
-static dispatch_once_t once_token__; \
-dispatch_once(&once_token__, initialization_block__); \
-static_storage__; \
-})
-#endif
-
 + (instancetype)defaultFormatter
 {
-    return FB_INITIALIZE_AND_RETURN_STATIC([NSNumberFormatter new]);
+    return [NSNumberFormatter new];
 }
 
 - (nullable NSNumber *)safeNumberFromString:(nullable NSString *)string

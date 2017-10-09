@@ -54,18 +54,17 @@ static NSString *placementID = @"256699801203835_326140227593125";
                                         publisherID:@"256699801203835"
                                               tagID:@"256699801203835_326140227593125"];
   self.dummyORTBSource = [[DummyORTBSource alloc] initWith:@"" publisherID:@"" tagID:@""];
-  weakify(self);
+  
+  BannerBidController * __weak weakSelf = self;
   [[ORTBManager sharedManager] requestBid:self.fbBidSource onSuccess:^(NSString * __nullable payload, NSNumber * __nullable price) {
-    strongify(self);
-    self.anBiddingPrice = [price copy];
-    self.anBiddingPayload = [payload copy];
-    [self complete];
+    weakSelf.anBiddingPrice = [price copy];
+    weakSelf.anBiddingPayload = [payload copy];
+    [weakSelf complete];
   }];
 
   [[ORTBManager sharedManager] requestBid:self.dummyORTBSource onSuccess:^(NSString * __nullable payload, NSNumber * __nullable price) {
-    strongify(self);
-    self.dummyBiddingPrice = [price copy];
-    [self complete];
+    weakSelf.dummyBiddingPrice = [price copy];
+    [weakSelf complete];
   }];
 }
 
