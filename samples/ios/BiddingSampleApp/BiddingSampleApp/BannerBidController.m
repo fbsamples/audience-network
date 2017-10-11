@@ -26,7 +26,8 @@
 #import "DummyORTBSource.h"
 #import "BannerORTBImpression.h"
 
-static NSString *placementID = @"256699801203835_326140227593125";
+static NSString *placementID = @"INSERT_PLACEMENT_ID";
+static NSString *appID = @"INSERT_APP_ID";
 
 @interface BannerBidController ()
 
@@ -51,15 +52,13 @@ static NSString *placementID = @"256699801203835_326140227593125";
     self.adStatusLabel.text = @"";
     [self.adView removeFromSuperview];
     self.adView = nil;
-    NSString *tagID = @"256699801203835_326140227593125";
-    NSString *appID = @"256699801203835";
     self.fbBidSource = [[FBORTBSource alloc] initWith:appID
                             publisherID:appID
-                                  tagID:tagID];
+                                  tagID:placementID];
     self.dummyORTBSource = [[DummyORTBSource alloc] initWith:@"" publisherID:@"" tagID:@""];
 
     BannerORTBImpression *impression = [[BannerORTBImpression alloc] initWith:@"banner_test_bid_req_imp_id"
-                                                                        tagID:tagID
+                                                                        tagID:placementID
                                                                         width:(int) kFBAdSizeHeight50Banner.size.width
                                                                        height:(int) kFBAdSizeHeight50Banner.size.height];
 
