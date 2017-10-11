@@ -17,6 +17,10 @@
 		7D1381F91F89D5F700239F13 /* FBORTBSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1381F81F89D5F700239F13 /* FBORTBSource.m */; };
 		7D1381FD1F89DA2E00239F13 /* BidUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1381FC1F89DA2E00239F13 /* BidUtility.m */; };
 		7D1382001F89DF7000239F13 /* DummyORTBSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1381FE1F89DF7000239F13 /* DummyORTBSource.m */; };
+		7D47CBE01F8E56BE0018256A /* BannerORTBImpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D47CBDF1F8E56BE0018256A /* BannerORTBImpression.m */; };
+		7D47CBE81F8E5B1D0018256A /* InterstitialORTBImpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D47CBE21F8E5B1C0018256A /* InterstitialORTBImpression.m */; };
+		7D47CBE91F8E5B1D0018256A /* VideoORTBImpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D47CBE41F8E5B1C0018256A /* VideoORTBImpression.m */; };
+		7D47CBEA1F8E5B1D0018256A /* NativeORTBImpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D47CBE61F8E5B1C0018256A /* NativeORTBImpression.m */; };
 		92172B8B78E267A46452E32C /* libPods-BiddingSampleApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A18CCF176251295EF285EE /* libPods-BiddingSampleApp.a */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +45,15 @@
 		7D1381FC1F89DA2E00239F13 /* BidUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BidUtility.m; sourceTree = "<group>"; };
 		7D1381FE1F89DF7000239F13 /* DummyORTBSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyORTBSource.m; sourceTree = "<group>"; };
 		7D1381FF1F89DF7000239F13 /* DummyORTBSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyORTBSource.h; sourceTree = "<group>"; };
+		7D47CBDE1F8E53040018256A /* ORTBImpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ORTBImpression.h; sourceTree = "<group>"; };
+		7D47CBDF1F8E56BE0018256A /* BannerORTBImpression.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerORTBImpression.m; sourceTree = "<group>"; };
+		7D47CBE11F8E56FD0018256A /* BannerORTBImpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerORTBImpression.h; sourceTree = "<group>"; };
+		7D47CBE21F8E5B1C0018256A /* InterstitialORTBImpression.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterstitialORTBImpression.m; sourceTree = "<group>"; };
+		7D47CBE31F8E5B1C0018256A /* VideoORTBImpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoORTBImpression.h; sourceTree = "<group>"; };
+		7D47CBE41F8E5B1C0018256A /* VideoORTBImpression.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoORTBImpression.m; sourceTree = "<group>"; };
+		7D47CBE51F8E5B1C0018256A /* InterstitialORTBImpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterstitialORTBImpression.h; sourceTree = "<group>"; };
+		7D47CBE61F8E5B1C0018256A /* NativeORTBImpression.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeORTBImpression.m; sourceTree = "<group>"; };
+		7D47CBE71F8E5B1D0018256A /* NativeORTBImpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeORTBImpression.h; sourceTree = "<group>"; };
 		D66503A5AA7C2E7CD73E5E1B /* Pods-BiddingSampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BiddingSampleApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-BiddingSampleApp/Pods-BiddingSampleApp.release.xcconfig"; sourceTree = "<group>"; };
 		D7A18CCF176251295EF285EE /* libPods-BiddingSampleApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BiddingSampleApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -104,6 +117,15 @@
 		7D1382011F89DFC500239F13 /* Bid */ = {
 			isa = PBXGroup;
 			children = (
+				7D47CBE51F8E5B1C0018256A /* InterstitialORTBImpression.h */,
+				7D47CBE21F8E5B1C0018256A /* InterstitialORTBImpression.m */,
+				7D47CBE71F8E5B1D0018256A /* NativeORTBImpression.h */,
+				7D47CBE61F8E5B1C0018256A /* NativeORTBImpression.m */,
+				7D47CBE31F8E5B1C0018256A /* VideoORTBImpression.h */,
+				7D47CBE41F8E5B1C0018256A /* VideoORTBImpression.m */,
+				7D47CBE11F8E56FD0018256A /* BannerORTBImpression.h */,
+				7D47CBDF1F8E56BE0018256A /* BannerORTBImpression.m */,
+				7D47CBDE1F8E53040018256A /* ORTBImpression.h */,
 				7D1381F41F89CB0600239F13 /* ORTBManager.h */,
 				7D1381F51F89CB1C00239F13 /* ORTBManager.m */,
 				7D1381F71F89D41800239F13 /* ORTBSource.h */,
@@ -253,10 +275,14 @@
 				7D1381F91F89D5F700239F13 /* FBORTBSource.m in Sources */,
 				7D1381ED1F885EFA00239F13 /* BannerBidController.m in Sources */,
 				7D1382001F89DF7000239F13 /* DummyORTBSource.m in Sources */,
+				7D47CBEA1F8E5B1D0018256A /* NativeORTBImpression.m in Sources */,
+				7D47CBE91F8E5B1D0018256A /* VideoORTBImpression.m in Sources */,
 				7D1381F61F89CB1C00239F13 /* ORTBManager.m in Sources */,
 				7D1381E51F88558200239F13 /* main.m in Sources */,
 				7D1381FD1F89DA2E00239F13 /* BidUtility.m in Sources */,
 				7D1381D71F88558200239F13 /* AppDelegate.m in Sources */,
+				7D47CBE81F8E5B1D0018256A /* InterstitialORTBImpression.m in Sources */,
+				7D47CBE01F8E56BE0018256A /* BannerORTBImpression.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,34 +15,31 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-#import "DummyORTBSource.h"
-
+#import "InterstitialORTBImpression.h"
 #import <Foundation/Foundation.h>
-#import <FBAudienceNetwork/FBAudienceNetwork.h>
-#import <AdSupport/ASIdentifierManager.h>
 
-#import "BidUtility.h"
+NS_ASSUME_NONNULL_BEGIN
+@implementation InterstitialORTBImpression
 
-@implementation DummyORTBSource
-
-- (instancetype)initWith:(NSString *)platformID
-             publisherID:(NSString *)publisherID
-                   tagID:(NSString *)tagID {
-    self = [[DummyORTBSource alloc] init];
-    if (self) {
-        _platformID = platformID;
-        _publisherID = publisherID;
-        _tagID = tagID;
-    }
-    return self;
+- (NSDictionary *)impressionParameters {
+    // construct the imp objects which are array of slots to bid on
+    NSMutableDictionary *impObject = [NSMutableDictionary dictionary];
+    // construct the banner object
+    NSMutableDictionary *bannerObject = [NSMutableDictionary dictionary];
+    // width
+    bannerObject[@"w"] = @(self.width);
+    // height
+    bannerObject[@"h"] = @(self.height);
+    impObject[@"banner"] = bannerObject;
+    // platform's identifier for this impression within the request
+    impObject[@"id"] = self.impressionID;
+    // Placement ID or Placement Name
+    impObject[@"tagid"] = self.tagID;
+    // interstitial: 0 = normal (default); 1 = interstitial
+    impObject[@"instl"] = @1;
+    
+    return impObject;
 }
 
-- (NSString *)endPoint {
-    return @"https://stark-island-43990.herokuapp.com/buy";
-}
-
-- (NSDictionary *)ortbRequestParametersForAdImpression:(id<ORTBImpression>)impression;
-{
-    return @{};
-}
 @end
+NS_ASSUME_NONNULL_END

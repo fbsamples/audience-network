@@ -15,34 +15,32 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-#import "DummyORTBSource.h"
 
 #import <Foundation/Foundation.h>
-#import <FBAudienceNetwork/FBAudienceNetwork.h>
-#import <AdSupport/ASIdentifierManager.h>
+#import <UIKit/UIKit.h>
+#import "ORTBImpression.h"
 
-#import "BidUtility.h"
+NS_ASSUME_NONNULL_BEGIN
+@interface VideoORTBImpression : NSObject<ORTBImpression>
+@property (nonatomic, readonly) NSString *impressionID;
+@property (nonatomic, readonly) NSString *tagID;
+@property (nonatomic, readonly) int width;
+@property (nonatomic, readonly) int height;
+// 2 = outstream (rewarded), 1 = instream
+@property (nonatomic, readonly) int linearity;
 
-@implementation DummyORTBSource
+- (instancetype)initWith:(NSString *)impressionID
+                   tagID:(NSString *)tagID
+                   width:(int)width
+                  height:(int)height;
 
-- (instancetype)initWith:(NSString *)platformID
-             publisherID:(NSString *)publisherID
-                   tagID:(NSString *)tagID {
-    self = [[DummyORTBSource alloc] init];
-    if (self) {
-        _platformID = platformID;
-        _publisherID = publisherID;
-        _tagID = tagID;
-    }
-    return self;
-}
+- (instancetype)initWith:(NSString *)impressionID
+                   tagID:(NSString *)tagID
+                   width:(int)width
+                  height:(int)height
+               linearity:(int)linearity;
 
-- (NSString *)endPoint {
-    return @"https://stark-island-43990.herokuapp.com/buy";
-}
+- (NSDictionary *)impressionParameters;
 
-- (NSDictionary *)ortbRequestParametersForAdImpression:(id<ORTBImpression>)impression;
-{
-    return @{};
-}
 @end
+NS_ASSUME_NONNULL_END

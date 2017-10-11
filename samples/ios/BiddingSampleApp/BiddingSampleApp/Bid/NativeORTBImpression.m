@@ -15,34 +15,43 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-#import "DummyORTBSource.h"
-
+#import "NativeORTBImpression.h"
 #import <Foundation/Foundation.h>
-#import <FBAudienceNetwork/FBAudienceNetwork.h>
-#import <AdSupport/ASIdentifierManager.h>
 
-#import "BidUtility.h"
+NS_ASSUME_NONNULL_BEGIN
+@implementation NativeORTBImpression
 
-@implementation DummyORTBSource
-
-- (instancetype)initWith:(NSString *)platformID
-             publisherID:(NSString *)publisherID
-                   tagID:(NSString *)tagID {
-    self = [[DummyORTBSource alloc] init];
+- (instancetype)initWith:(NSString *)impressionID
+                   tagID:(NSString *)tagID
+                   width:(int)width
+                  height:(int)height {
+    self = [[NativeORTBImpression alloc] init];
     if (self) {
-        _platformID = platformID;
-        _publisherID = publisherID;
+        _impressionID = impressionID;
         _tagID = tagID;
+        _width = width;
+        _height = height;
     }
     return self;
 }
 
-- (NSString *)endPoint {
-    return @"https://stark-island-43990.herokuapp.com/buy";
+- (NSDictionary *)impressionParameters {
+    // construct the imp objects which are array of slots to bid on
+    NSMutableDictionary *impObject = [NSMutableDictionary dictionary];
+    // construct the banner object
+    NSMutableDictionary *nativeObject = [NSMutableDictionary dictionary];
+    // width
+    nativeObject[@"w"] = @(self.width);
+    // height
+    nativeObject[@"h"] = @(self.height);
+    impObject[@"native"] = nativeObject;
+    // platform's identifier for this impression within the request
+    impObject[@"id"] = self.impressionID;
+    // Placement ID or Placement Name
+    impObject[@"tagid"] = self.tagID;
+    
+    return impObject;
 }
 
-- (NSDictionary *)ortbRequestParametersForAdImpression:(id<ORTBImpression>)impression;
-{
-    return @{};
-}
 @end
+NS_ASSUME_NONNULL_END

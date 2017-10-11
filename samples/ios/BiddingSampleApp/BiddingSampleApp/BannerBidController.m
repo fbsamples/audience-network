@@ -24,6 +24,7 @@
 #import "ORTBSource.h"
 #import "FBORTBSource.h"
 #import "DummyORTBSource.h"
+#import "BannerORTBImpression.h"
 
 static NSString *placementID = @"256699801203835_326140227593125";
 
@@ -44,54 +45,65 @@ static NSString *placementID = @"256699801203835_326140227593125";
 
 - (void)loadAd
 {
-  _anBiddingPrice = nil;
-  _anBiddingPayload = nil;
-  _dummyBiddingPrice = nil;
-  self.adStatusLabel.text = @"";
-  [self.adView removeFromSuperview];
-  self.adView = nil;
-  self.fbBidSource = [[FBORTBSource alloc] initWith:@"256699801203835"
-                                        publisherID:@"256699801203835"
-                                              tagID:@"256699801203835_326140227593125"];
-  self.dummyORTBSource = [[DummyORTBSource alloc] initWith:@"" publisherID:@"" tagID:@""];
-  
-  BannerBidController * __weak weakSelf = self;
-  [[ORTBManager sharedManager] requestBid:self.fbBidSource onSuccess:^(NSString * __nullable payload, NSNumber * __nullable price) {
-    weakSelf.anBiddingPrice = [price copy];
-    weakSelf.anBiddingPayload = [payload copy];
-    [weakSelf complete];
-  }];
+    _anBiddingPrice = nil;
+    _anBiddingPayload = nil;
+    _dummyBiddingPrice = nil;
+    self.adStatusLabel.text = @"";
+    [self.adView removeFromSuperview];
+    self.adView = nil;
+    NSString *tagID = @"256699801203835_326140227593125";
+    NSString *appID = @"256699801203835";
+    self.fbBidSource = [[FBORTBSource alloc] initWith:appID
+                            publisherID:appID
+                                  tagID:tagID];
+    self.dummyORTBSource = [[DummyORTBSource alloc] initWith:@"" publisherID:@"" tagID:@""];
 
-  [[ORTBManager sharedManager] requestBid:self.dummyORTBSource onSuccess:^(NSString * __nullable payload, NSNumber * __nullable price) {
-    weakSelf.dummyBiddingPrice = [price copy];
-    [weakSelf complete];
-  }];
+    BannerORTBImpression *impression = [[BannerORTBImpression alloc] initWith:@"banner_test_bid_req_imp_id"
+                                                                        tagID:tagID
+                                                                        width:(int) kFBAdSizeHeight50Banner.size.width
+                                                                       height:(int) kFBAdSizeHeight50Banner.size.height];
+
+    BannerBidController * __weak weakSelf = self;
+    [[ORTBManager sharedManager] requestBid:self.fbBidSource
+                   impression:impression
+                    onSuccess:^(NSString * __nullable payload, NSNumber * __nullable price) {
+        weakSelf.anBiddingPrice = [price copy];
+        weakSelf.anBiddingPayload = [payload copy];
+        [weakSelf complete];
+    }];
+
+    [[ORTBManager sharedManager] requestBid:self.dummyORTBSource
+                   impression:impression
+                    onSuccess:^(NSString * __nullable payload, NSNumber * __nullable price) {
+        weakSelf.dummyBiddingPrice = [price copy];
+        [weakSelf complete];
+    }];
 }
 
 - (void)complete {
-  if (self.dummyBiddingPrice && self.anBiddingPrice && self.anBiddingPayload) {
-    if ([self.dummyBiddingPrice doubleValue] > [self.anBiddingPrice doubleValue]) {
-      self.adStatusLabel.text = [NSString stringWithFormat:@"AN bidding (%3.2f) lost \n dummy bidding (%3.2f)", self.anBiddingPrice.doubleValue, self.dummyBiddingPrice.doubleValue];
-    } else {
-      self.adStatusLabel.text = [NSString stringWithFormat:@"AN bidding (%3.2f) win \n dummy bidding (%3.2f)", self.anBiddingPrice.doubleValue, self.dummyBiddingPrice.doubleValue];
-      FBAdSize adSize = kFBAdSizeHeight50Banner;
-      FBAdView *adView = [[FBAdView alloc] initWithPlacementID:placementID
-                                                        adSize:kFBAdSizeHeight50Banner
-                                            rootViewController:(UIViewController *)[NSObject new]];
-      CGSize viewSize = self.view.bounds.size;
-      CGSize tabBarSize = self.tabBarController.tabBar.frame.size;
-      viewSize = CGSizeMake(viewSize.width, viewSize.height - tabBarSize.height);
-      CGFloat bottomAlignedY = viewSize.height - adSize.size.height;
-      adView.frame = CGRectMake(0, bottomAlignedY, viewSize.width, adSize.size.height);
-      
-      self.adView = adView;
-      adView.delegate = self;
-      
-      // Add adView to the view hierarchy.
-      [self.view addSubview:self.adView];
-      [self.adView loadAdWithBidPayload:self.anBiddingPayload];
+    if (self.dummyBiddingPrice && self.anBiddingPrice && self.anBiddingPayload) {
+        if ([self.dummyBiddingPrice doubleValue] > [self.anBiddingPrice doubleValue]) {
+            self.adStatusLabel.text = [NSString stringWithFormat:@"AN bidding (%3.2f) lost \n dummy bidding (%3.2f)", self.anBiddingPrice.doubleValue, self.dummyBiddingPrice.doubleValue];
+        } else {
+            self.adStatusLabel.text = [NSString stringWithFormat:@"AN bidding (%3.2f) win \n dummy bidding (%3.2f)", self.anBiddingPrice.doubleValue, self.dummyBiddingPrice.doubleValue];
+            FBAdSize adSize = kFBAdSizeHeight50Banner;
+            FBAdView *adView = [[FBAdView alloc] initWithPlacementID:placementID
+                                                    adSize:kFBAdSizeHeight50Banner
+                                        rootViewController:(UIViewController *)[NSObject new]];
+            CGSize viewSize = self.view.bounds.size;
+            CGSize tabBarSize = self.tabBarController.tabBar.frame.size;
+            viewSize = CGSizeMake(viewSize.width, viewSize.height - tabBarSize.height);
+            CGFloat bottomAlignedY = viewSize.height - adSize.size.height;
+            adView.frame = CGRectMake(0, bottomAlignedY, viewSize.width, adSize.size.height);
+
+            self.adView = adView;
+            adView.delegate = self;
+
+            // Add adView to the view hierarchy.
+            [self.view addSubview:self.adView];
+            [self.adView loadAdWithBidPayload:self.anBiddingPayload];
+        }
     }
-  }
 }
 
 - (IBAction)bidAdTapped:(id)sender {
@@ -102,34 +114,34 @@ static NSString *placementID = @"256699801203835_326140227593125";
 
 - (void)adViewDidClick:(FBAdView *)adView
 {
-  NSLog(@"Ad was clicked.");
+    NSLog(@"Ad was clicked.");
 }
 
 - (void)adViewDidFinishHandlingClick:(FBAdView *)adView
 {
-  NSLog(@"Ad did finish click handling.");
+    NSLog(@"Ad did finish click handling.");
 }
 
 - (void)adViewDidLoad:(FBAdView *)adView
 {
-  //self.adStatusLabel.text = @"Ad loaded.";
-  NSLog(@"Ad was loaded.");
-  // Now that the ad was loaded, show the view in case it was hidden before.
-  self.adView.hidden = NO;
+    //self.adStatusLabel.text = @"Ad loaded.";
+    NSLog(@"Ad was loaded.");
+    // Now that the ad was loaded, show the view in case it was hidden before.
+    self.adView.hidden = NO;
 }
 
 - (void)adView:(FBAdView *)adView didFailWithError:(NSError *)error
 {
-  self.adStatusLabel.text = @"Ad failed to load. Check console for details.";
-  NSLog(@"Ad failed to load with error: %@", error);
-  
-  // Hide the unit since no ad is shown.
-  self.adView.hidden = YES;
+    self.adStatusLabel.text = @"Ad failed to load. Check console for details.";
+    NSLog(@"Ad failed to load with error: %@", error);
+
+    // Hide the unit since no ad is shown.
+    self.adView.hidden = YES;
 }
 
 - (void)adViewWillLogImpression:(FBAdView *)adView
 {
-  NSLog(@"Ad impression is being captured.");
+    NSLog(@"Ad impression is being captured.");
 }
 
 
