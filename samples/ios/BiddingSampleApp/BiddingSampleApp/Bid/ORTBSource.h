@@ -17,6 +17,7 @@
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "ORTBImpression.h"
 NS_ASSUME_NONNULL_BEGIN
 @protocol ORTBSource
 
@@ -27,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWith:(NSString *)platformID
              publisherID:(NSString *)publisherID
                    tagID:(NSString *)tagID;
-- (NSDictionary *)ortbRequestParameters;
+- (NSDictionary *)ortbRequestParametersForAdImpression:(id<ORTBImpression>)impression;
 - (NSString *)endPoint;
 @end
 NS_ASSUME_NONNULL_END

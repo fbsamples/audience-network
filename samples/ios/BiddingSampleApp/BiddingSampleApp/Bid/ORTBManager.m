@@ -40,15 +40,16 @@
     return manager;
 }
 
-- (void)requestBid:(id<ORTBSource>)ORTBSource
+- (void)requestBid:(id<ORTBSource>)ortbSource
+        impression:(id<ORTBImpression>)ortbImpression
          onSuccess:(void (^)(NSString *payload, NSNumber * __nullable price))onSuccess
 {
-    NSDictionary *jsonDict = [ORTBSource ortbRequestParameters];
+    NSDictionary *jsonDict = [ortbSource ortbRequestParametersForAdImpression:ortbImpression];
     NSString *jsonReq = [NSDictionary getJSONStringFromObject:jsonDict];
     NSData *postData = [jsonReq dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%zu", (size_t) [postData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[ORTBSource endPoint]]];
+    [request setURL:[NSURL URLWithString:[ortbSource endPoint]]];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];

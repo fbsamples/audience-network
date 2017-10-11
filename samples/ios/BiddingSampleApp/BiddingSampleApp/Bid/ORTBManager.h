@@ -23,7 +23,8 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface ORTBManager : NSObject
 + (ORTBManager*)sharedManager;
-- (void)requestBid:(id<ORTBSource>)ORTBSource
+- (void)requestBid:(id<ORTBSource>)ortbSource
+        impression:(id<ORTBImpression>)ortbImpression
          onSuccess:(void (^)(NSString *payload, NSNumber * __nullable price))onSuccess;
 @end
 

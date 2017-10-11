@@ -15,34 +15,25 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-#import "DummyORTBSource.h"
 
 #import <Foundation/Foundation.h>
-#import <FBAudienceNetwork/FBAudienceNetwork.h>
-#import <AdSupport/ASIdentifierManager.h>
+NS_ASSUME_NONNULL_BEGIN
+@protocol ORTBImpression
 
-#import "BidUtility.h"
+// platform's identifier for this impression within the request
+@property (nonatomic, readonly) NSString *impressionID;
+// placement id
+@property (nonatomic, readonly) NSString *tagID;
+// width
+@property (nonatomic, readonly) int width;
+// height
+@property (nonatomic, readonly) int height;
 
-@implementation DummyORTBSource
+- (instancetype)initWith:(NSString *)impressionID
+                   tagID:(NSString *)tagID
+                   width:(int)width
+                  height:(int)height;
+- (NSDictionary *)impressionParameters;
 
-- (instancetype)initWith:(NSString *)platformID
-             publisherID:(NSString *)publisherID
-                   tagID:(NSString *)tagID {
-    self = [[DummyORTBSource alloc] init];
-    if (self) {
-        _platformID = platformID;
-        _publisherID = publisherID;
-        _tagID = tagID;
-    }
-    return self;
-}
-
-- (NSString *)endPoint {
-    return @"https://stark-island-43990.herokuapp.com/buy";
-}
-
-- (NSDictionary *)ortbRequestParametersForAdImpression:(id<ORTBImpression>)impression;
-{
-    return @{};
-}
 @end
+NS_ASSUME_NONNULL_END

@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWith:(NSString *)platformID
              publisherID:(NSString *)publisherID
                    tagID:(NSString *)tagID;
-- (NSDictionary *)ortbRequestParameters;
+- (NSDictionary *)ortbRequestParametersForAdImpression:(id<ORTBImpression>)impression;
 - (NSString *)endPoint;
 @end
 
