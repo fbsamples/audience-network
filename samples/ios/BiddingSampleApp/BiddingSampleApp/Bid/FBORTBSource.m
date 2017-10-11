@@ -24,6 +24,7 @@
 #import "BidUtility.h"
 
 NS_ASSUME_NONNULL_BEGIN
+  
 @implementation FBORTBSource
 
 - (instancetype)initWith:(NSString *)platformID
@@ -109,4 +110,5 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 @end
+
 NS_ASSUME_NONNULL_END
