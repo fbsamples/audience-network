@@ -38,9 +38,9 @@
     //https://developers.facebook.com/docs/audience-network/getting-started#placement_ids
     
     FBAdView *adView = [[FBAdView alloc] initWithPlacementID:@"YOUR_PLACEMENT_ID"
-                                                      adSize:kFBAdSizeHeight50Banner
+                                                      adSize:kFBAdSizeHeight250Rectangle
                                           rootViewController:self];
-    adView.frame = CGRectMake(0, 20, adView.bounds.size.width, adView.bounds.size.height);
+    adView.frame = CGRectMake(0, 20, self.view.frame.size.width, adView.bounds.size.height);
     adView.delegate = self;
     [adView loadAd];
     [self.view addSubview:adView];
