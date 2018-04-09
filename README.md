@@ -27,6 +27,12 @@ These are sample code and app demonstrate the usage of Facebook's <a href="https
       <li>Facebook Social Plugin (like, login, comment, ...)</li>
     </ul>
   </li>
+  <li>Facebook Audience Reporting API Samples
+    <ul>
+      <li>Sync Request</li>
+      <li>Async Request</li>
+    </ul>
+  </li>
  </ul> 
 </li>
 </ul>
