@@ -1,4 +1,4 @@
-# audience-network-reporting-api-samples
+# Audience Network Reporting API Samples
 The Audience Network Reporting API lets you automate downloading performance data for
 your Business and Properties. This sample project walks through key API features and use cases
 in Python to send requests (sync or async) to fetch performance data and save them as .csv file.
