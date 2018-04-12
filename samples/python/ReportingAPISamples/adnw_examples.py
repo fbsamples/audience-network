@@ -62,12 +62,16 @@ def run_async_request_2(app_id, access_token):
 
 def run_async_request_for_result_1(app_id, access_token):
     query_id = run_async_request_1(app_id, access_token)
+    """The waiting period here is to make sure the results have been generated on our backend."""
+    sleep(10)
     try_run_async_request_with_query_ids(app_id, access_token, [query_id])
 
 
 def run_async_request_for_result_2(app_id, access_token):
     query_id_1 = run_async_request_1(app_id, access_token)
     query_id_2 = run_async_request_2(app_id, access_token)
+    """The waiting period here is to make sure the results have been generated on our backend."""
+    sleep(10)
     try_run_async_request_with_query_ids(app_id, access_token, [query_id_1, query_id_2])
 
 
@@ -78,7 +82,9 @@ def try_run_async_request_with_query_ids(app_id, access_token, query_ids: [strin
             break
         except adnw_exception.ValidationError as error:
             print(error.message)
-            sleep(0.3)
+            """Waiting 60 seconds if first async request fails, because clustering too many requests 
+            in our backend will slow your process of fetching results."""
+            sleep(60)
             continue
 
 

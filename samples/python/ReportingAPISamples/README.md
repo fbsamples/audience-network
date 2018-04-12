@@ -9,6 +9,14 @@ loads and return a query ID for you to retrieve the data at a later time. More i
 
 This repository includes contents as follows:
 
+## Recommendation
+
+We highly recommend you include our adnw_examples.py into your project because those examples are the best practices for
+accessing our end point.
+
+After you fetch query ids successfully, please wait for a few seconds (i.e. 10 seconds) before you send another "async" request with
+query ids such that you are guaranteed to get results. Also, please do not try to request more than 50 times within 60 seconds.
+
 ## Run Reporting API Examples
 
 In adnw_examples.py, it provides examples using adnw_requests to build sync and async requests
