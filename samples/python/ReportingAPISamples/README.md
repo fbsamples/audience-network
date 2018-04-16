@@ -25,4 +25,4 @@ to get data. Uncomment corresponding test cases in adnw_examples.py and run it.
 ## Versions
 
 The python version is 3.6.<br>
-The requests library version is 2.18.4.
+The [requests library](https://github.com/requests/requests) version is 2.18.4.
