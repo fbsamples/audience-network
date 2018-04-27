@@ -50,6 +50,7 @@ def write_to_csv(_json: json):
         shutil.rmtree(REPORTS_DIR)
 
     if not _json:
+        print("Failed to writing results to csv, json results: \n" + str(_json))
         return
 
     flat_datas = list()
@@ -63,7 +64,8 @@ def write_to_csv(_json: json):
             flat_items.append(flat_item)
         flat_datas.append(flat_items)
 
-    if is_list_empty(flat_datas):
+    if is_list_empty(flat_datas) or is_list_empty(flat_datas[0]):
+        print("Failed to writing results to csv, json results: \n" + str(_json))
         return
 
     if not os.path.exists(REPORTS_DIR):
@@ -78,6 +80,9 @@ def write_to_csv(_json: json):
         for flat_item in flat_items:
             csv_output.writerow(flat_item)
         i += 1
+
+    print("json response: " + str(_json))
+    print("Finish writing results to csv, check 'csv_reports/report.csv' in root directory.")
 
 
 def add_separated_key_value_if_needed(node: dict):

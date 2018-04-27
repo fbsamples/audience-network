@@ -11,8 +11,8 @@ ADNW_REQUEST_API = '/adnetworkanalytics'
 ADNW_REQUEST_API_BY_QUERY_IDS = '/adnetworkanalytics_results'
 ACCESS_TOKEN_KEY = 'access_token'
 QUERY_IDS = 'query_ids'
-DEFAULT_ROW_LIMIT_ASYNC = 10000
-DEFAULT_ROW_LIMIT_SYNC = 1000
+MAX_ROW_LIMIT_ASYNC = 10000
+MAX_ROW_LIMIT_SYNC = 1000
 now = datetime.datetime.now()
 date_format = "%Y-%m-%d"
 
@@ -24,12 +24,12 @@ class ADNWRequestBuilder(object):
         self.access_token = access_token
         self.metrics = set()
         self.breakdowns = set()
-        self.date_since = now + datetime.timedelta(days=-7)
-        self.date_until = now
+        self.date_since = now.date() + datetime.timedelta(days=-6)
+        self.date_until = now.date()
         self.filters = set()
         self.ordering_column = OrderingColumn.TIME
         self.ordering_type = OrderingType.ASCENDING
-        self.limit = DEFAULT_ROW_LIMIT_SYNC
+        self.limit = MAX_ROW_LIMIT_SYNC
         self.aggregation_period = AggregationPeriod.DAY
         self.query_ids = set()
 
@@ -45,11 +45,8 @@ class ADNWRequestBuilder(object):
     def add_breakdown(self, breakdown: Breakdown):
         self.breakdowns.add(breakdown)
 
-    def set_date_since(self, date_since: datetime.date):
+    def set_date_range(self, date_since: datetime.date, date_until: datetime.date):
         self.date_since = date_since
-        print(self.date_since)
-
-    def set_date_until(self, date_until: datetime.date):
         self.date_until = date_until
 
     def add_filters(self, filters: [Filter]):
@@ -121,7 +118,10 @@ class ADNWRequestBuilder(object):
             raise Exception("The parameter metrics is required.")
 
         diff = (self.date_until - self.date_since).days
-        if diff > 7:
+        if diff >= 7 or diff < 0:
+            print("date since: " + str(self.date_since))
+            print("date since: " + str(self.date_until))
+        if diff >= 7:
             raise Exception("The time range needs to be at most 7 days.")
         if diff < 0:
             raise Exception("The time range is invalid.")

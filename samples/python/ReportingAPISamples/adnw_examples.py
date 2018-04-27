@@ -2,6 +2,7 @@ from adnw_requests import *
 from adnw_utils import *
 from adnw_response import *
 from time import sleep
+import datetime
 
 
 """ Run sync request, but there are some limitations.
@@ -9,15 +10,16 @@ from time import sleep
 """
 def run_sync_request(app_id, access_token):
     builder = ADNWRequestBuilder(app_id, access_token)
-    builder.add_metric(Metric.ADNW_IMPRESSION)
+    builder.add_metric(Metric.ADNW_REQUEST)
     builder.add_filter(Filter(Breakdown.COUNTRY, FilterOperator.IN, ['US', 'JP']))
     builder.add_filter(Filter(Breakdown.PLATFORM, FilterOperator.IN, ['ios', 'android', 'unknown']))
     builder.add_breakdown(Breakdown.COUNTRY)
     builder.add_breakdown(Breakdown.PLATFORM)
+    builder.set_date_range(datetime.date(2018, 4, 1), datetime.date(2018, 4, 1))
+    builder.set_limit(MAX_ROW_LIMIT_SYNC)
     sync_request = builder.build_sync_request()
     ADNWResponse.get_instance().validate_response(sync_request)
     adnw_utils.write_to_csv(sync_request.json())
-    print("Finish writing to csv, check 'csv_reports/report.csv' in root directory.")
 
 
 """ Run async request to get request id (no limitations on params),
@@ -31,7 +33,9 @@ def run_async_request_1(app_id, access_token):
     builder.add_filter(Filter(Breakdown.COUNTRY, FilterOperator.IN, ['US', 'JP']))
     builder.add_filter(Filter(Breakdown.PLATFORM, FilterOperator.IN, ['ios', 'android']))
     builder.add_breakdown(Breakdown.COUNTRY)
-    builder.add_breakdown(Breakdown.DELIVERY_METHOD)
+    builder.add_breakdown(Breakdown.PLACEMENT)
+    builder.set_date_range(datetime.date(2018, 4, 1), datetime.date(2018, 4, 1))
+    builder.set_limit(MAX_ROW_LIMIT_ASYNC)
     async_request = builder.build_async_request()
     adnw_response = ADNWResponse.get_instance()
     adnw_response.validate_response(async_request)
@@ -52,6 +56,7 @@ def run_async_request_2(app_id, access_token):
     builder.add_filter(Filter(Breakdown.PLATFORM, FilterOperator.IN, ['ios', 'unknown']))
     builder.add_breakdown(Breakdown.PLATFORM)
     builder.add_breakdown(Breakdown.PLACEMENT)
+    builder.set_limit(MAX_ROW_LIMIT_ASYNC)
     async_request = builder.build_async_request()
     adnw_response = ADNWResponse.get_instance()
     adnw_response.validate_response(async_request)
@@ -94,7 +99,6 @@ def run_async_request_with_query_ids(app_id, access_token, query_ids: [string]):
     sync_request = builder.build_sync_request_with_query_ids()
     ADNWResponse.get_instance().validate_response(sync_request)
     adnw_utils.write_to_csv(sync_request.json())
-    print("Finish writing to csv, check 'csv_reports/report.csv' in root directory.")
 
 
 if __name__ == '__main__':
@@ -106,6 +110,6 @@ if __name__ == '__main__':
     """Uncomment corresponding function for testing."""
     # run_sync_request(_app_id, _access_token)
 
-    # run_async_request_for_result_1(_app_id, _access_token)
+    run_async_request_for_result_1(_app_id, _access_token)
 
-    run_async_request_for_result_2(_app_id, _access_token)
+    # run_async_request_for_result_2(_app_id, _access_token)
