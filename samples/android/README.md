@@ -11,14 +11,11 @@ Sample list
 ### [Ads Sample](./AdsSample)
 This sample app demonstrates the implementation of [Banners][3], [Interstitials][4], [Native Ads][5], [Rewarded Videos][8] and [Horizontal Scroll][7].
 
-### [scrollapp](./scrollapp)
-This sample shows an example of integrating native ad unit as a native part of your app experience. The sample uses Android `RecyclerView` to display a list of stories, and render a native ad as one of the story. You can also refer to the [Native Ads implementation guide][5] for more details about the native ad placement.
-
 ### [AdMobWrapper](./AdMobWrapper)
 When using mediation platforms, in order to get the most value out from Facebook Audience Network, it is recommended to use a placement ID optimized for CPM, as well as another placement ID optimized for fill rate in the same waterfall as fall back. When using AdMob as a mediation platform, you could only specify one placement ID from Audience Network for an AdMob ad unit. However by utilizing the [AdMob Custom Events][6] you can add a second Audience Network placement ID for one ad unit. This sample demonstrates how you can do that by adding a custom event and implement the wrapper yourself.  
 
 ### [RCPY](./RCPY)
-A tasty sample app for using native ads in a RecyclerView
+A tasty sample app for using native ads in `RecyclerView`
 
 
 [1]: https://developers.facebook.com/docs/audience-network/getting-started
