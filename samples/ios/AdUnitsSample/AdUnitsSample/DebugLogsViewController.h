@@ -18,6 +18,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MenuTableViewController : UITableViewController
+@interface DebugLogsViewController : UITableViewController
 
 @end

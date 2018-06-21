@@ -26,6 +26,7 @@
 
 @interface ViewController : UIViewController <FBAdViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *adContainer;
+@property (strong, nonatomic) FBAdView *adView;
 
 @end
-

@@ -18,8 +18,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import <FBAudienceNetwork/FBAudienceNetwork.h>
-
-@interface InstreamViewController : UIViewController <FBInstreamAdViewDelegate>
+@interface InstreamViewController : UIViewController
 
 @end

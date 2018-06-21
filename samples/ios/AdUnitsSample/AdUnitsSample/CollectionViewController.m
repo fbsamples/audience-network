@@ -18,6 +18,8 @@
 
 #import "CollectionViewController.h"
 
+#import <FBAudienceNetwork/FBAudienceNetwork.h>
+
 static NSInteger const kRowStrideForAdCell = 3;
 static NSString *const kDefaultCellIdentifier = @"kDefaultCellIdentifier";
 
@@ -31,24 +33,28 @@ static NSString *const kDefaultCellIdentifier = @"kDefaultCellIdentifier";
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
-  self = [super initWithFrame:frame];
-  if (self) {
-    UILabel *label = [UILabel new];
-    label.textColor = [UIColor blackColor];
-    label.numberOfLines = 2;
-    self.textLabel = label;
-    [self.contentView addSubview:label];
-  }
-  return self;
+    self = [super initWithFrame:frame];
+    if (self) {
+        UILabel *label = [UILabel new];
+        label.textColor = [UIColor blackColor];
+        label.numberOfLines = 2;
+        self.textLabel = label;
+        [self.contentView addSubview:label];
+    }
+    return self;
 }
 
 @end
 
 @interface CollectionViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, FBNativeAdsManagerDelegate, FBNativeAdDelegate>
-@property (strong, nonatomic) FBNativeAdsManager *_adsManager;
-@property (strong, nonatomic) FBNativeAdCollectionViewCellProvider *_ads;
-@property (strong, nonatomic) NSMutableArray<NSString *> *_collectionViewContentArray;
+
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (strong, nonatomic) FBNativeAdsManager *adsManager;
+@property (strong, nonatomic) FBNativeAdCollectionViewCellProvider *cellProvider;
+@property (strong, nonatomic) NSMutableArray<NSString *> *collectionViewContentArray;
 @property (assign, nonatomic) BOOL adCellsCreated;
+
 @end
 
 @implementation CollectionViewController
@@ -56,80 +62,81 @@ static NSString *const kDefaultCellIdentifier = @"kDefaultCellIdentifier";
 #pragma mark - Lazy Loading
 - (NSMutableArray<NSString *> *)collectionViewContentArray
 {
-  if (!self._collectionViewContentArray) {
-    self._collectionViewContentArray = [NSMutableArray array];
-    for (NSUInteger i = 0; i < 10; i++) {
-      [self._collectionViewContentArray addObject:[NSString stringWithFormat:@"CollectionView\n Cell #%lu", (unsigned long)(i + 1)]];
+    if (!_collectionViewContentArray) {
+        _collectionViewContentArray = [NSMutableArray array];
+        for (NSUInteger i = 0; i < 10; i++) {
+            [_collectionViewContentArray addObject:[NSString stringWithFormat:@"CollectionView\n Cell #%lu", (unsigned long)(i + 1)]];
+        }
     }
-  }
 
-  return self._collectionViewContentArray;
+    return _collectionViewContentArray;
 }
 
-- (void)viewDidLoad {
-  [super viewDidLoad];
-  self.collectionView.delegate = self;
-  self.collectionView.dataSource = self;
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
 
-  [self.collectionView registerClass:[CollectionViewCell class] forCellWithReuseIdentifier:kDefaultCellIdentifier];
+    [self.collectionView registerClass:[CollectionViewCell class] forCellWithReuseIdentifier:kDefaultCellIdentifier];
 
-  [self loadNativeAd];
+    [self loadNativeAd];
 }
 
 - (IBAction)dismissViewController:(id)sender
 {
-  [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)refresh:(id)sender
 {
-  [self loadNativeAd];
+    [self loadNativeAd];
 }
 
 - (void)loadNativeAd
 {
-  [self.activityIndicator startAnimating];
+    [self.activityIndicator startAnimating];
 
-  if (!self._adsManager) {
-    // Create a native ad manager with a unique placement ID (generate your own on the Facebook app settings)
-    // and how many ads you would like to create. Note that you may get fewer ads than you ask for.
-    // Use different ID for each ad placement in your app.
-    self._adsManager = [[FBNativeAdsManager alloc] initWithPlacementID:@"YOUR_PLACEMENT_ID"
-                                                    forNumAdsRequested:5];
-    // Set a delegate to get notified when the ads are loaded.
-    self._adsManager.delegate = self;
+    if (!self.adsManager) {
+        // Create a native ad manager with a unique placement ID (generate your own on the Facebook app settings)
+        // and how many ads you would like to create. Note that you may get fewer ads than you ask for.
+        // Use different ID for each ad placement in your app.
+        self.adsManager = [[FBNativeAdsManager alloc] initWithPlacementID:@"YOUR_PLACEMENT_ID"
+                                                        forNumAdsRequested:5];
+        // Set a delegate to get notified when the ads are loaded.
+        self.adsManager.delegate = self;
 
-    // Configure native ad manager to wait to call nativeAdsLoaded until all ad assets are loaded
-    self._adsManager.mediaCachePolicy = FBNativeAdsCachePolicyAll;
+        // Configure native ad manager to wait to call nativeAdsLoaded until all ad assets are loaded
+        self.adsManager.mediaCachePolicy = FBNativeAdsCachePolicyAll;
 
-    // When testing on a device, add its hashed ID to force test ads.
-    // The hash ID is printed to console when running on a device.
-    // [FBAdSettings addTestDevice:@"THE HASHED ID AS PRINTED TO CONSOLE"];
-  }
+        // When testing on a device, add its hashed ID to force test ads.
+        // The hash ID is printed to console when running on a device.
+        // [FBAdSettings addTestDevice:@"THE HASHED ID AS PRINTED TO CONSOLE"];
+    }
 
-  // Load some ads
-  [self._adsManager loadAds];
+    // Load some ads
+    [self.adsManager loadAds];
 }
 
 #pragma mark FBNativeAdsManagerDelegate implementation
 
 - (void)nativeAdsLoaded
 {
-  NSLog(@"Native ad was loaded, constructing native UI...");
+    NSLog(@"Native ad was loaded, constructing native UI...");
 
-  // After the native ads have loaded we create the native ad cell provider and let it take over
-  FBNativeAdsManager *manager = self._adsManager;
-  self._adsManager.delegate = nil;
-  self._adsManager = nil;
+    // After the native ads have loaded we create the native ad cell provider and let it take over
+    FBNativeAdsManager *manager = self.adsManager;
+    self.adsManager.delegate = nil;
+    self.adsManager = nil;
 
-  // The native ad cell provider operates over a loaded ads manager and can create table cells with native
-  // ad templates in them as well as help with the math to have a consistent distribution of ads within a table.
-  FBNativeAdCollectionViewCellProvider *cellProvider = [[FBNativeAdCollectionViewCellProvider alloc] initWithManager:manager forType:FBNativeAdViewTypeGenericHeight300];
-  self._ads = cellProvider;
-  self._ads.delegate = self;
+    // The native ad cell provider operates over a loaded ads manager and can create table cells with native
+    // ad templates in them as well as help with the math to have a consistent distribution of ads within a table.
+    FBNativeAdCollectionViewCellProvider *cellProvider = [[FBNativeAdCollectionViewCellProvider alloc] initWithManager:manager forType:FBNativeAdViewTypeGenericHeight300];
+    self.cellProvider = cellProvider;
+    self.cellProvider.delegate = self;
 
-  [self.collectionView reloadData];
-  [self.activityIndicator stopAnimating];
+    [self.collectionView reloadData];
+    [self.activityIndicator stopAnimating];
 }
 
 - (void)nativeAdsFailedToLoadWithError:(NSError *)error
@@ -150,56 +157,60 @@ static NSString *const kDefaultCellIdentifier = @"kDefaultCellIdentifier";
 
 - (void)nativeAdDidClick:(FBNativeAd *)nativeAd
 {
-  NSLog(@"Native ad was clicked.");
+    NSLog(@"Native ad was clicked.");
 }
 
 - (void)nativeAdDidFinishHandlingClick:(FBNativeAd *)nativeAd
 {
-  NSLog(@"Native ad did finish click handling.");
+    NSLog(@"Native ad did finish click handling.");
 }
 
 - (void)nativeAdWillLogImpression:(FBNativeAd *)nativeAd
 {
-  NSLog(@"Native ad impression is being captured.");
+    NSLog(@"Native ad impression is being captured.");
 }
 
 #pragma mark <UICollectionViewDataSource>
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-  return 1;
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-  // In this example the ads are evenly distributed within the table every kRowStrideForAdCell-th cell.
-  NSUInteger count = [self.collectionViewContentArray count];
-  count = [self._ads adjustCount:count forStride:kRowStrideForAdCell] ?: count;
-  return count;
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    // In this example the ads are evenly distributed within the table every kRowStrideForAdCell-th cell.
+    NSUInteger count = [self.collectionViewContentArray count];
+    count = [self.cellProvider adjustCount:count forStride:kRowStrideForAdCell] ?: count;
+    return count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-  if ([self._ads isAdCellAtIndexPath:indexPath forStride:kRowStrideForAdCell]) {
-    return [self._ads collectionView:collectionView cellForItemAtIndexPath:indexPath];
-  } else {
-    indexPath = [self._ads adjustNonAdCellIndexPath:indexPath forStride:kRowStrideForAdCell] ?: indexPath;
-    CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kDefaultCellIdentifier forIndexPath:indexPath];
-    cell.textLabel.text = [self.collectionViewContentArray objectAtIndex:indexPath.row];
-    [cell.textLabel sizeToFit];
-    cell.textLabel.center = cell.contentView.center;
-    return cell;
-  }
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.cellProvider isAdCellAtIndexPath:indexPath forStride:kRowStrideForAdCell]) {
+        return [self.cellProvider collectionView:collectionView cellForItemAtIndexPath:indexPath];
+    } else {
+        indexPath = [self.cellProvider adjustNonAdCellIndexPath:indexPath forStride:kRowStrideForAdCell] ?: indexPath;
+        CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kDefaultCellIdentifier forIndexPath:indexPath];
+        cell.textLabel.text = [self.collectionViewContentArray objectAtIndex:indexPath.row];
+        [cell.textLabel sizeToFit];
+        cell.textLabel.center = cell.contentView.center;
+        return cell;
+    }
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-  if ([self._ads isAdCellAtIndexPath:indexPath forStride:kRowStrideForAdCell]) {
-    return (CGSize){300.0, [self._ads collectionView:collectionView heightForRowAtIndexPath:indexPath]};
-  } else {
-    return (CGSize){300.0, 100.0};
-  }
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.cellProvider isAdCellAtIndexPath:indexPath forStride:kRowStrideForAdCell]) {
+        return (CGSize){300.0, [self.cellProvider collectionView:collectionView heightForRowAtIndexPath:indexPath]};
+    } else {
+        return (CGSize){300.0, 100.0};
+    }
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-  return 20.0;
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 20.0;
 }
-
 
 @end

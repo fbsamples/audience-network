@@ -31,20 +31,15 @@
 
 @implementation ViewController
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self loadInterstitialAd];
 }
 
 -(void) loadInterstitialAd {
-    
     //Replace YOUR_PLACEMENT_ID with your own placement id string.
     //If you don't have a placement id or don't know how to get one,
     //refer to the Getting Started Guide
-    
-    //https://developers.facebook.com/docs/audience-network/getting-started#placement_ids
+    //https://developers.facebook.com/docs/audience-network/getting-started
     self.interstitialAd = [[FBInterstitialAd alloc] initWithPlacementID:@"YOUR_PLACEMENT_ID"];
     self.interstitialAd.delegate = self;
     [self.interstitialAd loadAd];
@@ -53,8 +48,10 @@
 - (void)interstitialAdDidLoad:(FBInterstitialAd *)interstitialAd {
     NSLog(@"Ad is loaded and ready to be displayed");
     
-    // You can now display the full screen ad using this code:
-    [self.interstitialAd showAdFromRootViewController:self];
+    if (interstitialAd && interstitialAd.isAdValid) {
+        // You can now display the full screen ad using this code:
+        [interstitialAd showAdFromRootViewController:self];
+    }
 }
 
 - (void)interstitialAd:(FBInterstitialAd *)interstitialAd didFailWithError:(NSError *)error {
@@ -64,4 +61,5 @@
 - (IBAction)handleButtonClick:(id)sender {
     [self loadInterstitialAd];
 }
+
 @end

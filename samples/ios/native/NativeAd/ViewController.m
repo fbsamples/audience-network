@@ -9,13 +9,17 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+
 @property (strong, nonatomic) FBNativeAd *nativeAd;
+
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    
     // Create a native ad request with a unique placement ID (generate your own on the Facebook app settings).
     // Use different ID for each ad placement in your app.
     FBNativeAd *nativeAd = [[FBNativeAd alloc] initWithPlacementID:@"YOUR_PLACEMENT_ID"];
@@ -23,51 +27,43 @@
     // Set a delegate to get notified when the ad was loaded.
     nativeAd.delegate = self;
     
-    // Configure native ad to wait to call nativeAdDidLoad: until all ad assets are loaded
-    nativeAd.mediaCachePolicy = FBNativeAdsCachePolicyAll;
     [nativeAd loadAd];
 }
 
 
 - (void)nativeAdDidLoad:(FBNativeAd *)nativeAd
 {
-    if (self.nativeAd) {
-        [self.nativeAd unregisterView];
-    }
-    
     self.nativeAd = nativeAd;
-    
-    // Create native UI using the ad metadata.
-    [self.adCoverMediaView setNativeAd:nativeAd];
-    
-    __weak typeof(self) weakSelf = self;
-    [self.nativeAd.icon loadImageAsyncWithBlock:^(UIImage *image) {
-        __strong typeof(self) strongSelf = weakSelf;
-        strongSelf.adIconImageView.image = image;
-    }];
-    self.adStatusLabel.text = @"";
-    
-    // Render native ads onto UIView
-    self.adTitleLabel.text = self.nativeAd.title;
-    self.adBodyLabel.text = self.nativeAd.body;
-    self.adSocialContextLabel.text = self.nativeAd.socialContext;
-    self.sponsoredLabel.text = @"Sponsored";
-    
-    [self.adCallToActionButton setTitle:self.nativeAd.callToAction
-                               forState:UIControlStateNormal];
-    
+    [self showNativeAd];
+}
 
-    // Wire up UIView with the native ad; the whole UIView will be clickable.
-    [nativeAd registerViewForInteraction:self.adUIView
-                      withViewController:self];
-    
-    self.adChoicesView.nativeAd = nativeAd;
-    self.adChoicesView.corner = UIRectCornerTopRight;
+- (void)showNativeAd
+{
+    if (self.nativeAd && self.nativeAd.isAdValid) {
+        [self.nativeAd unregisterView];
+        
+        // Wire up UIView with the native ad; only call to action button and media view will be clickable.
+        [self.nativeAd registerViewForInteraction:self.adUIView
+                                        mediaView:self.adCoverMediaView
+                                         iconView:self.adIconImageView
+                                   viewController:self
+                                   clickableViews:@[self.adCallToActionButton, self.adCoverMediaView]];
+
+        // Render native ads onto UIView
+        self.adTitleLabel.text = self.nativeAd.advertiserName;
+        self.adBodyLabel.text = self.nativeAd.bodyText;
+        self.adSocialContextLabel.text = self.nativeAd.socialContext;
+        self.sponsoredLabel.text = self.nativeAd.sponsoredTranslation;
+        [self.adCallToActionButton setTitle:self.nativeAd.callToAction
+                                   forState:UIControlStateNormal];
+        self.adChoicesView.nativeAd = self.nativeAd;
+        self.adChoicesView.corner = UIRectCornerTopRight;
+    }
 }
 
 - (void)nativeAd:(FBNativeAd *)nativeAd didFailWithError:(NSError *)error
 {
-    NSLog(@"Native ad failed to load with error: %@", error);
+    NSLog(@"Native ad failed to load with error: %@", error.localizedDescription);
 }
 
 - (void)nativeAdDidClick:(FBNativeAd *)nativeAd

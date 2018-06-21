@@ -35,24 +35,28 @@
     //Replace YOUR_PLACEMENT_ID with your own placement id string.
     //If you don't have a placement id or don't know how to get one,
     //refer to the Getting Started Guide
-    //https://developers.facebook.com/docs/audience-network/getting-started#placement_ids
-    
-    FBAdView *adView = [[FBAdView alloc] initWithPlacementID:@"YOUR_PLACEMENT_ID"
-                                                      adSize:kFBAdSizeHeight250Rectangle
-                                          rootViewController:self];
-    adView.frame = CGRectMake(0, 20, self.view.frame.size.width, adView.bounds.size.height);
-    adView.delegate = self;
-    [adView loadAd];
-    [self.view addSubview:adView];
+    //https://developers.facebook.com/docs/audience-network/getting-started
+    self.adView = [[FBAdView alloc] initWithPlacementID:@"YOUR_PLACEMENT_ID"
+                                                 adSize:kFBAdSizeHeight250Rectangle
+                                     rootViewController:self];
+    self.adView.frame = CGRectMake(0, 0, 300, 250);
+    self.adView.delegate = self;
+    [self.adView loadAd];
 }
 
 - (void)adView:(FBAdView *)adView didFailWithError:(NSError *)error {
-    NSLog(@"Ad failed to load: %i", (int)error.code);
+    NSLog(@"Ad failed to load: %@", error.localizedDescription);
 }
 
 - (void)adViewDidLoad:(FBAdView *)adView {
     NSLog(@"Ad was loaded and ready to be displayed");
+    [self showBanner];
 }
 
+- (void)showBanner {
+    if (self.adView && self.adView.isAdValid) {
+        [self.adContainer addSubview:self.adView];
+    }
+}
 
 @end

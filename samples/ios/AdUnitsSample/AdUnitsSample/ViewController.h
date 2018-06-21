@@ -1,5 +1,3 @@
-// Copyright 2004-present Facebook. All Rights Reserved.
-
 // Copyright (c) 2014-present, Facebook, Inc. All rights reserved.
 //
 // You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
@@ -20,20 +18,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import <FBAudienceNetwork/FBAudienceNetwork.h>
-
-@interface ViewController : UIViewController <FBNativeAdDelegate, FBMediaViewDelegate>
-
-@property (strong, nonatomic) IBOutlet UILabel *adStatusLabel;
-
-@property (strong, nonatomic) IBOutlet UIImageView *adIconImageView;
-@property (weak, nonatomic) IBOutlet FBMediaView *adCoverMediaView;
-@property (strong, nonatomic) IBOutlet UILabel *adTitleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *adBodyLabel;
-@property (strong, nonatomic) IBOutlet UIButton *adCallToActionButton;
-@property (strong, nonatomic) IBOutlet UILabel *adSocialContextLabel;
-@property (strong, nonatomic) IBOutlet UILabel *sponsoredLabel;
-@property (weak, nonatomic) IBOutlet FBAdChoicesView *adChoicesView;
-@property (strong, nonatomic) IBOutlet UIView *adUIView;
+@interface ViewController : UIViewController
 
 @end

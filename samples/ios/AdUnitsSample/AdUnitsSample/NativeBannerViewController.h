@@ -18,6 +18,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MenuTableViewController : UITableViewController
+@interface NativeBannerViewController : UIViewController
 
 @end

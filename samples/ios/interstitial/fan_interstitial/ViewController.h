@@ -26,7 +26,4 @@
 
 @interface ViewController : UIViewController <FBInterstitialAdDelegate>
 
-- (IBAction)handleButtonClick:(id)sender;
-
 @end
-

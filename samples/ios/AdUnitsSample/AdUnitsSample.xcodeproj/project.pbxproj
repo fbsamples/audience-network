@@ -237,7 +237,6 @@
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					58D92D1D18C7A6100090E7E2 = {
-						DevelopmentTeam = QH6F3XNJG5;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 						};
@@ -438,7 +437,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QH6F3XNJG5;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../../../",
@@ -468,7 +467,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QH6F3XNJG5;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../../../",

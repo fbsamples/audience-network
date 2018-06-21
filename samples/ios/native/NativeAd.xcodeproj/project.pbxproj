@@ -137,7 +137,6 @@
 				TargetAttributes = {
 					7D2299071DD10BFD0092A50C = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = V9WTTPBFK9;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -349,7 +348,7 @@
 			baseConfigurationReference = 9AED7D28C5DB11B998EC3CA9 /* Pods-NativeAd.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = V9WTTPBFK9;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NativeAd",
@@ -366,7 +365,7 @@
 			baseConfigurationReference = A32DCCA0C99562D7A709352F /* Pods-NativeAd.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = V9WTTPBFK9;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/NativeAd",

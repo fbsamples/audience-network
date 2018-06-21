@@ -18,65 +18,68 @@
 
 #import "BannerViewController.h"
 
-@interface BannerViewController ()
+#import <FBAudienceNetwork/FBAudienceNetwork.h>
 
-@property (nonatomic, weak) IBOutlet UILabel *adStatusLabel;
+@interface BannerViewController () <FBAdViewDelegate>
+
+@property (nonatomic, strong) IBOutlet UILabel *adStatusLabel;
 @property (nonatomic, strong) FBAdView *adView;
 
 @end
 
 @implementation BannerViewController
 
-- (void)viewDidLoad {
-  [super viewDidLoad];
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
 
-  // Create a banner's ad view with a unique placement ID (generate your own on the Facebook app settings).
-  // Use different ID for each ad placement in your app.
-  FBAdSize adSize = [self fbAdSize];
-  self.adView = [[FBAdView alloc] initWithPlacementID:@"YOUR_PLACEMENT_ID"
-                                               adSize:adSize
-                                   rootViewController:self];
+    // Create a banner's ad view with a unique placement ID (generate your own on the Facebook app settings).
+    // Use different ID for each ad placement in your app.
+    FBAdSize adSize = [self fbAdSize];
+    self.adView = [[FBAdView alloc] initWithPlacementID:@"YOUR_PLACEMENT_ID"
+                                                 adSize:adSize
+                                     rootViewController:self];
 
-  // Set a delegate to get notified on changes or when the user interact with the ad.
-  self.adView.delegate = self;
+    // Set a delegate to get notified on changes or when the user interact with the ad.
+    self.adView.delegate = self;
 
-  // When testing on a device, add its hashed ID to force test ads.
-  // The hash ID is printed to console when running on a device.
-  // [FBAdSettings addTestDevice:@"THE HASHED ID AS PRINTED TO CONSOLE"];
+    // When testing on a device, add its hashed ID to force test ads.
+    // The hash ID is printed to console when running on a device.
+    // [FBAdSettings addTestDevice:@"THE HASHED ID AS PRINTED TO CONSOLE"];
 
-  // Set autoresizingMask so the rotation is automatically handled
-  self.adView.autoresizingMask =
-  UIViewAutoresizingFlexibleRightMargin |
-  UIViewAutoresizingFlexibleLeftMargin|
-  UIViewAutoresizingFlexibleWidth |
-  UIViewAutoresizingFlexibleTopMargin;
+    // Set autoresizingMask so the rotation is automatically handled
+    self.adView.autoresizingMask =
+    UIViewAutoresizingFlexibleRightMargin |
+    UIViewAutoresizingFlexibleLeftMargin|
+    UIViewAutoresizingFlexibleWidth |
+    UIViewAutoresizingFlexibleTopMargin;
 
-  // Add adView to the view hierarchy.
-  [self.view addSubview:self.adView];
+    // Add adView to the view hierarchy.
+    [self.view addSubview:self.adView];
 
-  [self loadAd];
+    [self loadAd];
 }
 
 - (void)viewDidLayoutSubviews
 {
-  [super viewDidLayoutSubviews];
+    [super viewDidLayoutSubviews];
 
-  FBAdSize adSize = [self fbAdSize];
-  CGSize viewSize = self.view.bounds.size;
-  CGSize tabBarSize = self.tabBarController.tabBar.frame.size;
-  viewSize = CGSizeMake(viewSize.width, viewSize.height - tabBarSize.height);
-  UIEdgeInsets insets = [self safeAreaInsets];
-  CGFloat bottomAlignedY = viewSize.height - adSize.size.height - insets.bottom;
-  self.adView.frame = CGRectMake(insets.left,
-                                 bottomAlignedY,
-                                 viewSize.width - insets.right - insets.left,
-                                 adSize.size.height);
+    FBAdSize adSize = [self fbAdSize];
+    CGSize viewSize = self.view.bounds.size;
+    CGSize tabBarSize = self.tabBarController.tabBar.frame.size;
+    viewSize = CGSizeMake(viewSize.width, viewSize.height - tabBarSize.height);
+    UIEdgeInsets insets = [self safeAreaInsets];
+    CGFloat bottomAlignedY = viewSize.height - adSize.size.height - insets.bottom;
+    self.adView.frame = CGRectMake(insets.left,
+                                   bottomAlignedY,
+                                   viewSize.width - insets.right - insets.left,
+                                   adSize.size.height);
 }
 
 - (void)loadAd
 {
-  self.adStatusLabel.text = @"Loading ad...";
-  [self.adView loadAd];
+    self.adStatusLabel.text = @"Loading ad...";
+    [self.adView loadAd];
 }
 
 - (UIEdgeInsets)safeAreaInsets
@@ -89,15 +92,16 @@
     return UIEdgeInsetsZero;
 }
 
-- (IBAction)refreshAd:(id)sender {
-  self.adView.hidden = YES;
-  [self loadAd];
+- (IBAction)refreshAd:(id)sender
+{
+    self.adView.hidden = YES;
+    [self loadAd];
 }
 
 - (FBAdSize)fbAdSize
 {
-  BOOL isIPAD = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad);
-  return isIPAD ? kFBAdSizeHeight90Banner : kFBAdSizeHeight50Banner;
+    BOOL isIPAD = ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad);
+    return isIPAD ? kFBAdSizeHeight90Banner : kFBAdSizeHeight50Banner;
 }
 
 #pragma mark - FBAdViewDelegate implementation
@@ -105,41 +109,41 @@
 // Implement this function if you want to change the viewController after the FBAdView
 // is created. The viewController will be used to present the modal view (such as the
 // in-app browser that can appear when an ad is clicked).
-// - (UIViewController *)viewControllerForPresentingModalView
-// {
-//   return self;
-// }
+//- (UIViewController *)viewControllerForPresentingModalView
+//{
+//    return self;
+//}
 
 - (void)adViewDidClick:(FBAdView *)adView
 {
-  NSLog(@"Ad was clicked.");
+    NSLog(@"Ad was clicked.");
 }
 
 - (void)adViewDidFinishHandlingClick:(FBAdView *)adView
 {
-  NSLog(@"Ad did finish click handling.");
+    NSLog(@"Ad did finish click handling.");
 }
 
 - (void)adViewDidLoad:(FBAdView *)adView
 {
-  self.adStatusLabel.text = @"Ad loaded.";
-  NSLog(@"Ad was loaded.");
-  // Now that the ad was loaded, show the view in case it was hidden before.
-  self.adView.hidden = NO;
+    self.adStatusLabel.text = @"Ad loaded.";
+    NSLog(@"Ad was loaded.");
+    // Now that the ad was loaded, show the view in case it was hidden before.
+    self.adView.hidden = NO;
 }
 
 - (void)adView:(FBAdView *)adView didFailWithError:(NSError *)error
 {
-  self.adStatusLabel.text = [NSString stringWithFormat:@"Ad failed to load. %@", error.localizedDescription];
-  NSLog(@"Ad failed to load with error: %@", error);
+    self.adStatusLabel.text = [NSString stringWithFormat:@"Ad failed to load. %@", error.localizedDescription];
+    NSLog(@"Ad failed to load with error: %@", error);
 
-  // Hide the unit since no ad is shown.
-  self.adView.hidden = YES;
+    // Hide the unit since no ad is shown.
+    self.adView.hidden = YES;
 }
 
 - (void)adViewWillLogImpression:(FBAdView *)adView
 {
-  NSLog(@"Ad impression is being captured.");
+    NSLog(@"Ad impression is being captured.");
 }
 
 @end

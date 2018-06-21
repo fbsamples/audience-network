@@ -18,75 +18,78 @@
 
 #import "ScrollViewController.h"
 
+#import <FBAudienceNetwork/FBAudienceNetwork.h>
+
 @interface ScrollViewController () <FBNativeAdDelegate, FBNativeAdsManagerDelegate>
 
+@property (nonatomic, strong) IBOutlet UIView *containerView;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) FBNativeAdsManager *manager;
 @property (nonatomic, weak) FBNativeAdScrollView *scrollView;
-@property (nonatomic, weak) IBOutlet UIView *containerView;
-@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
 @implementation ScrollViewController
 
-- (void)viewDidLoad {
-  [super viewDidLoad];
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
 
-  FBNativeAdsManager *manager = [[FBNativeAdsManager alloc] initWithPlacementID:@"YOUR_PLACEMENT_ID" forNumAdsRequested:5];
-  manager.delegate = self;
-  manager.mediaCachePolicy = FBNativeAdsCachePolicyAll;
-  [manager loadAds];
-  self.manager = manager;
+    FBNativeAdsManager *manager = [[FBNativeAdsManager alloc] initWithPlacementID:@"YOUR_PLACEMENT_ID" forNumAdsRequested:5];
+    manager.delegate = self;
+    manager.mediaCachePolicy = FBNativeAdsCachePolicyAll;
+    [manager loadAds];
+    self.manager = manager;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-  [super viewDidAppear:animated];
-  self.scrollView.frame = self.containerView.bounds;
+    [super viewDidAppear:animated];
+    self.scrollView.frame = self.containerView.bounds;
 }
 
 - (IBAction)refresh:(id)sender
 {
-  [self.manager loadAds];
-  if (self.scrollView) {
-    [self.scrollView removeFromSuperview];
-    self.scrollView = nil;
-  }
-  [self.activityIndicator startAnimating];
+    [self.manager loadAds];
+    if (self.scrollView) {
+        [self.scrollView removeFromSuperview];
+        self.scrollView = nil;
+    }
+    [self.activityIndicator startAnimating];
 }
 
 #pragma mark FBNativeAdDelegate
 
 - (void)nativeAdDidClick:(FBNativeAd *)nativeAd
 {
-  NSLog(@"Native ad was clicked.");
+    NSLog(@"Native ad was clicked.");
 }
 
 - (void)nativeAdDidFinishHandlingClick:(FBNativeAd *)nativeAd
 {
-  NSLog(@"Native ad did finish click handling.");
+    NSLog(@"Native ad did finish click handling.");
 }
 
 - (void)nativeAdWillLogImpression:(FBNativeAd *)nativeAd
 {
-  NSLog(@"Native ad impression is being captured.");
+    NSLog(@"Native ad impression is being captured.");
 }
 
 #pragma mark FBNativeAdsManagerDelegate
 
 - (void)nativeAdsLoaded
 {
-  [self.activityIndicator stopAnimating];
-  NSLog(@"Native ads loaded, constructing native UI...");
-  if (self.scrollView) {
-    [self.scrollView removeFromSuperview];
-    self.scrollView = nil;
-  }
-  FBNativeAdScrollView *scrollView = [[FBNativeAdScrollView alloc] initWithNativeAdsManager:self.manager withType:FBNativeAdViewTypeGenericHeight300];
-  scrollView.delegate = self;
-  scrollView.frame = self.containerView.bounds;
-  [self.containerView addSubview:scrollView];
-  self.scrollView = scrollView;
+    [self.activityIndicator stopAnimating];
+    NSLog(@"Native ads loaded, constructing native UI...");
+    if (self.scrollView) {
+        [self.scrollView removeFromSuperview];
+        self.scrollView = nil;
+    }
+    FBNativeAdScrollView *scrollView = [[FBNativeAdScrollView alloc] initWithNativeAdsManager:self.manager withType:FBNativeAdViewTypeGenericHeight300];
+    scrollView.delegate = self;
+    scrollView.frame = self.containerView.bounds;
+    [self.containerView addSubview:scrollView];
+    self.scrollView = scrollView;
 }
 
 - (void)nativeAdsFailedToLoadWithError:(NSError *)error
@@ -107,7 +110,7 @@
 
 - (FBInterfaceOrientationMask)supportedInterfaceOrientations
 {
-  return UIInterfaceOrientationMaskPortrait;
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 @end

@@ -1,5 +1,3 @@
-// Copyright 2004-present Facebook. All Rights Reserved.
-
 // Copyright (c) 2014-present, Facebook, Inc. All rights reserved.
 //
 // You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
@@ -20,8 +18,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import <FBAudienceNetwork/FBAudienceNetwork.h>
-
-@interface RewardedVideoViewController : UIViewController <FBRewardedVideoAdDelegate>
+@interface RewardedVideoViewController : UIViewController
 
 @end

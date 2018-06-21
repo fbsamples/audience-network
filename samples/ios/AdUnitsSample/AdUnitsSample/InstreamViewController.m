@@ -18,11 +18,12 @@
 
 #import "InstreamViewController.h"
 
-@interface InstreamViewController ()
+#import <FBAudienceNetwork/FBAudienceNetwork.h>
 
-@property (weak, nonatomic) IBOutlet UILabel *adStatusLabel;
-@property (weak, nonatomic) IBOutlet UIView *mediaView;
+@interface InstreamViewController () <FBInstreamAdViewDelegate>
 
+@property (nonatomic, strong) IBOutlet UILabel *adStatusLabel;
+@property (nonatomic, strong) IBOutlet UIView *mediaView;
 @property (nonatomic, strong) FBInstreamAdView *adView;
 
 @end

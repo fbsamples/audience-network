@@ -146,7 +146,6 @@
 				TargetAttributes = {
 					C034683A1E1CD6FC0033A2D8 = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = QH6F3XNJG5;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -358,7 +357,7 @@
 			baseConfigurationReference = C3473466483B642668E0A54D /* Pods-AdMobWrapper.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = QH6F3XNJG5;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = AdMobWrapper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sample.AdMobWrapper;
@@ -371,7 +370,7 @@
 			baseConfigurationReference = F67D0C148B0AEB464D09F7EA /* Pods-AdMobWrapper.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = QH6F3XNJG5;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = AdMobWrapper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sample.AdMobWrapper;

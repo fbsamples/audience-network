@@ -18,24 +18,16 @@
 
 #import "RewardedVideoViewController.h"
 
-@interface RewardedVideoViewController ()
+#import <FBAudienceNetwork/FBAudienceNetwork.h>
 
-@property (weak, nonatomic) IBOutlet UILabel *adStatusLabel;
+@interface RewardedVideoViewController () <FBRewardedVideoAdDelegate>
+
+@property (nonatomic, strong) IBOutlet UILabel *adStatusLabel;
 @property (nonatomic, strong) FBRewardedVideoAd *rewardedVideoAd;
 
 @end
 
 @implementation RewardedVideoViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
-}
 
 - (IBAction)loadAd
 {
@@ -56,69 +48,69 @@
 
 - (IBAction)showAd
 {
-  if (!self.rewardedVideoAd || !self.rewardedVideoAd.isAdValid)
-  {
-    // Ad not ready to present.
-    self.adStatusLabel.text = @"Ad not loaded. Click load to request an ad.";
-  } else {
-    self.adStatusLabel.text = @"1. Tap 'Load Ad'\n2. Once ad loads, tap 'Show!' to see the ad";
+    if (!self.rewardedVideoAd || !self.rewardedVideoAd.isAdValid)
+    {
+        // Ad not ready to present.
+        self.adStatusLabel.text = @"Ad not loaded. Click load to request an ad.";
+    } else {
+        self.adStatusLabel.text = @"1. Tap 'Load Ad'\n2. Once ad loads, tap 'Show!' to see the ad";
 
-    // Ad is ready, present it!
-    [self.rewardedVideoAd showAdFromRootViewController:self animated:NO];
-  }
+        // Ad is ready, present it!
+        [self.rewardedVideoAd showAdFromRootViewController:self animated:NO];
+    }
 }
 
 #pragma mark - FBRewardedVideoAdDelegate implementation
 
 - (void)rewardedVideoAdDidLoad:(FBRewardedVideoAd *)rewardedVideoAd
 {
-  NSLog(@"Rewarded video ad was loaded. Can present now.");
-  self.adStatusLabel.text = @"Ad loaded. Click show to present!";
+    NSLog(@"Rewarded video ad was loaded. Can present now.");
+    self.adStatusLabel.text = @"Ad loaded. Click show to present!";
 }
 
 - (void)rewardedVideoAd:(FBRewardedVideoAd *)rewardedVideoAd didFailWithError:(NSError *)error
 {
-  NSLog(@"Rewarded video failed to load with error: %@", error.description);
-  self.adStatusLabel.text = [NSString stringWithFormat:@"Rewarded Video ad failed to load. %@", error.localizedDescription];
+    NSLog(@"Rewarded video failed to load with error: %@", error.description);
+    self.adStatusLabel.text = [NSString stringWithFormat:@"Rewarded Video ad failed to load. %@", error.localizedDescription];
 }
 
 - (void)rewardedVideoAdDidClick:(FBRewardedVideoAd *)rewardedVideoAd
 {
-  NSLog(@"Rewarded video was clicked.");
+    NSLog(@"Rewarded video was clicked.");
 }
 
 - (void)rewardedVideoAdDidClose:(FBRewardedVideoAd *)rewardedVideoAd
 {
-  NSLog(@"Rewarded video closed.");
+    NSLog(@"Rewarded video closed.");
 }
 
 - (void)rewardedVideoAdWillClose:(FBRewardedVideoAd *)rewardedVideoAd
 {
-  NSLog(@"Rewarded video will close.");
+    NSLog(@"Rewarded video will close.");
 }
 
 - (void)rewardedVideoAdWillLogImpression:(FBRewardedVideoAd *)rewardedVideoAd
 {
-  NSLog(@"Rewarded video impression is being captured.");
+    NSLog(@"Rewarded video impression is being captured.");
 }
 
 - (void)rewardedVideoAdVideoComplete:(FBRewardedVideoAd *)rewardedVideoAd
 {
-  NSLog(@"Rewarded video was completed successfully.");
+    NSLog(@"Rewarded video was completed successfully.");
 }
 
 - (void)rewardedVideoAdServerRewardDidSucceed:(FBRewardedVideoAd *)rewardedVideoAd
 {
-  NSLog(@"Rewarded video server side reward succeeded.");
-  //optional, cleanup
-  self.rewardedVideoAd = nil;
+    NSLog(@"Rewarded video server side reward succeeded.");
+    //optional, cleanup
+    self.rewardedVideoAd = nil;
 }
 
 - (void)rewardedVideoAdServerRewardDidFail:(FBRewardedVideoAd *)rewardedVideoAd
 {
-  NSLog(@"Rewarded video server side reward failed.");
-  //optional, cleanup
-  self.rewardedVideoAd = nil;
+    NSLog(@"Rewarded video server side reward failed.");
+    //optional, cleanup
+    self.rewardedVideoAd = nil;
 }
 
 @end
