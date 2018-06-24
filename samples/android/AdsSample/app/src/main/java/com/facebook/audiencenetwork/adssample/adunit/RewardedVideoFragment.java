@@ -1,10 +1,9 @@
-/*
- * Copyright (c) 2016-present, Facebook, Inc. All rights reserved.
+/**
+ * Copyright (c) 2004-present, Facebook, Inc. All rights reserved.
  *
- * You are hereby granted a non-exclusive, worldwide, royalty-free license to
- * use, copy, modify, and distribute this software in source code or binary
- * form for use in connection with the web services and APIs provided by
- * Facebook.
+ * You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
+ * copy, modify, and distribute this software in source code or binary form for use
+ * in connection with the web services and APIs provided by Facebook.
  *
  * As with any software that integrates with the Facebook platform, your use of
  * this software is subject to the Facebook Developer Principles and Policies
@@ -12,12 +11,11 @@
  * included in all copies or substantial portions of the software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+ * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package com.facebook.audiencenetwork.adssample.adunit;
@@ -35,10 +33,10 @@ import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
 import com.facebook.ads.RewardData;
 import com.facebook.ads.RewardedVideoAd;
-import com.facebook.ads.RewardedVideoAdListener;
+import com.facebook.ads.S2SRewardedVideoAdListener;
 import com.facebook.audiencenetwork.adssample.R;
 
-public class RewardedVideoFragment extends Fragment implements RewardedVideoAdListener {
+public class RewardedVideoFragment extends Fragment implements S2SRewardedVideoAdListener {
 
     private TextView rewardedVideoAdStatusLabel;
     private Button loadRewardedVideoButton;
@@ -48,9 +46,9 @@ public class RewardedVideoFragment extends Fragment implements RewardedVideoAdLi
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater,
-            ViewGroup container,
-            Bundle savedInstanceState) {
+        LayoutInflater inflater,
+        ViewGroup container,
+        Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_rewarded_video, container, false);
 
@@ -66,10 +64,10 @@ public class RewardedVideoFragment extends Fragment implements RewardedVideoAdLi
                     rewardedVideoAd = null;
                 }
                 rewardedVideoAd = new RewardedVideoAd(RewardedVideoFragment.this.getActivity(),
-                        "YOUR_PLACEMENT_ID");
+                    "YOUR_PLACEMENT_ID");
                 rewardedVideoAd.setAdListener(RewardedVideoFragment.this);
+                rewardedVideoAd.loadAd(false);
                 rewardedVideoAd.setRewardData(new RewardData("YOUR_USER_ID", "YOUR_REWARD"));
-                rewardedVideoAd.loadAd();
 
                 setStatusLabelText("Loading rewarded video ad...");
             }
@@ -134,5 +132,15 @@ public class RewardedVideoFragment extends Fragment implements RewardedVideoAdLi
     @Override
     public void onRewardedVideoClosed() {
         showToast("Rewarded Video Closed");
+    }
+
+    @Override
+    public void onRewardServerFailed() {
+        showToast("Reward Video Server Failed");
+    }
+
+    @Override
+    public void onRewardServerSuccess() {
+        showToast("Reward Video Server Succeeded");
     }
 }

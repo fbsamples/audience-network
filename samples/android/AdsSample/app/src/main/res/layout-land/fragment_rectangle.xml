@@ -15,46 +15,46 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_vertical">
-
-    <TextView
-        android:id="@+id/interstitialAdStatusLabel"
-        android:gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="15sp"
-        />
-
+    android:fillViewport="true"
+    >
 
     <LinearLayout
-        android:id="@+id/interstitialAdControls"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="50dp">
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        >
 
-        <Button
-            android:id="@+id/loadInterstitialButton"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/rectangleStatusLabel"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/load_interstitial"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textColor="@android:color/darker_gray"
             android:textSize="15sp"
+            tools:text="@string/loading_status"
             />
 
         <Button
-            android:id="@+id/showInterstitialButton"
+            android:id="@+id/refreshRectangleButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/show_ad"
+            android:layout_marginBottom="16dp"
+            android:text="@string/refresh_now"
             android:textSize="15sp"
+            />
+
+        <RelativeLayout
+            android:id="@+id/rectangleAdContainer"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
             />
 
     </LinearLayout>
-
-</RelativeLayout>
+</ScrollView>

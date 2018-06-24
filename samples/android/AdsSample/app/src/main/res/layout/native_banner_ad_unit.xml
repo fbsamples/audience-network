@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2010-present Facebook.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <RelativeLayout
+            android:id="@+id/ad_choices_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            />
+
+        <TextView
+            android:id="@+id/native_ad_sponsored_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="2dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp"
+            />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        >
+
+        <com.facebook.ads.AdIconView
+            android:id="@+id/native_icon_view"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:gravity="center"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="53dp"
+            android:paddingRight="83dp"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/native_ad_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:ellipsize="end"
+                android:lines="1"
+                />
+
+            <TextView
+                android:id="@+id/native_ad_social_context"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:ellipsize="end"
+                android:lines="1"
+                />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/native_ad_call_to_action"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:background="#4286F4"
+            android:textSize="12sp"
+            android:textColor="@android:color/white"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:visibility="gone"
+            />
+
+    </RelativeLayout>
+</LinearLayout>

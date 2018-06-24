@@ -1,7 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2010-present Facebook.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
 <resources>
-    <string name="app_name">Audience Network Samples</string>
-    <string name="drawer_open">Open navigation drawer</string>
-    <string name="drawer_close">Close navigation drawer</string>
-    <string name="show_ad">Show!</string>
+
+    <string name="app_name">Ad Units Sample</string>
+    <string name="loading_status">Requesting an ad...</string>
+    <string name="refresh_now">Refresh Now</string>
+    <string name="show_code">Show Code</string>
+    <string name="load_native_ad">Load Native Ad</string>
+    <string name="reload_native_ads_hscroll">Reload ads</string>
     <string name="load_rewarded_video">Load Rewarded Video</string>
+    <string name="show_ad">Show!</string>
+    <string name="icon_desc">Ad icon</string>
+    <string name="image_desc">Ad image</string>
+    <string name="style">Style</string>
+    <string name="adview_type">AdView Type</string>
+    <string name="select_sample">Select an option</string>
+    <string name="load_interstitial">Load Interstitial</string>
+
+    <string name="row1_title">Audience Network</string>
+    <string name="row1_content">Monetize your mobile app with Facebook ads</string>
+    <string name="row2_title">Getting Started</string>
+    <string name="row2_subtitle1">Apply Now</string>
+    <string name="row2_subtitle2">5 Step Setup Guide</string>
+    <string name="row2_content1">You will need to apply for the Audience Network before you begin implementation.</string>
+    <string name="row2_content2">Add our SDK and create your ad placements. Follow this guide to get started.</string>
+    <string name="row3_title">Apps</string>
+    <string name="row3_subtitle1">Facebook</string>
+    <string name="row3_subtitle2">Instagram</string>
+    <string name="row3_subtitle3">WhatsApp</string>
+    <string name="row3_subtitle4">Messenger</string>
+    <string name="row3_content1">Keeping up with friends is faster than ever.</string>
+    <string name="row3_content2">Capture and share moments.</string>
+    <string name="row3_content3">Smartphone messenger</string>
+    <string name="row3_content4">Instantly reach the people in your life—for free.</string>
+
+
+    <string-array name="code_snippet">
+        <item>protected void onCreate(Bundle savedInstanceState) {</item>
+        <item>\t...</item>
+        <item>\tnativeAdContainer = (LinearLayout) findViewById(R.id.nativeAdContainer);</item>
+        <item>\tnativeAd = new NativeAd(NativeTemplateActivity.this, "YOUR_PLACEMENT_ID");</item>
+        <item>\tnativeAd.setAdListener(NativeTemplateActivity.this);</item>
+        <item>\tnativeAd.loadAd();</item>
+        <item>\t...</item>
+        <item>}</item>
+        <item> </item>
+        <item>public void onAdLoaded(Ad ad) {</item>
+        <item>\t...</item>
+        <item>\tNativeAdViewAttributes adViewAttributes = new NativeAdViewAttributes();</item>
+        <item>\tadViewAttributes.setBackgroundColor(adBackgroundColor);</item>
+        <item>\tadViewAttributes.setTitleTextColor(adTitleColor);</item>
+        <item>\t...</item>
+        <item>\tNativeAdViewType viewType = NativeAdViewType.HEIGHT_300;</item>
+        <item>\tView adView = NativeAdView.render(this, nativeAd, viewType, adViewAttributes);</item>
+        <item>\tnativeAdContainer.addView(adView, 0);</item>
+        <item>\t...</item>
+        <item>}</item>
+    </string-array>
+
+    <string-array name="code_snippet_banner">
+        <item>protected void onCreate(Bundle savedInstanceState) {</item>
+        <item>\t…</item>
+        <item>\tnativeAdContainer = (LinearLayout) findViewById(R.id.nativeAdContainer);</item>
+        <item>\tnativeBannerAd = new NativeBannerAd(getContext(), "YOUR_PLACEMENT_ID");</item>
+        <item>\tnativeBannerAd.setAdListener(this);</item>
+        <item>\tnativeBannerAd.loadAd();</item>
+        <item>\t…</item>
+        <item>}</item>
+        <item> </item>
+        <item>public void onAdLoaded(Ad ad) {</item>
+        <item>\t…</item>
+        <item>\tNativeAdViewAttributes adViewAttributes = new NativeAdViewAttributes();</item>
+        <item>\tadViewAttributes.setBackgroundColor(adBackgroundColor);</item>
+        <item>\tadViewAttributes.setTitleTextColor(adTitleColor);</item>
+        <item>\t…</item>
+        <item>\tNativeBannerAdView.Type viewType = NativeBannerAdView.Type.HEIGHT_100;</item>
+        <item>\tView adView = NativeBannerAdView.render(this, nativeBannerAd, viewType, adViewAttributes);</item>
+        <item>\tnativeAdContainer.addView(adView, 0);</item>
+        <item>\t…</item>
+        <item>}</item>
+    </string-array>
+
+    <string-array name="background_color_array">
+        <item>White</item>
+        <item>Black</item>
+        <item>Blue</item>
+    </string-array>
+
+    <string-array name="adview_type_array">
+        <item>Height_300</item>
+        <item>Height_400</item>
+    </string-array>
+
+    <string-array name="ad_bannerview_type_array">
+        <item>Height_100</item>
+        <item>Height_120</item>
+    </string-array>
+
 </resources>

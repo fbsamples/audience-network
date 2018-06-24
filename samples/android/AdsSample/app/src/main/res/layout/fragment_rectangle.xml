@@ -21,33 +21,33 @@ limitations under the License.
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:id="@+id/bannerAdContainer"
+        android:id="@+id/rectangleAdContainer"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         />
 
     <Button
-        android:id="@+id/refreshBannerButton"
+        android:id="@+id/refreshRectangleButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/refresh_now"
         android:textSize="15sp"
         android:layout_marginBottom="16dp"
-        android:layout_above="@id/bannerAdContainer"
+        android:layout_above="@id/rectangleAdContainer"
         android:layout_centerHorizontal="true"
         />
 
     <TextView
-        android:id="@+id/bannerStatusLabel"
+        android:id="@+id/rectangleStatusLabel"
         android:gravity="center"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:textColor="@android:color/darker_gray"
         android:textSize="15sp"
-        android:layout_above="@id/refreshBannerButton"
+        android:layout_above="@id/refreshRectangleButton"
         tools:text="@string/loading_status"
         />
-
 </RelativeLayout>
