@@ -36,6 +36,7 @@ import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
 import com.facebook.ads.AdListener;
 import com.facebook.ads.NativeAd;
+import com.facebook.ads.NativeAdListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -80,7 +81,12 @@ public class RecipeFragment extends Fragment {
         rvRecipes.setLayoutManager(layoutManager);
 
         NativeAd nativeAd = new NativeAd(this.getContext(), "YOUR_PLACEMENT_ID");
-        nativeAd.setAdListener(new AdListener() {
+        nativeAd.setAdListener(new NativeAdListener() {
+            @Override
+            public void onMediaDownloaded(Ad ad) {
+
+            }
+
             @Override
             public void onError(Ad ad, AdError adError) {
 

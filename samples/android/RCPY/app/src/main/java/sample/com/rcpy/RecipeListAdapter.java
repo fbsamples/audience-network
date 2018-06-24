@@ -34,6 +34,7 @@ import android.widget.TextView;
 
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdChoicesView;
+import com.facebook.ads.AdIconView;
 import com.facebook.ads.MediaView;
 import com.facebook.ads.NativeAd;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -88,26 +89,26 @@ class RecipeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             NativeAdViewHolder nativeAdViewHolder = (NativeAdViewHolder) holder;
             NativeAd nativeAd = (NativeAd) recipeList.get(position);
 
-            ImageView adImage = nativeAdViewHolder.adImage;
+            AdIconView adIconView = nativeAdViewHolder.adIconView;
             TextView tvAdTitle = nativeAdViewHolder.tvAdTitle;
             TextView tvAdBody = nativeAdViewHolder.tvAdBody;
             Button btnCTA = nativeAdViewHolder.btnCTA;
             LinearLayout adChoicesContainer = nativeAdViewHolder.adChoicesContainer;
             MediaView mediaView = nativeAdViewHolder.mediaView;
+            TextView sponsorLabel = nativeAdViewHolder.sponsorLabel;
 
-            tvAdTitle.setText(nativeAd.getAdTitle());
-            tvAdBody.setText(nativeAd.getAdBody());
-            NativeAd.downloadAndDisplayImage(nativeAd.getAdIcon(), adImage);
+            tvAdTitle.setText(nativeAd.getAdvertiserName());
+            tvAdBody.setText(nativeAd.getAdBodyText());
             btnCTA.setText(nativeAd.getAdCallToAction());
+            sponsorLabel.setText(nativeAd.getSponsoredTranslation());
+
             AdChoicesView adChoicesView = new AdChoicesView(context, nativeAd, true);
             adChoicesContainer.addView(adChoicesView);
-            mediaView.setNativeAd(nativeAd);
 
             List<View> clickableViews = new ArrayList<>();
-            clickableViews.add(adImage);
             clickableViews.add(btnCTA);
             clickableViews.add(mediaView);
-            nativeAd.registerViewForInteraction(nativeAdViewHolder.container, clickableViews);
+            nativeAd.registerViewForInteraction(nativeAdViewHolder.container, mediaView, adIconView, clickableViews);
         }
     }
 
@@ -166,23 +167,25 @@ class RecipeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     private static class NativeAdViewHolder extends RecyclerView.ViewHolder {
-        ImageView adImage;
+        AdIconView adIconView;
         TextView tvAdTitle;
         TextView tvAdBody;
         Button btnCTA;
         View container;
+        TextView sponsorLabel;
         LinearLayout adChoicesContainer;
         MediaView mediaView;
 
         NativeAdViewHolder(View itemView) {
             super(itemView);
             this.container = itemView;
-            adImage = (ImageView) itemView.findViewById(R.id.adImage);
+            adIconView = (AdIconView) itemView.findViewById(R.id.adIconView);
             tvAdTitle = (TextView) itemView.findViewById(R.id.tvAdTitle);
             tvAdBody = (TextView) itemView.findViewById(R.id.tvAdBody);
             btnCTA = (Button) itemView.findViewById(R.id.btnCTA);
             adChoicesContainer = (LinearLayout) itemView.findViewById(R.id.adChoicesContainer);
             mediaView = (MediaView) itemView.findViewById(R.id.mediaView);
+            sponsorLabel = (TextView) itemView.findViewById(R.id.sponsored_label);
         }
     }
 }
