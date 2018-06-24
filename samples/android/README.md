@@ -9,7 +9,7 @@ Sample list
 -----------
 
 ### [Ads Sample](./AdsSample)
-This sample app demonstrates the implementation of [Banners][3], [Interstitials][4], [Native Ads][5], [Rewarded Videos][8] and [Horizontal Scroll][7].
+This sample app demonstrates the implementation of [Banners][3], [Interstitials][4], [Native Ad Horizontal Scroll][7], [Native Ads in Recycler View][7], [Native Ads][5], [Native Ads Template][9], [Native Banner Ads][10], [Native Banner Ads Template][9], [Rectangle Ad][3], [Rewarded Videos][8].
 
 ### [AdMobWrapper](./AdMobWrapper)
 When using mediation platforms, in order to get the most value out from Facebook Audience Network, it is recommended to use a placement ID optimized for CPM, as well as another placement ID optimized for fill rate in the same waterfall as fall back. When using AdMob as a mediation platform, you could only specify one placement ID from Audience Network for an AdMob ad unit. However by utilizing the [AdMob Custom Events][6] you can add a second Audience Network placement ID for one ad unit. This sample demonstrates how you can do that by adding a custom event and implement the wrapper yourself.  
@@ -26,3 +26,5 @@ A tasty sample app for using native ads in `RecyclerView`
 [6]: https://firebase.google.com/docs/admob/android/custom-events
 [7]: https://developers.facebook.com/docs/audience-network/android/nativeadsmanager
 [8]: https://developers.facebook.com/docs/audience-network/android/rewarded-video
+[9]: https://developers.facebook.com/docs/audience-network/android/nativeadtemplate
+[10]: https://developers.facebook.com/docs/audience-network/android-native-banner
