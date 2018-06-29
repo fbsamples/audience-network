@@ -135,7 +135,7 @@ class ADNWRequestBuilder(object):
                 raise Exception("The parameter limit cannot be more than 1000 with Sync Request.")
         else:
             if self.limit > 10000:
-                raise Exception("The parameter limit cannot be more than 1000 with Async Request.")
+                raise Exception("The parameter limit cannot be more than 10000 with Async Request.")
 
         if is_using_query_ids:
             if len(self.query_ids) <= 0:
