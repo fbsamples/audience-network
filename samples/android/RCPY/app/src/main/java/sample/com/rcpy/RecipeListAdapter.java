@@ -102,6 +102,7 @@ class RecipeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             btnCTA.setText(nativeAd.getAdCallToAction());
             sponsorLabel.setText(nativeAd.getSponsoredTranslation());
 
+            adChoicesContainer.removeAllViews();
             AdChoicesView adChoicesView = new AdChoicesView(context, nativeAd, true);
             adChoicesContainer.addView(adChoicesView);
 
