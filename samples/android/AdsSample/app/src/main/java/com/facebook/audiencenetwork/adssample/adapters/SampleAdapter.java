@@ -61,6 +61,7 @@ public class SampleAdapter extends ArrayAdapter<SampleAdapter.Item> {
         add(new Item(AdUnitsSampleType.BANNER.getName()));
         add(new Item(AdUnitsSampleType.RECTANGLE.getName()));
         add(new Item(AdUnitsSampleType.INTERSTITIAL.getName()));
+        add(new Item(AdUnitsSampleType.INSTREAM.getName()));
         add(new Item(AdUnitsSampleType.REWARDED.getName()));
 
         // Native ad samples

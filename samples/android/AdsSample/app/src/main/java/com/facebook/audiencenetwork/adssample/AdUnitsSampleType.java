@@ -27,6 +27,7 @@ public enum AdUnitsSampleType {
     BANNER("Banner"),
     RECTANGLE("Rectangle"),
     INTERSTITIAL("Interstitial"),
+    INSTREAM("Instream Video"),
     REWARDED("Rewarded Video"),
     NATIVE("Native Ad"),
     NATIVE_BANNER("Native Banner Ad"),

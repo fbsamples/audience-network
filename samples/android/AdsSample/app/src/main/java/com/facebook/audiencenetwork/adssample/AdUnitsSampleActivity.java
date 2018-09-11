@@ -26,8 +26,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.facebook.audiencenetwork.adssample.adunit.BannerFragment;
+import com.facebook.audiencenetwork.adssample.adunit.InstreamVideoFragment;
 import com.facebook.audiencenetwork.adssample.adunit.InterstitialFragment;
 import com.facebook.audiencenetwork.adssample.adunit.NativeAdHScrollFragment;
 import com.facebook.audiencenetwork.adssample.adunit.NativeAdRecyclerFragment;
@@ -37,6 +41,7 @@ import com.facebook.audiencenetwork.adssample.adunit.NativeBannerAdFragment;
 import com.facebook.audiencenetwork.adssample.adunit.NativeBannerAdTemplateFragment;
 import com.facebook.audiencenetwork.adssample.adunit.RectangleFragment;
 import com.facebook.audiencenetwork.adssample.adunit.RewardedVideoFragment;
+import com.facebook.audiencenetwork.debugsettings.DebugSettingsActivity;
 
 public class AdUnitsSampleActivity extends FragmentActivity {
 
@@ -69,6 +74,9 @@ public class AdUnitsSampleActivity extends FragmentActivity {
                 case INTERSTITIAL:
                     fragment = new InterstitialFragment();
                     break;
+                case INSTREAM:
+                    fragment = new InstreamVideoFragment();
+                    break;
                 case REWARDED:
                     fragment = new RewardedVideoFragment();
                     break;
@@ -95,6 +103,24 @@ public class AdUnitsSampleActivity extends FragmentActivity {
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fragment)
                     .commit();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.ads_sample_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int i = item.getItemId();
+        if (i == R.id.debug_settings) {
+            startActivity(new Intent(getApplicationContext(), DebugSettingsActivity.class));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
 

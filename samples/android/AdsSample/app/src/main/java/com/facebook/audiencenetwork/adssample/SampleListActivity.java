@@ -33,6 +33,7 @@ import android.widget.AdapterView;
 
 import com.facebook.audiencenetwork.adssample.adapters.SampleAdapter;
 import com.facebook.audiencenetwork.adssample.R;
+import com.facebook.audiencenetwork.debugsettings.DebugSettingsActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -70,5 +71,23 @@ public class SampleListActivity extends ListActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.ads_sample_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int i = item.getItemId();
+        if (i == R.id.debug_settings) {
+            startActivity(new Intent(getApplicationContext(), DebugSettingsActivity.class));
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
