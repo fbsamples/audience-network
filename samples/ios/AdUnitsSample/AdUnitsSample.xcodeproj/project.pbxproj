@@ -29,6 +29,7 @@
 		8D98300A803083C6097E2B4B /* libPods-AdUnitsSample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8C6DF225B323998F77DB91C /* libPods-AdUnitsSample.a */; };
 		90E89CD41A99AE95005D3430 /* ScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E89CD21A99AE95005D3430 /* ScrollViewController.m */; };
 		9981CCDC1F696FF100935A60 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9981CCDB1F696FF100935A60 /* libc++.tbd */; };
+		C81409A42148BFEF00AB07EE /* NativeBannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C81409A22148BFEF00AB07EE /* NativeBannerViewController.m */; };
 		EE23E6E8198B0B0600215C81 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE23E6E6198B0B0600215C81 /* TableViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,8 @@
 		9981CCDB1F696FF100935A60 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		AFD6CE81EFFDE82048F8A212 /* Pods-AdUnitsSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdUnitsSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AdUnitsSample/Pods-AdUnitsSample.debug.xcconfig"; sourceTree = "<group>"; };
 		B81CBE1E1DC7F21400651A52 /* AdUnitsSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AdUnitsSample.entitlements; sourceTree = "<group>"; };
+		C81409A22148BFEF00AB07EE /* NativeBannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeBannerViewController.m; sourceTree = "<group>"; };
+		C81409A32148BFEF00AB07EE /* NativeBannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeBannerViewController.h; sourceTree = "<group>"; };
 		EE23E6E5198B0B0600215C81 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		EE23E6E6198B0B0600215C81 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		F8C6DF225B323998F77DB91C /* libPods-AdUnitsSample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AdUnitsSample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +145,8 @@
 			children = (
 				825B76281FE00ED2002E9410 /* BannerViewController.h */,
 				825B762E1FE00ED3002E9410 /* BannerViewController.m */,
+				C81409A32148BFEF00AB07EE /* NativeBannerViewController.h */,
+				C81409A22148BFEF00AB07EE /* NativeBannerViewController.m */,
 				825B762C1FE00ED3002E9410 /* InstreamViewController.h */,
 				825B762B1FE00ED3002E9410 /* InstreamViewController.m */,
 				825B76271FE00ED2002E9410 /* InterstitialViewController.h */,
@@ -348,6 +353,7 @@
 				58D92D6418C7A6BC0090E7E2 /* ViewController.m in Sources */,
 				825B76371FE00ED4002E9410 /* MenuTableViewController.m in Sources */,
 				825B76341FE00ED4002E9410 /* InstreamViewController.m in Sources */,
+				C81409A42148BFEF00AB07EE /* NativeBannerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
