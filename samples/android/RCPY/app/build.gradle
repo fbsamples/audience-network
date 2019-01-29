@@ -20,6 +20,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
     implementation 'com.facebook.android:audience-network-sdk:5.1.1'
     implementation 'com.facebook.fresco:fresco:1.11.0'
     implementation 'com.android.support:support-v4:26.1.0'
