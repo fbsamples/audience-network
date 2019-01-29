@@ -27,12 +27,17 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.facebook.ads.AdSettings;
+import com.facebook.ads.AudienceNetworkAds;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        AudienceNetworkAds.initialize(this);
+        AdSettings.addTestDevice("3268e7b5-32fb-40bd-a3da-db5fa5741ea9");
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setAdapter(new RCPYFragmentPagerAdapter(getSupportFragmentManager(), this));
