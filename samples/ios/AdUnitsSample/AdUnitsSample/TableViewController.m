@@ -20,7 +20,7 @@
 
 #import <FBAudienceNetwork/FBAudienceNetwork.h>
 
-static NSInteger const kRowStrideForAdCell = 3;
+static NSInteger const kRowStrideForAdCell = 9;
 static NSString *const kDefaultCellIdentifier = @"kDefaultCellIdentifier";
 
 @interface TableViewController () <UITableViewDataSource, UITableViewDelegate, FBNativeAdsManagerDelegate, FBNativeAdDelegate>
@@ -42,7 +42,7 @@ static NSString *const kDefaultCellIdentifier = @"kDefaultCellIdentifier";
 {
     if (!_tableViewContentArray) {
         _tableViewContentArray = [NSMutableArray array];
-        for (NSUInteger i = 0; i < 10; i++) {
+        for (NSUInteger i = 0; i < 45; i++) {
             [_tableViewContentArray addObject:[NSString stringWithFormat:@"TableView Cell #%lu", (unsigned long)(i + 1)]];
         }
     }
@@ -183,7 +183,7 @@ static NSString *const kDefaultCellIdentifier = @"kDefaultCellIdentifier";
 
 #pragma mark - Orientation
 
-- (FBInterfaceOrientationMask)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
 }

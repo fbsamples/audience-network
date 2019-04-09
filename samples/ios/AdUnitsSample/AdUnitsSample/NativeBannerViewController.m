@@ -27,7 +27,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *adTitleLabel;
 @property (nonatomic, strong) IBOutlet UIButton *adCallToActionButton;
 @property (nonatomic, strong) IBOutlet UILabel *adSponsoredLabel;
-@property (nonatomic, strong) IBOutlet FBAdChoicesView *adChoicesView;
+@property (nonatomic, strong) IBOutlet FBAdOptionsView *adOptionsView;
 @property (nonatomic, strong) IBOutlet UIView *adUIView;
 @property (nonatomic, strong) FBNativeBannerAd *nativeBannerAd;
 
@@ -39,7 +39,7 @@
 {
     [super viewDidLoad];
 
-    self.adChoicesView.hidden = YES;
+    self.adOptionsView.hidden = YES;
 }
 
 #pragma mark - IB Actions
@@ -104,10 +104,8 @@
     //                                      iconView:self.adIconView
     //                                viewController:self];
 
-    // Update AdChoices view
-    self.adChoicesView.corner = UIRectCornerTopLeft;
-    self.adChoicesView.nativeAd = nativeBannerAd;
-    self.adChoicesView.hidden = NO;
+    self.adOptionsView.nativeAd = nativeBannerAd;
+    self.adOptionsView.hidden = NO;
 }
 
 - (void)nativeBannerAd:(FBNativeBannerAd *)nativeBannerAd didFailWithError:(NSError *)error
@@ -146,7 +144,7 @@
 
 #pragma mark - Orientation
 
-- (FBInterfaceOrientationMask)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
 }

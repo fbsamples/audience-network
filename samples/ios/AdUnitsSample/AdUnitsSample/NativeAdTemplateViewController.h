@@ -16,29 +16,8 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "NavigationController.h"
+#import <UIKit/UIKit.h>
 
-#import "NativeViewController.h"
-
-@interface NavigationController ()
-
-@end
-
-@implementation NavigationController
-
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations
-{
-    UIInterfaceOrientationMask mask = UIInterfaceOrientationMaskAll;
-    NSArray<UIViewController *> *viewControllers = [self viewControllers];
-
-    for (UIViewController *viewController in viewControllers) {
-        if ([viewController isKindOfClass:[NativeViewController class]]) {
-            mask = UIInterfaceOrientationMaskPortrait;
-            break;
-        }
-    }
-
-    return mask;
-}
+@interface NativeAdTemplateViewController : UIViewController
 
 @end

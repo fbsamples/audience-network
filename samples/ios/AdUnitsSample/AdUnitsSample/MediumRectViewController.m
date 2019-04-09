@@ -33,6 +33,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self loadAd];
+}
+
+- (IBAction)refreshAd:(id)sender
+{
+    self.mediumRectAdView.hidden = YES;
+    [self loadAd];
+}
+
+- (void)loadAd
+{
+    if (nil != self.mediumRectAdView) {
+        [self.mediumRectAdView removeFromSuperview];
+    }
 
     // Create the medium rectangle unit with a placement ID (generate your own on the Facebook app settings).
     // Use different ID for each ad placement in your app.
@@ -50,19 +64,8 @@
 
     [self.adContainer addSubview:self.mediumRectAdView];
 
-    [self loadAd];
-}
-
-- (void)loadAd
-{
     self.adStatusLabel.text = @"Loading ad...";
     [self.mediumRectAdView loadAd];
-}
-
-- (IBAction)refreshAd:(id)sender
-{
-    self.mediumRectAdView.hidden = YES;
-    [self loadAd];
 }
 
 #pragma mark - FBAdViewDelegate implementation

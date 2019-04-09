@@ -32,6 +32,46 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self loadAd];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+
+    FBAdSize adSize = [self fbAdSize];
+    CGSize viewSize = self.view.bounds.size;
+    CGSize tabBarSize = self.tabBarController.tabBar.frame.size;
+    viewSize = CGSizeMake(viewSize.width, viewSize.height - tabBarSize.height);
+    UIEdgeInsets insets = [self safeAreaInsets];
+    CGFloat bottomAlignedY = viewSize.height - adSize.size.height - insets.bottom;
+    self.adView.frame = CGRectMake(insets.left,
+                                   bottomAlignedY,
+                                   viewSize.width - insets.right - insets.left,
+                                   adSize.size.height);
+}
+
+- (UIEdgeInsets)safeAreaInsets
+{
+    // Comment the following if-statement if you are not running XCode 9+
+    if (@available(iOS 11.0, *)) {
+        UIWindow *window = [[UIApplication sharedApplication].delegate window];
+        return [window safeAreaInsets];
+    }
+    return UIEdgeInsetsZero;
+}
+
+- (IBAction)refreshAd:(id)sender
+{
+    self.adView.hidden = YES;
+    [self loadAd];
+}
+
+- (void)loadAd
+{
+    if (nil != self.adView) {
+        [self.adView removeFromSuperview];
+    }
 
     // Create a banner's ad view with a unique placement ID (generate your own on the Facebook app settings).
     // Use different ID for each ad placement in your app.
@@ -57,45 +97,8 @@
     // Add adView to the view hierarchy.
     [self.view addSubview:self.adView];
 
-    [self loadAd];
-}
-
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-
-    FBAdSize adSize = [self fbAdSize];
-    CGSize viewSize = self.view.bounds.size;
-    CGSize tabBarSize = self.tabBarController.tabBar.frame.size;
-    viewSize = CGSizeMake(viewSize.width, viewSize.height - tabBarSize.height);
-    UIEdgeInsets insets = [self safeAreaInsets];
-    CGFloat bottomAlignedY = viewSize.height - adSize.size.height - insets.bottom;
-    self.adView.frame = CGRectMake(insets.left,
-                                   bottomAlignedY,
-                                   viewSize.width - insets.right - insets.left,
-                                   adSize.size.height);
-}
-
-- (void)loadAd
-{
     self.adStatusLabel.text = @"Loading ad...";
     [self.adView loadAd];
-}
-
-- (UIEdgeInsets)safeAreaInsets
-{
-    // Comment the following if-statement if you are not running XCode 9+
-    if (@available(iOS 11.0, *)) {
-        UIWindow *window = [[UIApplication sharedApplication].delegate window];
-        return [window safeAreaInsets];
-    }
-    return UIEdgeInsetsZero;
-}
-
-- (IBAction)refreshAd:(id)sender
-{
-    self.adView.hidden = YES;
-    [self loadAd];
 }
 
 - (FBAdSize)fbAdSize

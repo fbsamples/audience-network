@@ -53,7 +53,7 @@
     return self.reuseIdentifiers[indexPath.row];
 }
 
-- (FBInterfaceOrientationMask)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
 }

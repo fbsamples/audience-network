@@ -37,7 +37,7 @@ static NSString *const kDebugLogsCellIdentifier = @"kDebugLogsCellIdentifier";
 - (NSArray<NSString *> *)tableViewCellLabels
 {
     if (nil == _tableViewCellLabels) {
-        _tableViewCellLabels = @[@"Generic Error", @"Database Error", @"Exception Crash", @"Signal Crash"];
+        _tableViewCellLabels = @[@"Generic Error", @"Database Error", @"Exception App Crash", @"Signal App Crash", @"Exception SDK Crash"];
     }
     return _tableViewCellLabels;
 }
@@ -45,15 +45,19 @@ static NSString *const kDebugLogsCellIdentifier = @"kDebugLogsCellIdentifier";
 - (void)generateGenericError
 {
     Class class = NSClassFromString(@"FBAdDebugLogging");
-    SEL selector = NSSelectorFromString(@"logGenericDebugEventWithErrorDescription:");
-    NSMethodSignature *signature  = [class methodSignatureForSelector:selector];
+    SEL selector = NSSelectorFromString(@"logDebugEventWithType:code:description:");
+    NSMethodSignature *signature = [class methodSignatureForSelector:selector];
 
+    NSUInteger errorCode = 0;
+    NSString *eventType = @"generic";
     NSString *errorDescription = @"Generic error test message";
 
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
     [invocation setTarget:class];
     [invocation setSelector:selector];
-    [invocation setArgument:&errorDescription atIndex:2];
+    [invocation setArgument:&eventType atIndex:2];
+    [invocation setArgument:&errorCode atIndex:3];
+    [invocation setArgument:&errorDescription atIndex:4];
     [invocation retainArguments];
 
     [invocation invoke];
@@ -62,23 +66,30 @@ static NSString *const kDebugLogsCellIdentifier = @"kDebugLogsCellIdentifier";
 - (void)generateDatabaseError
 {
     Class class = NSClassFromString(@"FBAdDebugLogging");
-    SEL selector = NSSelectorFromString(@"logDatabaseDebugEventWithCode:errorDescription:");
-    NSMethodSignature *signature  = [class methodSignatureForSelector:selector];
+    SEL selector = NSSelectorFromString(@"logDebugEventWithType:code:description:");
+    NSMethodSignature *signature = [class methodSignatureForSelector:selector];
 
     NSUInteger errorCode = 7;
+    NSString *eventType = @"database";
     NSString *errorDescription = @"Database error cannot open database test message";
 
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
     [invocation setTarget:class];
     [invocation setSelector:selector];
-    [invocation setArgument:&errorCode atIndex:2];
-    [invocation setArgument:&errorDescription atIndex:3];
+    [invocation setArgument:&eventType atIndex:2];
+    [invocation setArgument:&errorCode atIndex:3];
+    [invocation setArgument:&errorDescription atIndex:4];
     [invocation retainArguments];
 
     [invocation invoke];
 }
 
 - (void)generateExceptionCrash
+{
+    [[self class] staticGenerateExceptionCrash];
+}
+
++ (void)staticGenerateExceptionCrash
 {
     NSString *string = nil;
     NSArray *array = @[string];
@@ -89,6 +100,36 @@ static NSString *const kDebugLogsCellIdentifier = @"kDebugLogsCellIdentifier";
 {
     __unsafe_unretained NSNumber *number = @4.4;
     [number description];
+}
+
+- (void)generateSDKCrash
+{
+    Class class = NSClassFromString(@"FBAdReportingItem");
+
+    id reportingItem = [class alloc];
+
+    SEL selector = NSSelectorFromString(@"initWithIdentifier:title:heading:subItems:");
+    NSMethodSignature *signature = [reportingItem methodSignatureForSelector:selector];
+
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+    [invocation setTarget:reportingItem];
+    [invocation setSelector:selector];
+    [invocation setArgument:@"" atIndex:2];
+    [invocation setArgument:@"" atIndex:3];
+    [invocation setArgument:@"" atIndex:4];
+    [invocation retainArguments];
+
+    [invocation invoke];
+
+    selector = NSSelectorFromString(@"addSubItem:");
+    signature = [reportingItem methodSignatureForSelector:selector];
+
+    invocation = [NSInvocation invocationWithMethodSignature:signature];
+    [invocation setTarget:reportingItem];
+    [invocation setSelector:selector];
+    [invocation retainArguments];
+
+    [invocation invoke];
 }
 
 #pragma mark - UITableViewDataSource implementation
@@ -132,6 +173,10 @@ static NSString *const kDebugLogsCellIdentifier = @"kDebugLogsCellIdentifier";
 
         case 3:
             [self generateSignalCrash];
+            break;
+
+        case 4:
+            [self generateSDKCrash];
             break;
     }
 }

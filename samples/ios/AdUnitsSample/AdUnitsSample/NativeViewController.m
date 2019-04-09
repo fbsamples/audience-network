@@ -16,13 +16,13 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "ViewController.h"
+#import "NativeViewController.h"
 
 #import <FBAudienceNetwork/FBAudienceNetwork.h>
 
 const NSUInteger LoadNativeAdCellRowIndex = 0;
 
-@interface ViewController () <UITableViewDelegate, UITableViewDataSource, FBNativeAdDelegate, FBMediaViewDelegate>
+@interface NativeViewController () <UITableViewDelegate, UITableViewDataSource, FBNativeAdDelegate, FBMediaViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *menuTableView;
 @property (strong, nonatomic) IBOutlet UILabel *adStatusLabel;
@@ -33,13 +33,13 @@ const NSUInteger LoadNativeAdCellRowIndex = 0;
 @property (strong, nonatomic) IBOutlet UIButton *adCallToActionButton;
 @property (strong, nonatomic) IBOutlet UILabel *adSocialContextLabel;
 @property (strong, nonatomic) IBOutlet UILabel *sponsoredLabel;
-@property (strong, nonatomic) IBOutlet FBAdChoicesView *adChoicesView;
+@property (strong, nonatomic) IBOutlet FBAdOptionsView *adOptionsView;
 @property (strong, nonatomic) IBOutlet UIView *adUIView;
 @property (strong, nonatomic) FBNativeAd *nativeAd;
 
 @end
 
-@implementation ViewController
+@implementation NativeViewController
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,7 +57,7 @@ const NSUInteger LoadNativeAdCellRowIndex = 0;
 {
     [super viewDidLoad];
 
-    self.adChoicesView.hidden = YES;
+    self.adOptionsView.hidden = YES;
     self.menuTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -142,10 +142,8 @@ const NSUInteger LoadNativeAdCellRowIndex = 0;
 //                                iconView:self.adIconView
 //                          viewController:self];
 
-    // Update AdChoices view
-    self.adChoicesView.nativeAd = nativeAd;
-    self.adChoicesView.corner = UIRectCornerTopRight;
-    self.adChoicesView.hidden = NO;
+    self.adOptionsView.hidden = NO;
+    self.adOptionsView.nativeAd = nativeAd;
 }
 
 - (void)nativeAd:(FBNativeAd *)nativeAd didFailWithError:(NSError *)error
@@ -206,18 +204,24 @@ const NSUInteger LoadNativeAdCellRowIndex = 0;
 {
     if (indexPath.row == LoadNativeAdCellRowIndex) { return nil; }
 
-    NSArray<NSString *> *segues =  @[@"showTableView",
+    NSArray<NSString *> *segues =  @[@"showTemplate",
+                                     @"showTableView",
                                      @"showScrollView",
-                                     @"showCollectionView"];
+                                     @"showCollectionView",
+                                     @"showNativeBanner",
+                                     @"showNativeBannerTemplate"];
     return segues[indexPath.row - 1];
 }
 
 - (NSArray<NSString *> *)menuItems
 {
     return @[@"Load Native Ad",
+             @"Load Native Ad using Template",
              @"Load Native Ad in TableView",
              @"Load Native Ad in ScrollView",
-             @"Load Native Ad in CollectionView"];
+             @"Load Native Ad in CollectionView",
+             @"Load Native Banner Ad",
+             @"Load Native Banner Ad using Template"];
 }
 
 - (void)setCallToActionButton:(NSString *)callToAction
@@ -233,7 +237,7 @@ const NSUInteger LoadNativeAdCellRowIndex = 0;
 
 #pragma mark - Orientation
 
-- (FBInterfaceOrientationMask)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
 }

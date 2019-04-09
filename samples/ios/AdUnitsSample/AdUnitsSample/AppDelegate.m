@@ -18,6 +18,8 @@
 
 #import "AppDelegate.h"
 
+#import <FBAudienceNetwork/FBAudienceNetworkAds.h>
+
 @implementation AppDelegate
 
 void installUncaughtExceptionHandler(void);
@@ -26,6 +28,8 @@ void installUncaughtExceptionHandler(void);
 {
     // Debug exception handler
     installUncaughtExceptionHandler();
+
+    [FBAudienceNetworkAds initializeWithSettings:nil completionHandler:nil];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.viewController = [[UIStoryboard storyboardWithName:@"AdUnitsSampleStoryboard" bundle:nil] instantiateInitialViewController];
