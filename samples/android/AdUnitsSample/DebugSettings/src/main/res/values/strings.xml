@@ -1,0 +1,11 @@
+<resources>
+    <string name="sdk_version_title">SDK Version</string>
+    <string name="test_mode_title">Test Mode</string>
+    <string name="url_prefix_title">URL Prefix</string>
+    <string name="visible_animation_title">Visible Animation</string>
+    <string name="video_autoplay_title">[deprecated] Video Autoplay</string>
+    <string name="default_autoplay_setting">AUTOPLAY</string>
+    <string name="demo_ad_test_type">Demo Ad Test Type</string>
+    <string name="integration_error_mode">Integration Error Mode</string>
+    <string name="multiprocess_support_mode">Multiprocess Support Mode</string>
+</resources>

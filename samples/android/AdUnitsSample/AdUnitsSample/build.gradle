@@ -1,0 +1,64 @@
+apply plugin: 'com.android.application'
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+android {
+    compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
+    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
+    useLibrary 'org.apache.http.legacy'
+    defaultConfig {
+        applicationId 'com.facebook.samples.AdUnitsSample'
+        minSdkVersion Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
+        versionCode 1
+        versionName '1.0'
+        rootProject.ext.variantRelease = false
+        missingDimensionStrategy 'version', 'standard'
+        missingDimensionStrategy 'exoPlayerVersion', 'defaultExoPlayer'
+    }
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
+        release {
+            signingConfig signingConfigs.debug
+            debuggable false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        aarRelease {
+            signingConfig signingConfigs.debug
+            debuggable false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            matchingFallbacks = ['release']
+        }
+        dexDebug {
+            signingConfig signingConfigs.debug
+            debuggable true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            matchingFallbacks = ['debug']
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation "com.android.support:support-v4:$project.ANDROID_SUPPORT_LIBRARY_VERSION"
+    implementation "com.android.support:recyclerview-v7:$project.ANDROID_SUPPORT_LIBRARY_VERSION"
+    // For internal debug settings
+    implementation(project(':DebugSettings'))
+
+    implementation "com.android.support:appcompat-v7:$project.ANDROID_SUPPORT_LIBRARY_VERSION"
+    implementation "com.android.support.constraint:constraint-layout:1.0.2"
+
+    implementation "com.facebook.android:audience-network-sdk:$project.AUDIENCE_NETWORK_SDK_VERSION"
+}

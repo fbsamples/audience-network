@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <Preference
+        android:key="sdk_version_key"
+        android:title="@string/sdk_version_title"
+    />
+    <CheckBoxPreference
+        android:key="test_mode_key"
+        android:title="@string/test_mode_title"
+    />
+    <ListPreference
+        android:key="video_autoplay_setting_key"
+        android:title="@string/video_autoplay_title"
+        android:entries="@array/autoplay_entries"
+        android:entryValues="@array/autoplay_values"
+        android:defaultValue="@string/default_autoplay_setting"
+    />
+
+    <ListPreference
+        android:key="demo_ad_test_type"
+        android:title="@string/demo_ad_test_type"
+    />
+
+    <ListPreference
+        android:key="integration_error_mode_key"
+        android:title="@string/integration_error_mode"
+        />
+    <ListPreference
+        android:key="multiprocess_support_key"
+        android:title="@string/multiprocess_support_mode"
+        />
+
+</PreferenceScreen>

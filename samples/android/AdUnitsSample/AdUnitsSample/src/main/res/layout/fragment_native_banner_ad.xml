@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <com.facebook.ads.NativeAdLayout
+        android:id="@+id/native_banner_ad_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        />
+
+    <Button
+        android:id="@+id/refresh_native_banner_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_above="@id/native_banner_ad_container"
+        android:layout_centerHorizontal="true"
+        android:text="@string/refresh_now"
+        android:textSize="15sp"
+        />
+
+    <TextView
+        android:id="@+id/native_banner_status_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_above="@id/refresh_native_banner_button"
+        android:gravity="center"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="15sp"
+        />
+</RelativeLayout>

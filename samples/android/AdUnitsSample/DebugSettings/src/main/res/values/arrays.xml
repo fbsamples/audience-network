@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="autoplay_entries">
+        <item>Autoplay</item>
+        <item>Autoplay only on Wifi</item>
+        <item>No Autoplay</item>
+    </string-array>
+    <string-array name="autoplay_values">
+        <item>AUTOPLAY_ON_MOBILE</item>
+        <item>AUTOPLAY</item>
+        <item>NO_AUTOPLAY</item>
+    </string-array>
+</resources>

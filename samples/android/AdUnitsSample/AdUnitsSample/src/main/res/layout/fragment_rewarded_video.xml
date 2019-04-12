@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+
+    <TextView
+            android:id="@+id/rewardedVideoAdStatusLabel"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp"
+            />
+
+
+    <LinearLayout
+            android:id="@+id/rewardedVideoAdControls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="50dp">
+
+        <Button
+                android:id="@+id/loadRewardedVideoButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/load_rewarded_video"
+                android:textSize="15sp"
+                />
+
+        <Button
+                android:id="@+id/showRewardedVideoButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_ad"
+                android:textSize="15sp"
+                />
+
+    </LinearLayout>
+
+</RelativeLayout>

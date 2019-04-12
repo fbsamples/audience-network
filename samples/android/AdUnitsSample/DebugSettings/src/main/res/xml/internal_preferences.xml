@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:key="visible_animation_key"
+        android:title="@string/visible_animation_title" />
+    <EditTextPreference
+        android:key="url_prefix_key"
+        android:inputType="textUri"
+        android:title="@string/url_prefix_title" />
+</PreferenceScreen>
