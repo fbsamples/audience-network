@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:id="@+id/rectangleAdContainer"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
+
+    <Button
+        android:id="@+id/refreshRectangleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_above="@id/rectangleAdContainer"
+        android:layout_centerHorizontal="true"
+        android:text="@string/refresh_now"
+        android:textSize="15sp"
+        />
+
+    <TextView
+        android:id="@+id/rectangleStatusLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_above="@id/refreshRectangleButton"
+        android:gravity="center"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="15sp"
+        android:text="@string/loading_status"
+        />
+</RelativeLayout>
