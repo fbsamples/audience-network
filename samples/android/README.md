@@ -14,6 +14,10 @@ This sample app demonstrates the implementation of<br/>
 [Native Ads][5], [Native Ads Template][9], [Native Banner Ads][10] and [Native Banner Ads Template][9].<br/>
 [Native Ad Horizontal Scroll][7] and [Native Ads in Recycler View][7].<br/>
 
+### [KotlinAdUnitsSample](./KotlinAdUnitsSample)
+Kotlin version of the `AdUnitsSample`, demonstrating the usage of Audience Network SDK with [Kotlin](11).
+
+
 
 [1]: https://developers.facebook.com/docs/audience-network/getting-started
 [2]: https://developers.facebook.com/docs/audience-network/android
@@ -24,3 +28,4 @@ This sample app demonstrates the implementation of<br/>
 [8]: https://developers.facebook.com/docs/audience-network/android/rewarded-video
 [9]: https://developers.facebook.com/docs/audience-network/android/nativeadtemplate
 [10]: https://developers.facebook.com/docs/audience-network/android-native-banner
+[11]: https://developer.android.com/kotlin
