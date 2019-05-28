@@ -26,7 +26,7 @@ const NSUInteger LoadNativeAdCellRowIndex = 0;
 
 @property (strong, nonatomic) IBOutlet UITableView *menuTableView;
 @property (strong, nonatomic) IBOutlet UILabel *adStatusLabel;
-@property (strong, nonatomic) IBOutlet FBAdIconView *adIconView;
+@property (strong, nonatomic) IBOutlet FBMediaView *adIconView;
 @property (strong, nonatomic) IBOutlet FBMediaView *adCoverMediaView;
 @property (strong, nonatomic) IBOutlet UILabel *adTitleLabel;
 @property (strong, nonatomic) IBOutlet UILabel *adBodyLabel;
@@ -45,7 +45,7 @@ const NSUInteger LoadNativeAdCellRowIndex = 0;
 {
     // Used in xib must be referenced here so linker won't eliminate it.
     [FBMediaView class];
-
+    
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -56,7 +56,7 @@ const NSUInteger LoadNativeAdCellRowIndex = 0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     self.adOptionsView.hidden = YES;
     self.menuTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
@@ -66,18 +66,18 @@ const NSUInteger LoadNativeAdCellRowIndex = 0;
 - (void)loadNativeAd
 {
     self.adStatusLabel.text = @"Requesting an ad...";
-
+    
     // Create a native ad request with a unique placement ID (generate your own on the Facebook app settings).
     // Use different ID for each ad placement in your app.
     FBNativeAd *nativeAd = [[FBNativeAd alloc] initWithPlacementID:@"YOUR_PLACEMENT_ID"];
-
+    
     // Set a delegate to get notified when the ad was loaded.
     nativeAd.delegate = self;
-
+    
     // When testing on a device, add its hashed ID to force test ads.
     // The hash ID is printed to console when running on a device.
     // [FBAdSettings addTestDevice:@"THE HASHED ID AS PRINTED TO CONSOLE"];
-
+    
     // Initiate a request to load an ad.
     [nativeAd loadAd];
 }
@@ -87,26 +87,26 @@ const NSUInteger LoadNativeAdCellRowIndex = 0;
 - (void)nativeAdDidLoad:(FBNativeAd *)nativeAd
 {
     NSLog(@"Native ad was loaded, constructing native UI...");
-
+    
     if (self.nativeAd) {
         [self.nativeAd unregisterView];
     }
-
+    
     self.nativeAd = nativeAd;
-
+    
     // Create native UI using the ad metadata.
     self.adCoverMediaView.delegate = self;
-
+    
     self.adStatusLabel.text = @"Ad loaded.";
-
+    
     // Render native ads onto UIView
     self.adTitleLabel.text = self.nativeAd.advertiserName;
     self.adBodyLabel.text = self.nativeAd.bodyText;
     self.adSocialContextLabel.text = self.nativeAd.socialContext;
     self.sponsoredLabel.text = self.nativeAd.sponsoredTranslation;
-
+    
     [self setCallToActionButton:self.nativeAd.callToAction];
-
+    
     // set the frame of the adBodyLabel depending on whether to show to call to action button
     CGFloat gapToBorder = 9.0f;
     CGFloat gapToCTAButton = 8.0f;
@@ -117,9 +117,9 @@ const NSUInteger LoadNativeAdCellRowIndex = 0;
         adBodyLabelFrame.size.width = self.adCoverMediaView.bounds.size.width - gapToCTAButton - gapToBorder - (self.adCoverMediaView.bounds.size.width - self.adCallToActionButton.frame.origin.x);
     }
     self.adBodyLabel.frame = adBodyLabelFrame;
-
+    
     NSLog(@"Register UIView for impression and click...");
-
+    
     // Set native ad view tags to declare roles of your views for better analysis in future
     // We will be able to provide you statistics how often these views were clicked by users
     // Views provided by Facebook already have appropriate tag set
@@ -127,7 +127,7 @@ const NSUInteger LoadNativeAdCellRowIndex = 0;
     self.adBodyLabel.nativeAdViewTag = FBNativeAdViewTagBody;
     self.adSocialContextLabel.nativeAdViewTag = FBNativeAdViewTagSocialContext;
     self.adCallToActionButton.nativeAdViewTag = FBNativeAdViewTagCallToAction;
-
+    
     // Specify the clickable areas. Views you were using to set ad view tags should be clickable.
     NSArray<UIView *> *clickableViews = @[self.adIconView, self.adTitleLabel, self.adBodyLabel, self.adSocialContextLabel, self.adCallToActionButton];
     [nativeAd registerViewForInteraction:self.adUIView
@@ -135,13 +135,13 @@ const NSUInteger LoadNativeAdCellRowIndex = 0;
                                 iconView:self.adIconView
                           viewController:self
                           clickableViews:clickableViews];
-
-//    // You may use this method if you want to have all adUIView's subviews clickable
-//    [nativeAd registerViewForInteraction:self.adUIView
-//                               mediaView:self.adCoverMediaView
-//                                iconView:self.adIconView
-//                          viewController:self];
-
+    
+    //    // You may use this method if you want to have all adUIView's subviews clickable
+    //    [nativeAd registerViewForInteraction:self.adUIView
+    //                               mediaView:self.adCoverMediaView
+    //                                iconView:self.adIconView
+    //                          viewController:self];
+    
     self.adOptionsView.hidden = NO;
     self.adOptionsView.nativeAd = nativeAd;
 }
@@ -180,7 +180,7 @@ const NSUInteger LoadNativeAdCellRowIndex = 0;
         [self loadNativeAd];
         return;
     }
-
+    
     NSString *segue = [self segueIdentifierForIndexPath:indexPath];
     [self performSegueWithIdentifier:segue sender:nil];
 }
@@ -203,7 +203,7 @@ const NSUInteger LoadNativeAdCellRowIndex = 0;
 - (NSString *)segueIdentifierForIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == LoadNativeAdCellRowIndex) { return nil; }
-
+    
     NSArray<NSString *> *segues =  @[@"showTemplate",
                                      @"showTableView",
                                      @"showScrollView",
@@ -244,7 +244,7 @@ const NSUInteger LoadNativeAdCellRowIndex = 0;
 
 - (void)mediaViewDidLoad:(FBMediaView *)mediaView
 {
-
+    
 }
 
 @end
