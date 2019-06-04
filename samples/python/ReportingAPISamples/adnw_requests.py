@@ -6,7 +6,7 @@ from adnw_params import *
 
 # Base URL
 BASE_URL = 'https://graph.facebook.com'
-API_VERSION = 'v2.12'
+API_VERSION = 'v3.3'
 ADNW_REQUEST_API = '/adnetworkanalytics'
 ADNW_REQUEST_API_BY_QUERY_IDS = '/adnetworkanalytics_results'
 ACCESS_TOKEN_KEY = 'access_token'
