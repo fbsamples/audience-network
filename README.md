@@ -7,7 +7,7 @@ In this repository there are sample code that demonstrates how to use Facebook [
 * [Android](./samples/android)
 * [iOS](./samples/ios)
 * [Facebook Audience Reporting API Samples](./samples/python)
-* [Mobile web](./samples/mobileweb
+* [Mobile web](./samples/mobileweb)
 
 ## Support
 
@@ -16,6 +16,8 @@ If you have feedback or suggestions specifically to the samples, please feel fre
 
 If you are having technical issues or experiencing bugs, please use the [bug report][2] tool to report a bug on `Audience Network`.
 Our engineers will get in touch with you.
+
+If you have any other questions or issues regarding to Facebook Audience Network, please use the online [publisher support portal][3] to submit a request.
 
 
 [1]: https://developers.facebook.com/docs/audience-network
