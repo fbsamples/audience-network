@@ -16,7 +16,7 @@ limitations under the License.
 -->
 
 <resources>
-    <string name="copy_right">Copyright © 2018 Facebook. All rights reserved.</string>
+    <string name="copy_right">Copyright © 2020 Facebook. All rights reserved.</string>
     <string name="app_name">Ad Units Sample</string>
     <string name="select_sample">Select an option</string>
     <string name="debug_settings">Debug Settings</string>
