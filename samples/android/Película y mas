@@ -1,0 +1,97 @@
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+
+      
+keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore | openssl sha1 -binary | openssl base64
+/app/res/values/strings.xml
+<string name="facebook_app_id">701681907047583</string> <string name="fb_login_protocol_scheme">fb701681907047583</string>
+/app/manifest/AndroidManifest.xml.
+  <uses-permission android:name="android.permission.INTERNET"/>
+<meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/> <activity android:name="com.facebook.FacebookActivity" android:configChanges= "keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:label="@string/app_name" /> <activity android:name="com.facebook.CustomTabActivity" android:exported="true"> <intent-filter> <action android:name="android.intent.action.VIEW" /> <category android:name="android.intent.category.DEFAULT" /> <category android:name="android.intent.category.BROWSABLE" /> <data android:scheme="@string/fb_login_protocol_scheme" /> </intent-filter> </activity>
+
+
+@Override
+public void onCreate() {
+    super.onCreate();
+    FacebookSdk.sdkInitialize(getApplicationContext());
+    AppEventsLogger.activateApp(this);
+}
+      código de divisa ISO 4217
+logger.logPurchase(BigDecimal.valueOf(4.32), Currency.getInstance("USD"));
+
+<com.facebook.login.widget.LoginButton
+    android:id="@+id/login_button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="30dp"
+    android:layout_marginBottom="30dp" /> callbackManager = CallbackManager.Factory.create();
+
+      
+    loginButton = (LoginButton) findViewById(R.id.login_button);
+    loginButton.setReadPermissions("email");
+    // If using in a fragment
+    loginButton.setFragment(this);    
+
+    // Callback registration
+    loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        @Override
+        public void onSuccess(LoginResult loginResult) {
+            // App code
+        }
+
+        @Override
+        public void onCancel() {
+            // App code
+        }
+
+        @Override
+        public void onError(FacebookException exception) {
+            // App code
+        }
+    });
+    callbackManager = CallbackManager.Factory.create();
+
+    LoginManager.getInstance().registerCallback(callbackManager,
+            new FacebookCallback<LoginResult>() {
+                @Override
+                public void onSuccess(LoginResult loginResult) {
+                    // App code
+                }
+
+                @Override
+                public void onCancel() {
+                     // App code
+                }
+
+                @Override
+                public void onError(FacebookException exception) {
+                     // App code   
+                }
+    });
+    callbackManager = CallbackManager.Factory.create();
+
+    LoginManager.getInstance().registerCallback(callbackManager,
+            new FacebookCallback<LoginResult>() {
+                @Override
+                public void onSuccess(LoginResult loginResult) {
+                    // App code
+                }
+
+                @Override
+                public void onCancel() {
+                     // App code
+                }
+
+                @Override
+                public void onError(FacebookException exception) {
+                     // App code   
+                }
+    });
+      @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+      
+LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
