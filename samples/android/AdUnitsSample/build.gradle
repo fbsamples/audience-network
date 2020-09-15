@@ -1,23 +1,36 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply plugin: 'com.android.application'
 
-buildscript {
-    repositories {
-        google()
-        jcenter()
-        
+repositories {
+  flatDir {
+    dirs 'libs'
+  }
+}
+
+dependencies {
+    implementation(name: 'AudienceNetwork', ext: 'aar')
+    implementation(name: 'DebugSettings', ext: 'aar')
+
+    implementation "androidx.legacy:legacy-support-v4:$project.ANDROIDX_VERSION"
+    implementation "androidx.recyclerview:recyclerview:$project.ANDROIDX_VERSION"
+    implementation "androidx.appcompat:appcompat:$project.ANDROIDX_VERSION"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation "com.google.android.gms:play-services-basement:$project.ANDROID_GOOGLE_PLAY_SERVICES_VERSION"
+}
+
+android {
+    compileSdkVersion Integer.parseInt(project.ANDROID_BUILD_SDK_VERSION)
+    buildToolsVersion project.ANDROID_BUILD_TOOLS_VERSION
+    useLibrary 'org.apache.http.legacy'
+    defaultConfig {
+        applicationId 'com.facebook.samples.AdUnitsSample'
+        minSdkVersion Integer.parseInt(project.ANDROID_BUILD_MIN_SDK_VERSION)
+        targetSdkVersion Integer.parseInt(project.ANDROID_BUILD_TARGET_SDK_VERSION)
+        versionCode 1
+        versionName '1.0'
+        rootProject.ext.variantRelease = false
     }
-    dependencies {
-        classpath "com.android.tools.build:gradle:${project.GRADLE_VERSION}"
-        
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+    lintOptions {
+        abortOnError false
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
-        
-    }
-}
