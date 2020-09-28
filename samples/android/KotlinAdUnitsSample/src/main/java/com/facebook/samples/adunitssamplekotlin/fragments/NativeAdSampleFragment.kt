@@ -185,10 +185,10 @@ class NativeAdSampleFragment : Fragment(), NativeAdListener {
     NativeAdBase.NativeComponentTag.tagView(nativeAdIcon, NativeAdBase.NativeComponentTag.AD_ICON)
     NativeAdBase.NativeComponentTag.tagView(nativeAdTitle, NativeAdBase.NativeComponentTag.AD_TITLE)
     NativeAdBase.NativeComponentTag.tagView(nativeAdBody, NativeAdBase.NativeComponentTag.AD_BODY)
-    NativeAdBase.NativeComponentTag
-        .tagView(nativeAdSocialContext, NativeAdBase.NativeComponentTag.AD_SOCIAL_CONTEXT)
-    NativeAdBase.NativeComponentTag
-        .tagView(nativeAdCallToAction, NativeAdBase.NativeComponentTag.AD_CALL_TO_ACTION)
+    NativeAdBase.NativeComponentTag.tagView(
+        nativeAdSocialContext, NativeAdBase.NativeComponentTag.AD_SOCIAL_CONTEXT)
+    NativeAdBase.NativeComponentTag.tagView(
+        nativeAdCallToAction, NativeAdBase.NativeComponentTag.AD_CALL_TO_ACTION)
   }
 
   override fun onDestroy() {
