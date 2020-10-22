@@ -10,9 +10,10 @@ The sample projects are setup with [Cocoa Pods][7].  You would need to run `pod 
 Sample list
 -----------
 
-### [AdUnitsSample](./AdUnitsSample)
-This sample includes demonstration for different placement formats including [Banner][3], [Interstitial][4], [Rewarded Video][9], [In-stream Video][8] [Native][5] and [Native Banner Ads][10].
+These sample projects include demonstration for different placement formats including [Banner][3], [Interstitial][4], [Rewarded Video][9], [In-stream Video][8] [Native][5] and [Native Banner Ads][10].
 
+- [AdUnitsSample](./AdUnitsSample) - An Objective C sample project. 
+- [FANSample](./FANSample) - A Swift sample project.
 
 [1]: https://developers.facebook.com/docs/audience-network/getting-started
 [2]: https://developers.facebook.com/docs/audience-network/ios
