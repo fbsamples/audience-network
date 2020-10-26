@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BottomBarView" customModule="FANSample" customModuleProvider="target">
+            <connections>
+                <outlet property="button" destination="Z9U-5P-90W" id="0cf-1q-fki"/>
+                <outlet property="testModeSwitch" destination="Jaf-fs-aLM" id="dHC-zW-zDi"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="455" height="147"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="GFo-bm-TUL">
+                    <rect key="frame" x="0.0" y="26.5" width="455" height="104"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZr-EF-erY">
+                            <rect key="frame" x="0.0" y="0.0" width="455" height="44"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aDr-7Q-AdJ">
+                                    <rect key="frame" x="0.0" y="12" width="390" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Jaf-fs-aLM">
+                                    <rect key="frame" x="406" y="6.5" width="51" height="31"/>
+                                    <connections>
+                                        <action selector="testModeSwitchValueChangedWithSender:" destination="-1" eventType="valueChanged" id="IM1-9V-n9m"/>
+                                    </connections>
+                                </switch>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="Jaf-fs-aLM" firstAttribute="leading" secondItem="aDr-7Q-AdJ" secondAttribute="trailing" priority="999" constant="16" id="8Dn-wG-fWD"/>
+                                <constraint firstItem="aDr-7Q-AdJ" firstAttribute="leading" secondItem="hZr-EF-erY" secondAttribute="leading" id="9bC-sH-F5L"/>
+                                <constraint firstItem="Jaf-fs-aLM" firstAttribute="centerY" secondItem="hZr-EF-erY" secondAttribute="centerY" id="IHW-JO-XzL"/>
+                                <constraint firstAttribute="height" constant="44" id="dUZ-HR-hyP"/>
+                                <constraint firstItem="aDr-7Q-AdJ" firstAttribute="centerY" secondItem="hZr-EF-erY" secondAttribute="centerY" id="iuL-9Y-hRV"/>
+                                <constraint firstAttribute="trailing" secondItem="Jaf-fs-aLM" secondAttribute="trailing" id="xbm-fF-xgf"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z9U-5P-90W">
+                            <rect key="frame" x="0.0" y="60" width="455" height="44"/>
+                            <color key="backgroundColor" systemColor="systemGreenColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="VCA-og-adz"/>
+                            </constraints>
+                            <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                            <state key="normal" title="Load Ad">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="buttonTapped" destination="-1" eventType="touchUpInside" id="alR-Qq-Xzu"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="GFo-bm-TUL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="0Jn-KY-Rg1"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="GFo-bm-TUL" secondAttribute="top" priority="999" id="3HS-q5-GbX"/>
+                <constraint firstItem="GFo-bm-TUL" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="BtM-wS-j82"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="GFo-bm-TUL" secondAttribute="trailing" id="gPP-Lx-0XB"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="GFo-bm-TUL" secondAttribute="bottom" priority="999" id="nbZ-Su-AoE"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="170.28985507246378" y="280.91517857142856"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
