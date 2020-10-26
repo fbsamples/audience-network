@@ -32,7 +32,7 @@ More information regarding API usage can be found in the sample project.
 
 ### How to setup the project
 
-1. Make sure [CocoPods](https://cocoapods.org/) is installed on your machine.
+1. Make sure [CocoaPods](https://cocoapods.org/) is installed on your machine.
 2. Go to the project directory and run `pod install`.
 3. A workspace file named `FANSample.xcworkspace` will be generated. Open it using Xcode.
 4. You can find the samples under `FANSamples/Samples`. Replace "YOUR_PLACEMENT_ID" with the Placement ID you created through [developer.facebook.com](https://developers.facebook.com/).
