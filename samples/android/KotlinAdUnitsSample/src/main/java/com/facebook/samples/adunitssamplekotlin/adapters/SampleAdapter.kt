@@ -53,7 +53,7 @@ class SampleAdapter(context: Context, resource: Int) :
 
   constructor(context: Context) : this(context, 0)
 
-  override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
+  override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
     var v = convertView
     val item = getItem(position)
     item?.let { nonNullItem ->
@@ -70,6 +70,6 @@ class SampleAdapter(context: Context, resource: Int) :
         v?.findViewById<TextView>(android.R.id.text1)?.text = nonNullItem.title
       }
     }
-    return v
+    return v!!
   }
 }

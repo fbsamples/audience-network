@@ -46,7 +46,7 @@ class SampleListActivity : ListActivity() {
 
     this.listView.setOnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
       val item = adapter.getItem(position)
-      val sampleName = item.title
+      val sampleName = item!!.title
       val type = AdUnitsSampleType.getSampleTypeFromName(sampleName)
 
       if (type != null) {

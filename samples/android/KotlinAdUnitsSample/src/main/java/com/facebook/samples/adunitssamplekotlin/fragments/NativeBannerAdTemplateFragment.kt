@@ -62,14 +62,14 @@ class NativeBannerAdTemplateFragment : Fragment(), NativeAdListener {
 
     val backgroundColorSpinnerAdapter =
         ArrayAdapter.createFromResource(
-            activity, R.array.background_color_array, android.R.layout.simple_spinner_item)
+            inflater.context, R.array.background_color_array, android.R.layout.simple_spinner_item)
     backgroundColorSpinnerAdapter.setDropDownViewResource(
         android.R.layout.simple_spinner_dropdown_item)
     backgroundColorSpinner!!.adapter = backgroundColorSpinnerAdapter
 
     val adViewTypeSpinnerAdapter =
         ArrayAdapter.createFromResource(
-            activity, R.array.ad_bannerview_type_array, android.R.layout.simple_spinner_item)
+            inflater.context, R.array.ad_bannerview_type_array, android.R.layout.simple_spinner_item)
     adViewTypeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
     adViewTypeSpinner!!.adapter = adViewTypeSpinnerAdapter
 

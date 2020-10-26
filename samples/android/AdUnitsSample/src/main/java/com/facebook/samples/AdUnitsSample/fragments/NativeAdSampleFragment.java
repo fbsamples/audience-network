@@ -126,7 +126,7 @@ public class NativeAdSampleFragment extends Fragment implements NativeAdListener
 
   @Override
   public void onLoggingImpression(Ad ad) {
-    Log.d(TAG, "onLoggingImpression");
+    Toast.makeText(getActivity(), "Native Impression", Toast.LENGTH_SHORT).show();
   }
 
   @Override

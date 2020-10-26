@@ -20,6 +20,7 @@
 
 package com.facebook.samples.adunitssamplekotlin.fragments
 
+import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.os.Bundle
@@ -55,7 +56,7 @@ class NativeAdTemplateFragment : Fragment(), NativeAdListener {
       inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
   ): View? {
 
-    val view = inflater!!.inflate(R.layout.fragment_native_ad_template, container, false)
+    val view = inflater.inflate(R.layout.fragment_native_ad_template, container, false)
 
     statusText = view.findViewById(R.id.status)
     nativeAdContainer = view.findViewById(R.id.templateContainer)
@@ -64,7 +65,7 @@ class NativeAdTemplateFragment : Fragment(), NativeAdListener {
     backgroundColorSpinner = view.findViewById(R.id.backgroundColorSpinner)
     seekBar = view.findViewById(R.id.seekBar)
 
-    setUpLayoutBuilders()
+    setUpLayoutBuilders(inflater.context)
     setUpButtons()
 
     createAndLoadNativeAd()
@@ -147,10 +148,10 @@ class NativeAdTemplateFragment : Fragment(), NativeAdListener {
     }
   }
 
-  private fun setUpLayoutBuilders() {
+  private fun setUpLayoutBuilders(context: Context) {
     val backgroundColorSpinnerAdapter =
         ArrayAdapter.createFromResource(
-            activity, R.array.background_color_array, android.R.layout.simple_spinner_item)
+            context, R.array.background_color_array, android.R.layout.simple_spinner_item)
     backgroundColorSpinnerAdapter.setDropDownViewResource(
         android.R.layout.simple_spinner_dropdown_item)
     backgroundColorSpinner!!.adapter = backgroundColorSpinnerAdapter
