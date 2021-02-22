@@ -53,7 +53,9 @@ class NativeAdTemplateFragment : Fragment(), NativeAdListener {
   private var adView: View? = null
 
   override fun onCreateView(
-      inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
   ): View? {
 
     val view = inflater.inflate(R.layout.fragment_native_ad_template, container, false)

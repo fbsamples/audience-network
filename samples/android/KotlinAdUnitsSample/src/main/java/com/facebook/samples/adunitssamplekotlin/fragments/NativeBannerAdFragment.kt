@@ -44,7 +44,9 @@ class NativeBannerAdFragment : Fragment(), NativeAdListener {
   private var isAdViewAdded: Boolean = false
 
   override fun onCreateView(
-      inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
   ): View? {
 
     val view = inflater!!.inflate(R.layout.fragment_native_banner_ad, container, false)
@@ -52,8 +54,8 @@ class NativeBannerAdFragment : Fragment(), NativeAdListener {
     nativeBannerAdStatusLabel = view.findViewById(R.id.native_banner_status_label)
 
     adView =
-        inflater.inflate(
-            R.layout.native_banner_ad_unit, nativeBannerAdContainer, false) as LinearLayout
+        inflater.inflate(R.layout.native_banner_ad_unit, nativeBannerAdContainer, false) as
+            LinearLayout
 
     adChoicesContainer = adView!!.findViewById(R.id.ad_choices_container)
 

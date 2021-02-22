@@ -49,7 +49,9 @@ class NativeBannerAdTemplateFragment : Fragment(), NativeAdListener {
   private var showCodeButton: Button? = null
 
   override fun onCreateView(
-      inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
   ): View? {
 
     val view = inflater!!.inflate(R.layout.fragment_native_banner_ad_template, container, false)
@@ -69,7 +71,9 @@ class NativeBannerAdTemplateFragment : Fragment(), NativeAdListener {
 
     val adViewTypeSpinnerAdapter =
         ArrayAdapter.createFromResource(
-            inflater.context, R.array.ad_bannerview_type_array, android.R.layout.simple_spinner_item)
+            inflater.context,
+            R.array.ad_bannerview_type_array,
+            android.R.layout.simple_spinner_item)
     adViewTypeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
     adViewTypeSpinner!!.adapter = adViewTypeSpinnerAdapter
 

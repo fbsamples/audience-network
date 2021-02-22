@@ -42,7 +42,9 @@ class NativeAdRecyclerFragment : Fragment(), NativeAdsManager.Listener {
   private var recyclerView: RecyclerView? = null
 
   override fun onCreateView(
-      inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
   ): View? {
 
     // Create some dummy post items

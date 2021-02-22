@@ -40,7 +40,9 @@ class RewardedVideoFragment : Fragment(), S2SRewardedVideoAdListener {
   private var rewardedVideoAd: RewardedVideoAd? = null
 
   override fun onCreateView(
-      inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
   ): View? {
 
     val view = inflater.inflate(R.layout.fragment_rewarded_video, container, false)

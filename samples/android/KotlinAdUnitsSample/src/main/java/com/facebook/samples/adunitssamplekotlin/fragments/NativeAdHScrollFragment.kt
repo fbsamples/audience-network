@@ -43,7 +43,9 @@ class NativeAdHScrollFragment : Fragment(), NativeAdsManager.Listener {
   private var originalScreenOrientationFlag: Int = 0
 
   override fun onCreateView(
-      inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
   ): View? {
     //  block auto screen orientation for NativeAdSampleFragment.
     if (activity != null) {

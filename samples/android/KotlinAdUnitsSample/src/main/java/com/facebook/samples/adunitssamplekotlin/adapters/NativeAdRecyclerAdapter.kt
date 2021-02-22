@@ -48,8 +48,8 @@ class NativeAdRecyclerAdapter(
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
     return if (viewType == AD_TYPE) {
       val inflatedView =
-          LayoutInflater.from(parent.context)
-              .inflate(R.layout.native_ad_unit, parent, false) as NativeAdLayout
+          LayoutInflater.from(parent.context).inflate(R.layout.native_ad_unit, parent, false) as
+              NativeAdLayout
       AdHolder(inflatedView)
     } else {
       val inflatedView =

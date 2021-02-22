@@ -36,4 +36,3 @@ android {
         abortOnError false
     }
 }
-
