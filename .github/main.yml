@@ -1,0 +1,36 @@
+name: Close new issues with template
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+    close-new-issues:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+        - uses: actions/github-script@v3
+          with:
+            github-token: ${{secrets.GITHUB_TOKEN}}
+            script: |
+              msg = `Dear developers. You will not be able to create new bug reports on GitHub after 28 April, and existing tickets will be automatically closed.\n
+              Instead, please use the bug report (https://developers.facebook.com/support/bugs/) tool to report a bug on Audience Network. Our engineers will get back to you as soon as possible.\n
+              If you have any other questions or suggestions relating to Facebook Audience Network, please use the online publisher support portal (https://www.facebook.com/business/publishersupport?hc_location=ufi) to submit a request.`
+              issue = await github.issues.get({
+                owner: context.issue.owner,
+                repo: context.issue.repo,
+                issue_number: context.issue.number,
+              });
+              await github.issues.createComment({
+                owner: context.issue.owner,
+                repo: context.issue.repo,
+                issue_number: context.issue.number,
+                body: msg,
+              });
+              await github.issues.update({
+                owner: context.issue.owner,
+                repo: context.issue.repo,
+                issue_number: context.issue.number,
+                state: "closed"
+              });
+
