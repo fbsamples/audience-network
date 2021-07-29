@@ -6,7 +6,7 @@ from adnw_params import *
 
 # Base URL
 BASE_URL = 'https://graph.facebook.com'
-API_VERSION = 'v3.3'
+API_VERSION = 'v10.0'
 ADNW_REQUEST_API = '/adnetworkanalytics'
 ADNW_REQUEST_API_BY_QUERY_IDS = '/adnetworkanalytics_results'
 ACCESS_TOKEN_KEY = 'access_token'
@@ -140,6 +140,3 @@ class ADNWRequestBuilder(object):
         if is_using_query_ids:
             if len(self.query_ids) <= 0:
                 raise Exception("The query ids are not valid in the request.")
-
-
-
