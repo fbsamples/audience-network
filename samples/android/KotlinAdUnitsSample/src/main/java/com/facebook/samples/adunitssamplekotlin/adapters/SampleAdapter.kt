@@ -40,7 +40,8 @@ class SampleAdapter(context: Context, resource: Int) :
     add(Item(AdUnitsSampleType.BANNER.sampleType))
     add(Item(AdUnitsSampleType.RECTANGLE.sampleType))
     add(Item(AdUnitsSampleType.INTERSTITIAL.sampleType))
-    add(Item(AdUnitsSampleType.REWARDED.sampleType))
+    add(Item(AdUnitsSampleType.REWARDED_VIDEO.sampleType))
+    add(Item(AdUnitsSampleType.REWARDED_INTERSTITIAL.sampleType))
 
     add(Item("Native Ad Samples", true))
     add(Item(AdUnitsSampleType.NATIVE.sampleType))
@@ -54,22 +55,21 @@ class SampleAdapter(context: Context, resource: Int) :
   constructor(context: Context) : this(context, 0)
 
   override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-    var v = convertView
+    val v: View
     val item = getItem(position)
-    item?.let { nonNullItem ->
-      if (nonNullItem.isSection) {
-        v = inflater.inflate(R.layout.list_item_section, parent, false)
-        v?.let { nonNullView ->
-          nonNullView.setOnClickListener(null)
-          nonNullView.setOnLongClickListener(null)
-          nonNullView.isLongClickable = false
-          nonNullView.findViewById<TextView>(R.id.list_item_section_text)?.text = nonNullItem.title
-        }
-      } else {
-        v = inflater.inflate(android.R.layout.simple_list_item_1, parent, false)
-        v?.findViewById<TextView>(android.R.id.text1)?.text = nonNullItem.title
-      }
+    if (item.isSection) {
+      v = inflater.inflate(R.layout.list_item_section, parent, false)
+      v.findViewById<TextView>(R.id.list_item_section_text).text = item.title
+    } else {
+      v = inflater.inflate(android.R.layout.simple_list_item_1, parent, false)
+      v.findViewById<TextView>(android.R.id.text1).text = item.title
     }
-    return v!!
+    return v
+  }
+
+  override fun getItem(position: Int): Item {
+    return checkNotNull(super.getItem(position)) {
+      "Only add non-null SampleAdapter.Item to the adapter"
+    }
   }
 }

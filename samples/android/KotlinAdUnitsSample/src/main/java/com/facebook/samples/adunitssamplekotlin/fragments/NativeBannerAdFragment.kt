@@ -49,7 +49,7 @@ class NativeBannerAdFragment : Fragment(), NativeAdListener {
       savedInstanceState: Bundle?
   ): View? {
 
-    val view = inflater!!.inflate(R.layout.fragment_native_banner_ad, container, false)
+    val view = inflater.inflate(R.layout.fragment_native_banner_ad, container, false)
     nativeBannerAdContainer = view.findViewById(R.id.native_banner_ad_container)
     nativeBannerAdStatusLabel = view.findViewById(R.id.native_banner_status_label)
 

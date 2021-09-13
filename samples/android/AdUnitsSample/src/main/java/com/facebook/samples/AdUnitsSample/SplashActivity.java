@@ -23,6 +23,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -48,7 +49,7 @@ public class SplashActivity extends Activity {
 
     setContentView(R.layout.activity_splash);
 
-    final Handler handler = new Handler();
+    final Handler handler = new Handler(Looper.getMainLooper());
     handler.postDelayed(
         new Runnable() {
           @Override

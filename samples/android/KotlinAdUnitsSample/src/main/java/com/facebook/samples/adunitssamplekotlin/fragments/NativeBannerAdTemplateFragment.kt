@@ -54,7 +54,7 @@ class NativeBannerAdTemplateFragment : Fragment(), NativeAdListener {
       savedInstanceState: Bundle?
   ): View? {
 
-    val view = inflater!!.inflate(R.layout.fragment_native_banner_ad_template, container, false)
+    val view = inflater.inflate(R.layout.fragment_native_banner_ad_template, container, false)
 
     statusText = view.findViewById(R.id.status)
     nativeAdContainer = view.findViewById(R.id.templateContainer)
@@ -109,7 +109,7 @@ class NativeBannerAdTemplateFragment : Fragment(), NativeAdListener {
 
       // Create a NativeAdViewAttributes object and set the attributes
       val attributes =
-          NativeAdViewAttributes()
+          NativeAdViewAttributes(context)
               .setBackgroundColor(adBackgroundColor)
               .setTitleTextColor(titleColor)
               .setDescriptionTextColor(contentColor)

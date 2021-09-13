@@ -50,7 +50,7 @@ class InterstitialFragment : Fragment(), InterstitialAdListener {
       container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View? {
-    val view = inflater?.inflate(R.layout.fragment_interstitial, container, false)
+    val view = inflater.inflate(R.layout.fragment_interstitial, container, false)
     interstitialAdStatusLabel = view?.findViewById(R.id.interstitialAdStatusLabel)
     loadInterstitialButton = view?.findViewById(R.id.loadInterstitialButton)
     showInterstitialButton = view?.findViewById(R.id.showInterstitialButton)

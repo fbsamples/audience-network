@@ -26,6 +26,7 @@ limitations under the License.
     <string name="show_ad">Show!</string>
     <string name="destroy_ad">Destroy Ad</string>
     <string name="load_rewarded_video">Load Rewarded Video</string>
+    <string name="load_rewarded_interstitial">Load Rewarded Interstitial</string>
     <string name="enable_rewarded_interstitial">Enable Rewarded Interstitial</string>
 
     <!-- Native samples -->

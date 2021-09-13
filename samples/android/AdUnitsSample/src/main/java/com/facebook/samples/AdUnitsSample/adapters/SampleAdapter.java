@@ -29,7 +29,7 @@ import android.widget.TextView;
 import com.facebook.samples.AdUnitsSample.AdUnitsSampleType;
 import com.facebook.samples.AdUnitsSample.R;
 
-public class SampleAdapter extends ArrayAdapter {
+public class SampleAdapter extends ArrayAdapter<SampleAdapter.Item> {
 
   public static class Item {
     private String title;
@@ -62,7 +62,8 @@ public class SampleAdapter extends ArrayAdapter {
     add(new Item(AdUnitsSampleType.BANNER.getName()));
     add(new Item(AdUnitsSampleType.RECTANGLE.getName()));
     add(new Item(AdUnitsSampleType.INTERSTITIAL.getName()));
-    add(new Item(AdUnitsSampleType.REWARDED.getName()));
+    add(new Item(AdUnitsSampleType.REWARDED_VIDEO.getName()));
+    add(new Item(AdUnitsSampleType.REWARDED_INTERSTITIAL.getName()));
 
     // Native ad samples
     add(new Item("Native Ad Samples", true));

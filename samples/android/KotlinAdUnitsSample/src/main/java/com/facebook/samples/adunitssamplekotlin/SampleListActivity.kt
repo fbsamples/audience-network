@@ -20,17 +20,15 @@
 
 package com.facebook.samples.adunitssamplekotlin
 
-import android.app.ListActivity
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.AdapterView
+import androidx.appcompat.app.AppCompatActivity
 import com.facebook.samples.ads.debugsettings.DebugSettingsActivity
-import com.facebook.samples.adunitssamplekotlin.adapters.SampleAdapter
+import com.facebook.samples.adunitssamplekotlin.fragments.SampleListFragment
 
-class SampleListActivity : ListActivity() {
+class SampleListActivity : AppCompatActivity() {
 
   companion object {
     val TAG = SampleListActivity::class.java.simpleName
@@ -39,23 +37,12 @@ class SampleListActivity : ListActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    setTitle(R.string.select_sample)
+    setContentView(R.layout.activity_sample_list)
 
-    val adapter = SampleAdapter(this)
-    this.listAdapter = adapter
-
-    this.listView.setOnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
-      val item = adapter.getItem(position)
-      val sampleName = item!!.title
-      val type = AdUnitsSampleType.getSampleTypeFromName(sampleName)
-
-      if (type != null) {
-        // Start sample activity
-        intent = Intent(this, AdUnitsSampleActivity::class.java)
-        intent.putExtra(AdUnitsSampleActivity.SAMPLE_TYPE, type.sampleType)
-        startActivity(intent)
-      }
-    }
+    supportFragmentManager
+        .beginTransaction()
+        .add(R.id.list_fragment_container, SampleListFragment())
+        .commit()
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {

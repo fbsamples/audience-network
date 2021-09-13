@@ -36,6 +36,7 @@ import com.facebook.samples.AdUnitsSample.fragments.NativeAdTemplateFragment;
 import com.facebook.samples.AdUnitsSample.fragments.NativeBannerAdFragment;
 import com.facebook.samples.AdUnitsSample.fragments.NativeBannerAdTemplateFragment;
 import com.facebook.samples.AdUnitsSample.fragments.RectangleFragment;
+import com.facebook.samples.AdUnitsSample.fragments.RewardedInterstitialFragment;
 import com.facebook.samples.AdUnitsSample.fragments.RewardedVideoFragment;
 import com.facebook.samples.ads.debugsettings.DebugSettingsActivity;
 
@@ -77,8 +78,11 @@ public class AdUnitsSampleActivity extends FragmentActivity {
         case INTERSTITIAL:
           fragment = new InterstitialFragment();
           break;
-        case REWARDED:
+        case REWARDED_VIDEO:
           fragment = new RewardedVideoFragment();
+          break;
+        case REWARDED_INTERSTITIAL:
+          fragment = new RewardedInterstitialFragment();
           break;
         case NATIVE:
           fragment = new NativeAdSampleFragment();

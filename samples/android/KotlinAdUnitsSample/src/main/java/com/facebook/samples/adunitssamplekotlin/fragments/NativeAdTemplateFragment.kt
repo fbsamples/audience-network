@@ -131,7 +131,7 @@ class NativeAdTemplateFragment : Fragment(), NativeAdListener {
 
       // Create a NativeAdViewAttributes object and set the attributes
       val attributes =
-          NativeAdViewAttributes()
+          NativeAdViewAttributes(context)
               .setBackgroundColor(adBackgroundColor)
               .setTitleTextColor(titleColor)
               .setDescriptionTextColor(contentColor)

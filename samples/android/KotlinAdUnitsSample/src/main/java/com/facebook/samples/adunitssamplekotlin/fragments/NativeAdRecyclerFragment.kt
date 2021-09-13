@@ -59,7 +59,7 @@ class NativeAdRecyclerFragment : Fragment(), NativeAdsManager.Listener {
     nativeAdsManager!!.setListener(this)
 
     // Inflate the layout for this fragment
-    val view = inflater!!.inflate(R.layout.fragment_native_ad_recycler, container, false)
+    val view = inflater.inflate(R.layout.fragment_native_ad_recycler, container, false)
     recyclerView = view.findViewById(R.id.recyclerView)
     return view
   }

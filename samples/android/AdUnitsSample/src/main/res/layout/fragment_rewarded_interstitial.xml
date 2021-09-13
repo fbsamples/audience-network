@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                >
+
+    <TextView
+            android:id="@+id/rewardedInterstitialAdStatusLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp"
+            />
+
+
+    <LinearLayout
+            android:id="@+id/rewardedInterstitialAdControls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+        <Button
+                android:id="@+id/loadRewardedInterstitialButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/load_rewarded_interstitial"
+                android:textSize="15sp"
+                />
+
+        <Button
+                android:id="@+id/showRewardedInterstitialButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_ad"
+                android:textSize="15sp"
+                />
+
+    </LinearLayout>
+
+</RelativeLayout>
