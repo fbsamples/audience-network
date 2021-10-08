@@ -1,5 +1,6 @@
 // (c) Facebook, Inc. and its affiliates. Confidential and proprietary.
 
+import os
 import UIKit
 import FBAudienceNetwork
 
@@ -20,8 +21,14 @@ extension FBRewardedVideoAd: FullscreenAd {
     }
 }
 
+extension FBRewardedInterstitialAd: FullscreenAd {
+    func show(from viewController: UIViewController) {
+        self.show(fromRootViewController: viewController, animated: true)
+    }
+}
+
 enum FullscreenAdType {
-    case interstitial, rewardedVideo
+    case interstitial, rewardedVideo, rewardedInterstitial
 
     var title: String {
         switch self {
@@ -29,6 +36,8 @@ enum FullscreenAdType {
             return "Interstitial"
         case .rewardedVideo:
             return "Rewarded video"
+        case .rewardedInterstitial:
+            return "Rewarded interstitial"
         }
     }
 }
@@ -43,6 +52,8 @@ final class FullscreenAdSampleViewController: UIViewController {
             if let ad = ad as? FBInterstitialAd {
                 ad.delegate = self
             } else if let ad = ad as? FBRewardedVideoAd {
+                ad.delegate = self
+            } else if let ad = ad as? FBRewardedInterstitialAd {
                 ad.delegate = self
             }
         }
@@ -118,6 +129,8 @@ final class FullscreenAdSampleViewController: UIViewController {
             return FBInterstitialAd(placementID: placementID)
         case .rewardedVideo:
             return FBRewardedVideoAd(placementID: placementID)
+        case .rewardedInterstitial:
+            return FBRewardedInterstitialAd(placementID: placementID)
         }
     }
 }
@@ -193,5 +206,39 @@ extension FullscreenAdSampleViewController: FBRewardedVideoAdDelegate {
 
     func rewardedVideoAdWillLogImpression(_ rewardedVideoAd: FBRewardedVideoAd) {
 
+    }
+}
+
+extension FullscreenAdSampleViewController: FBRewardedInterstitialAdDelegate {
+    func rewardedInterstitialAdDidLoad(_ rewardedInterstitialAd: FBRewardedInterstitialAd) {
+        os_log("Rewarded interstitial ad was loaded. Can present now.")
+        ad = rewardedInterstitialAd
+        state = .loaded
+    }
+    
+    func rewardedInterstitialAd(_ rewardedInterstitialAd: FBRewardedInterstitialAd, didFailWithError error: Error) {
+        let error = error as NSError
+        os_log("Rewarded interstitial failed to load with error: %@", error.description)
+        state = .error(message: "Rewarded interstitial ad failed to load. \(error.localizedDescription)")
+    }
+    
+    func rewardedInterstitialAdDidClick(_ rewardedInterstitialAd: FBRewardedInterstitialAd) {
+        os_log("Rewarded interstitial was clicked.")
+    }
+    
+    func rewardedInterstitialAdDidClose(_ rewardedInterstitialAd: FBRewardedInterstitialAd) {
+        os_log("Rewarded interstitial closed.")
+    }
+    
+    func rewardedInterstitialAdWillClose(_ rewardedInterstitialAd: FBRewardedInterstitialAd) {
+        os_log("Rewarded interstitial will close.")
+    }
+    
+    func rewardedInterstitialAdWillLogImpression(_ rewardedInterstitialAd: FBRewardedInterstitialAd) {
+        os_log("Rewarded impression is being captured.")
+    }
+    
+    func rewardedInterstitialAdVideoComplete(_ rewardedInterstitialAd: FBRewardedInterstitialAd) {
+        os_log("Rewarded interstitial ad video completed.")
     }
 }

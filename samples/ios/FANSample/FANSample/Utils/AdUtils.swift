@@ -52,6 +52,7 @@ enum AdFormatInfo {
     case mediumRect
     case interstitial
     case rewardedVideo
+    case rewardedInterstitial
 
     var title: String {
         switch self {
@@ -63,6 +64,7 @@ enum AdFormatInfo {
         case .mediumRect: return "Medium Rectangle"
         case .interstitial: return "Interstitial"
         case .rewardedVideo: return "Rewarded Video"
+        case .rewardedInterstitial: return "Rewarded Interstitial"
         }
     }
 }
