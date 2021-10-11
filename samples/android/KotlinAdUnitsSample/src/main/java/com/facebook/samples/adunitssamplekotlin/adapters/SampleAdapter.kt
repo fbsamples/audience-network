@@ -59,7 +59,7 @@ class SampleAdapter(context: Context, resource: Int) :
     val item = getItem(position)
     if (item.isSection) {
       v = inflater.inflate(R.layout.list_item_section, parent, false)
-      v.findViewById<TextView>(R.id.list_item_section_text).text = item.title
+      v.findViewById<TextView>(R.id.list_item_title).text = item.title
     } else {
       v = inflater.inflate(android.R.layout.simple_list_item_1, parent, false)
       v.findViewById<TextView>(android.R.id.text1).text = item.title

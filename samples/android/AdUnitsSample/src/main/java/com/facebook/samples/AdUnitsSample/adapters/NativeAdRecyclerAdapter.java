@@ -29,10 +29,13 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+import com.facebook.ads.Ad;
+import com.facebook.ads.AdError;
 import com.facebook.ads.AdOptionsView;
 import com.facebook.ads.MediaView;
 import com.facebook.ads.NativeAd;
 import com.facebook.ads.NativeAdLayout;
+import com.facebook.ads.NativeAdListener;
 import com.facebook.ads.NativeAdsManager;
 import com.facebook.samples.AdUnitsSample.R;
 import com.facebook.samples.AdUnitsSample.models.RecyclerPostItem;
@@ -48,6 +51,8 @@ public class NativeAdRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
   private static final int AD_DISPLAY_FREQUENCY = 5;
   private static final int POST_TYPE = 0;
   private static final int AD_TYPE = 1;
+
+  private static final String TAG = "NativeAdsManager";
 
   public NativeAdRecyclerAdapter(
       Activity activity, List<RecyclerPostItem> postItems, NativeAdsManager nativeAdsManager) {
@@ -86,7 +91,34 @@ public class NativeAdRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
       if (mAdItems.size() > position / AD_DISPLAY_FREQUENCY) {
         ad = mAdItems.get(position / AD_DISPLAY_FREQUENCY);
       } else {
-        ad = mNativeAdsManager.nextNativeAd();
+        ad =
+            mNativeAdsManager.nextNativeAd(
+                new NativeAdListener() {
+                  @Override
+                  public void onMediaDownloaded(Ad ad) {
+                    // ignore
+                  }
+
+                  @Override
+                  public void onError(Ad ad, AdError error) {
+                    // ignore
+                  }
+
+                  @Override
+                  public void onAdLoaded(Ad ad) {
+                    // ignore
+                  }
+
+                  @Override
+                  public void onAdClicked(Ad ad) {
+                    Log.i(TAG, ((NativeAd) ad).getAdvertiserName() + " Ad Clicked");
+                  }
+
+                  @Override
+                  public void onLoggingImpression(Ad ad) {
+                    Log.i(TAG, ((NativeAd) ad).getAdvertiserName() + " Ad Impression");
+                  }
+                });
         if (!ad.isAdInvalidated()) {
           mAdItems.add(ad);
         } else {
