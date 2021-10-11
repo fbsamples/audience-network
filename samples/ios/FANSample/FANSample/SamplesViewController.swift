@@ -25,7 +25,7 @@ final class SamplesViewController: UITableViewController {
         )
         let fullscreenSection = Section(
             title: "Fullscreen",
-            objects: [.interstitial, .rewardedVideo]
+            objects: [.interstitial, .rewardedVideo, .rewardedInterstitial]
         )
         return [nativeSection, bannerSection, fullscreenSection]
     }()
@@ -51,6 +51,8 @@ final class SamplesViewController: UITableViewController {
           vc = FullscreenAdSampleViewController.create(adType: .interstitial)
         case .rewardedVideo:
           vc = FullscreenAdSampleViewController.create(adType: .rewardedVideo)
+        case .rewardedInterstitial:
+          vc = FullscreenAdSampleViewController.create(adType: .rewardedInterstitial)
         case .banner:
           vc = BannerSampleViewController.create(adType: .banner)
         case .native:
