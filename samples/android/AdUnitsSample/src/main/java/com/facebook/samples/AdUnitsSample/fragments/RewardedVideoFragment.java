@@ -23,13 +23,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
-import com.facebook.ads.AdExperienceType;
 import com.facebook.ads.RewardData;
 import com.facebook.ads.RewardedVideoAd;
 import com.facebook.ads.S2SRewardedVideoAdListener;
@@ -40,7 +38,6 @@ public class RewardedVideoFragment extends Fragment implements S2SRewardedVideoA
   private TextView rewardedVideoAdStatusLabel;
   private Button loadRewardedVideoButton;
   private Button showRewardedVideoButton;
-  private Switch switchEnableRewardedInterstitial;
 
   private RewardedVideoAd rewardedVideoAd;
 
@@ -53,8 +50,6 @@ public class RewardedVideoFragment extends Fragment implements S2SRewardedVideoA
     rewardedVideoAdStatusLabel = (TextView) view.findViewById(R.id.rewardedVideoAdStatusLabel);
     loadRewardedVideoButton = (Button) view.findViewById(R.id.loadRewardedVideoButton);
     showRewardedVideoButton = (Button) view.findViewById(R.id.showRewardedVideoButton);
-    switchEnableRewardedInterstitial =
-        (Switch) view.findViewById(R.id.switchEnableRewardedInterstitial);
 
     loadRewardedVideoButton.setOnClickListener(
         new View.OnClickListener() {
@@ -72,10 +67,6 @@ public class RewardedVideoFragment extends Fragment implements S2SRewardedVideoA
                     .withAdListener(RewardedVideoFragment.this)
                     .withFailOnCacheFailureEnabled(true)
                     .withRewardData(new RewardData("YOUR_USER_ID", "YOUR_REWARD", 10))
-                    .withAdExperience(
-                        switchEnableRewardedInterstitial.isChecked()
-                            ? AdExperienceType.AD_EXPERIENCE_TYPE_REWARDED_INTERSTITIAL
-                            : AdExperienceType.AD_EXPERIENCE_TYPE_REWARDED)
                     .build();
             rewardedVideoAd.loadAd(loadAdConfig);
             setStatusLabelText("Loading rewarded video ad...");
