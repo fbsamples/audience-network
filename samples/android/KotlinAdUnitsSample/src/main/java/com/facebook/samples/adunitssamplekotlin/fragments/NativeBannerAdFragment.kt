@@ -54,8 +54,8 @@ class NativeBannerAdFragment : Fragment(), NativeAdListener {
     nativeBannerAdStatusLabel = view.findViewById(R.id.native_banner_status_label)
 
     adView =
-        inflater.inflate(R.layout.native_banner_ad_unit, nativeBannerAdContainer, false) as
-            LinearLayout
+        inflater.inflate(R.layout.native_banner_ad_unit, nativeBannerAdContainer, false)
+            as LinearLayout
 
     adChoicesContainer = adView!!.findViewById(R.id.ad_choices_container)
 

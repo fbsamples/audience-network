@@ -20,10 +20,7 @@
 
 package com.facebook.samples.AdUnitsSample;
 
-import static com.facebook.ads.BuildConfig.DEBUG;
-
 import android.app.Application;
-import android.os.StrictMode;
 import com.facebook.samples.ads.debugsettings.DebugSettings;
 
 public class AdUnitsSampleApplication extends Application {
@@ -35,11 +32,5 @@ public class AdUnitsSampleApplication extends Application {
     DebugSettings.initialize(this);
 
     AudienceNetworkInitializeHelper.initialize(this);
-
-    if (DEBUG) {
-      StrictMode.setThreadPolicy(
-          new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
-      StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyLog().build());
-    }
   }
 }

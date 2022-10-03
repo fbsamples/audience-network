@@ -40,6 +40,10 @@ class AdUnitsSampleActivity : AppCompatActivity() {
 
     setContentView(R.layout.activity_ad_sample)
 
+    if (savedInstanceState != null) {
+      return
+    }
+
     val sampleType = intent.getStringExtra(SAMPLE_TYPE)
     if (sampleType != null) {
       val type: AdUnitsSampleType? = AdUnitsSampleType.getSampleTypeFromName(sampleType)
@@ -59,6 +63,7 @@ class AdUnitsSampleActivity : AppCompatActivity() {
               AdUnitsSampleType.BANNER_TEMPLATE -> NativeBannerAdTemplateFragment()
             }
         if (fragment != null) {
+          fragment.setRetainInstance(true)
           title = type.sampleType
           supportFragmentManager.beginTransaction().add(R.id.fragment_container, fragment).commit()
         }

@@ -57,6 +57,10 @@ public class AdUnitsSampleActivity extends FragmentActivity {
 
     setContentView(R.layout.activity_ad_sample);
 
+    if (savedInstanceState != null) {
+      return;
+    }
+
     Intent intent = getIntent();
     String sampleType = intent.getStringExtra(SAMPLE_TYPE);
     Fragment fragment = null;
@@ -106,6 +110,7 @@ public class AdUnitsSampleActivity extends FragmentActivity {
           fragment = new NativeBannerAdTemplateFragment();
           break;
       }
+      fragment.setRetainInstance(true);
       setTitle(type.getName());
       getSupportFragmentManager()
           .beginTransaction()

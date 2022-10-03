@@ -19,7 +19,6 @@
  */
 package com.facebook.samples.AdUnitsSample.fragments;
 
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -57,17 +56,9 @@ public class NativeAdSampleFragment extends Fragment implements NativeAdListener
   private @Nullable AdOptionsView adOptionsView;
   private MediaView nativeAdMedia;
 
-  private int originalScreenOrientationFlag;
-
   @Override
   public View onCreateView(
       LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    //  block auto screen orientation for NativeAdSampleFragment.
-    if (getActivity() != null) {
-      originalScreenOrientationFlag = getActivity().getRequestedOrientation();
-      getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
-    }
-
     View view = inflater.inflate(R.layout.fragment_native_ad_sample, container, false);
     nativeAdLayout = view.findViewById(R.id.native_ad_container);
 
@@ -97,14 +88,16 @@ public class NativeAdSampleFragment extends Fragment implements NativeAdListener
           }
         });
 
+    // if we already have loaded ad, render it
+    if (nativeAd != null) {
+      onAdLoaded(nativeAd);
+    }
+
     return view;
   }
 
   @Override
   public void onDestroyView() {
-    if (getActivity() != null) {
-      getActivity().setRequestedOrientation(originalScreenOrientationFlag);
-    }
     adChoicesContainer = null;
     nativeAdLayout = null;
     adOptionsView = null;
