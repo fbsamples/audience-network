@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.facebook.samples.AdUnitsSample.thridparty.DividerItemDecoration;
+package com.facebook.samples.AdUnitsSample.thirdparty.DividerItemDecoration;
 
 import android.content.Context;
 import android.content.res.TypedArray;
