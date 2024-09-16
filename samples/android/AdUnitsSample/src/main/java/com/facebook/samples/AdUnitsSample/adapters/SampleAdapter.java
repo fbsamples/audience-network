@@ -50,6 +50,7 @@ public class SampleAdapter extends ArrayAdapter<SampleAdapter.Item> {
     add(new Item(AdUnitsSampleType.BANNER.getName()));
     add(new Item(AdUnitsSampleType.RECTANGLE.getName()));
     add(new Item(AdUnitsSampleType.INTERSTITIAL.getName()));
+    add(new Item(AdUnitsSampleType.MULTI_LOAD_INTERSTITIAL.getName()));
     add(new Item(AdUnitsSampleType.REWARDED_VIDEO.getName()));
     add(new Item(AdUnitsSampleType.REWARDED_INTERSTITIAL.getName()));
 

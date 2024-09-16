@@ -115,10 +115,5 @@ public class RectangleFragment extends Fragment implements AdListener {
 
   private void setLabel(String status) {
     rectangleStatusLabel.setText(status);
-    if (status.isEmpty()) {
-      rectangleStatusLabel.setVisibility(View.GONE);
-    } else {
-      rectangleStatusLabel.setVisibility(View.VISIBLE);
-    }
   }
 }

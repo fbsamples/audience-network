@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import com.facebook.samples.AdUnitsSample.fragments.BannerFragment;
 import com.facebook.samples.AdUnitsSample.fragments.InterstitialFragment;
+import com.facebook.samples.AdUnitsSample.fragments.MultiLoadInterstitialFragment;
 import com.facebook.samples.AdUnitsSample.fragments.NativeAdHScrollFragment;
 import com.facebook.samples.AdUnitsSample.fragments.NativeAdRecyclerFragment;
 import com.facebook.samples.AdUnitsSample.fragments.NativeAdSampleFragment;
@@ -69,6 +70,9 @@ public class AdUnitsSampleActivity extends FragmentActivity {
           break;
         case INTERSTITIAL:
           fragment = new InterstitialFragment();
+          break;
+        case MULTI_LOAD_INTERSTITIAL:
+          fragment = new MultiLoadInterstitialFragment();
           break;
         case REWARDED_VIDEO:
           fragment = new RewardedVideoFragment();

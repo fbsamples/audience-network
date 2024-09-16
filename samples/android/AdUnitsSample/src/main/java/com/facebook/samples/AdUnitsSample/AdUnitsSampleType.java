@@ -14,6 +14,7 @@ public enum AdUnitsSampleType {
   BANNER("Banner"),
   RECTANGLE("Rectangle"),
   INTERSTITIAL("Interstitial"),
+  MULTI_LOAD_INTERSTITIAL("Multiple Interstitials"),
   REWARDED_VIDEO("Rewarded Video"),
   REWARDED_INTERSTITIAL("Rewarded Interstitial"),
   NATIVE("Native Ad"),

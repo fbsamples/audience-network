@@ -62,6 +62,9 @@ public class NativeAdSampleFragment extends Fragment implements NativeAdListener
             if (nativeAdStatus != null) {
               nativeAdStatus.setText(R.string.loading_status);
             }
+            if (nativeAd != null) {
+              nativeAd.destroy();
+            }
 
             // Create a native ad request with a unique placement ID (generate your own on the
             // Facebook app settings). Use different ID for each ad placement in your app.

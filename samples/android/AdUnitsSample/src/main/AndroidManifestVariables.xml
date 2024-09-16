@@ -5,7 +5,7 @@
     <!-- Fake manifest file to define list of BUCK variables -->
 
     <uses-sdk
-        android:minSdkVersion="16"
+        android:minSdkVersion="21"
         android:targetSdkVersion="33" />
 
 </manifest>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+              android:orientation="vertical"
+                android:gravity="center_vertical"
+                >
+
+    <TextView
+        android:id="@+id/interstitialAdStatusLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="15sp"
+        />
+
+    <LinearLayout
+            android:id="@+id/interstitialAdControls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+        <Button
+                android:id="@+id/loadInterstitialButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/load_interstitial"
+                android:textSize="15sp"
+            />
+
+        <Button
+                android:id="@+id/showInterstitialButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_ad"
+                android:textSize="15sp"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/interstitialAdStatusLabel2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="15sp"
+        />
+
+
+    <LinearLayout
+        android:id="@+id/interstitialAdControls2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+        <Button
+            android:id="@+id/loadInterstitialButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/load_interstitial"
+            android:textSize="15sp"
+            />
+
+        <Button
+            android:id="@+id/showInterstitialButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_ad"
+            android:textSize="15sp"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/interstitialAdStatusLabel3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="15sp"
+        />
+
+
+    <LinearLayout
+        android:id="@+id/interstitialAdControls3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+        <Button
+            android:id="@+id/loadInterstitialButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/load_interstitial"
+            android:textSize="15sp"
+            />
+
+        <Button
+            android:id="@+id/showInterstitialButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_ad"
+            android:textSize="15sp"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -9,6 +9,7 @@
 package com.facebook.samples.AdUnitsSample.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import com.facebook.samples.AdUnitsSample.R;
 
 public class RewardedVideoFragment extends Fragment implements S2SRewardedVideoAdListener {
 
+  private static final String TAG = "RewardedVideoFragment";
   private TextView rewardedVideoAdStatusLabel;
   private Button loadRewardedVideoButton;
   private Button showRewardedVideoButton;
@@ -72,8 +74,8 @@ public class RewardedVideoFragment extends Fragment implements S2SRewardedVideoA
                 || rewardedVideoAd.isAdInvalidated()) {
               setStatusLabelText("Ad not loaded. Click load to request an ad.");
             } else {
-              rewardedVideoAd.show();
               setStatusLabelText("");
+              rewardedVideoAd.show();
             }
           }
         });
@@ -107,6 +109,7 @@ public class RewardedVideoFragment extends Fragment implements S2SRewardedVideoA
   }
 
   private void showToast(String message) {
+    Log.d(TAG, message);
     if (isAdded()) {
       Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }

@@ -87,8 +87,8 @@ public class InterstitialFragment extends Fragment implements InterstitialAdExte
               setLabel("Ad not loaded. Click load to request an ad.");
             } else {
               // Ad was loaded, show it!
-              interstitialAd.show();
               setLabel("");
+              interstitialAd.show();
             }
           }
         });

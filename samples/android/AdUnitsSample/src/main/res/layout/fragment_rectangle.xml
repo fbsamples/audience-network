@@ -1,38 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="1500dp"
+      android:orientation="vertical"
+      android:paddingTop="16dp"
+      >
 
     <RelativeLayout
         android:id="@+id/rectangleAdContainer"
-        android:layout_height="wrap_content"
         android:layout_width="300dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_height="250dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#000000"
         />
 
     <Button
         android:id="@+id/refreshRectangleButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
         android:text="@string/refresh_now"
         android:textSize="15sp"
-        android:layout_marginBottom="16dp"
-        android:layout_above="@id/rectangleAdContainer"
-        android:layout_centerHorizontal="true"
         />
 
     <TextView
         android:id="@+id/rectangleStatusLabel"
-        android:gravity="center"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:textColor="@android:color/darker_gray"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="1500dp"
         android:textSize="15sp"
-        android:layout_above="@id/refreshRectangleButton"
         tools:text="@string/loading_status"
         />
-</RelativeLayout>
+  </LinearLayout>
+</ScrollView>
