@@ -9,7 +9,9 @@
 package com.facebook.samples.AdUnitsSample;
 
 import androidx.annotation.Nullable;
+import com.facebook.infer.annotation.Nullsafe;
 
+@Nullsafe(Nullsafe.Mode.LOCAL)
 public enum AdUnitsSampleType {
   BANNER("Banner"),
   RECTANGLE("Rectangle"),

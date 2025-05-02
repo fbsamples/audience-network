@@ -9,8 +9,10 @@
 package com.facebook.samples.AdUnitsSample;
 
 import android.app.Application;
+import com.facebook.infer.annotation.Nullsafe;
 import com.facebook.samples.ads.debugsettings.DebugSettings;
 
+@Nullsafe(Nullsafe.Mode.LOCAL)
 public class AdUnitsSampleApplication extends Application {
 
   @Override

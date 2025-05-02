@@ -23,9 +23,14 @@ import com.facebook.ads.CacheFlag;
 import com.facebook.ads.InterstitialAd;
 import com.facebook.ads.InterstitialAdExtendedListener;
 import com.facebook.ads.RewardData;
+import com.facebook.common.preconditions.Preconditions;
+import com.facebook.infer.annotation.Nullsafe;
 import com.facebook.samples.AdUnitsSample.R;
+import com.facebook.samples.ads.debugsettings.DebugToast;
 import java.util.EnumSet;
+import javax.annotation.Nullable;
 
+@Nullsafe(Nullsafe.Mode.LOCAL)
 public class InterstitialFragment extends Fragment implements InterstitialAdExtendedListener {
 
   private static final String TAG = InterstitialFragment.class.getSimpleName();
@@ -33,7 +38,7 @@ public class InterstitialFragment extends Fragment implements InterstitialAdExte
   private TextView interstitialAdStatusLabel;
   private Button loadInterstitialButton;
   private Button showInterstitialButton;
-  private InterstitialAd interstitialAd;
+  @Nullable private InterstitialAd interstitialAd;
 
   private String statusLabel = "";
 
@@ -42,8 +47,11 @@ public class InterstitialFragment extends Fragment implements InterstitialAdExte
       LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_interstitial, container, false);
 
+    // NULLSAFE_FIXME[Field Not Nullable]
     interstitialAdStatusLabel = (TextView) view.findViewById(R.id.interstitialAdStatusLabel);
+    // NULLSAFE_FIXME[Field Not Nullable]
     loadInterstitialButton = (Button) view.findViewById(R.id.loadInterstitialButton);
+    // NULLSAFE_FIXME[Field Not Nullable]
     showInterstitialButton = (Button) view.findViewById(R.id.showInterstitialButton);
 
     loadInterstitialButton.setOnClickListener(
@@ -60,6 +68,7 @@ public class InterstitialFragment extends Fragment implements InterstitialAdExte
             // app settings).
             // Use different ID for each ad placement in your app.
             interstitialAd =
+                // NULLSAFE_FIXME[Parameter Not Nullable]
                 new InterstitialAd(InterstitialFragment.this.getActivity(), "YOUR_PLACEMENT_ID");
 
             // Load a new interstitial.
@@ -120,33 +129,27 @@ public class InterstitialFragment extends Fragment implements InterstitialAdExte
 
   @Override
   public void onInterstitialDisplayed(Ad ad) {
-    if (isAdded()) {
-      Toast.makeText(getActivity(), "Interstitial Displayed", Toast.LENGTH_SHORT).show();
-    }
+    showToast("Interstitial Displayed");
   }
 
   @Override
   public void onInterstitialDismissed(Ad ad) {
-    if (isAdded()) {
-      Toast.makeText(getActivity(), "Interstitial Dismissed", Toast.LENGTH_SHORT).show();
-    }
+    showToast("Interstitial Dismissed");
 
     // Cleanup.
-    interstitialAd.destroy();
+    Preconditions.checkNotNull(interstitialAd).destroy();
     interstitialAd = null;
   }
 
   @Override
   public void onAdClicked(Ad ad) {
-    if (isAdded()) {
-      Toast.makeText(getActivity(), "Interstitial Clicked", Toast.LENGTH_SHORT).show();
-    }
+    showToast("Interstitial Clicked");
   }
 
   @Override
   public void onLoggingImpression(Ad ad) {
     Log.d(TAG, "onLoggingImpression");
-    Toast.makeText(getActivity(), "Interstitial Impression", Toast.LENGTH_SHORT).show();
+    showToast("Interstitial Impression");
   }
 
   private void setLabel(String label) {
@@ -158,29 +161,28 @@ public class InterstitialFragment extends Fragment implements InterstitialAdExte
 
   @Override
   public void onRewardedAdCompleted() {
-    if (isAdded()) {
-      Toast.makeText(getActivity(), "Reward Received", Toast.LENGTH_SHORT).show();
-    }
+    showToast("Reward Received");
   }
 
   @Override
   public void onRewardedAdServerSucceeded() {
-    if (isAdded()) {
-      Toast.makeText(getActivity(), "Server success!", Toast.LENGTH_SHORT).show();
-    }
+    showToast("Server success!");
   }
 
   @Override
   public void onRewardedAdServerFailed() {
-    if (isAdded()) {
-      Toast.makeText(getActivity(), "Server failure", Toast.LENGTH_SHORT).show();
-    }
+    showToast("Server failure");
   }
 
   @Override
   public void onInterstitialActivityDestroyed() {
+    showToast("Activity destroyed");
+  }
+
+  private void showToast(String message) {
+    Log.d(TAG, message);
     if (isAdded()) {
-      Toast.makeText(getActivity(), "Activity destroyed", Toast.LENGTH_SHORT).show();
+      DebugToast.show(requireActivity(), message, Toast.LENGTH_SHORT);
     }
   }
 }

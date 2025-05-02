@@ -13,8 +13,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import com.facebook.common.preconditions.Preconditions;
+import com.facebook.infer.annotation.Nullsafe;
 import com.facebook.samples.AdUnitsSample.fragments.BannerFragment;
 import com.facebook.samples.AdUnitsSample.fragments.InterstitialFragment;
 import com.facebook.samples.AdUnitsSample.fragments.MultiLoadInterstitialFragment;
@@ -29,6 +32,7 @@ import com.facebook.samples.AdUnitsSample.fragments.RewardedInterstitialFragment
 import com.facebook.samples.AdUnitsSample.fragments.RewardedVideoFragment;
 import com.facebook.samples.ads.debugsettings.DebugSettingsActivity;
 
+@Nullsafe(Nullsafe.Mode.LOCAL)
 public class AdUnitsSampleActivity extends FragmentActivity {
 
   private static final String TAG = AdUnitsSampleActivity.class.getSimpleName();
@@ -45,7 +49,12 @@ public class AdUnitsSampleActivity extends FragmentActivity {
     AudienceNetworkInitializeHelper.initialize(this);
 
     setContentView(R.layout.activity_ad_sample);
-
+    LinearLayout rootLayout = findViewById(R.id.activity_ad_sample);
+    // added check for Android 35 to fix system toolbar issue
+    // used hard coded value, as VANILLA_ICE_CREAM won't be available for older versions
+    if (rootLayout != null && android.os.Build.VERSION.SDK_INT >= 35) {
+      rootLayout.setFitsSystemWindows(true);
+    }
     if (savedInstanceState != null) {
       return;
     }
@@ -102,7 +111,7 @@ public class AdUnitsSampleActivity extends FragmentActivity {
           fragment = new NativeBannerAdTemplateFragment();
           break;
       }
-      fragment.setRetainInstance(true);
+      Preconditions.checkNotNull(fragment).setRetainInstance(true);
       setTitle(type.getName());
       getSupportFragmentManager()
           .beginTransaction()

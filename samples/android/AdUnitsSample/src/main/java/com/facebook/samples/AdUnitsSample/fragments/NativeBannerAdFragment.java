@@ -31,6 +31,7 @@ import com.facebook.ads.NativeAdLayout;
 import com.facebook.ads.NativeAdListener;
 import com.facebook.ads.NativeBannerAd;
 import com.facebook.samples.AdUnitsSample.R;
+import com.facebook.samples.ads.debugsettings.DebugToast;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -182,7 +183,7 @@ public class NativeBannerAdFragment extends Fragment implements NativeAdListener
 
   @Override
   public void onAdClicked(Ad ad) {
-    Toast.makeText(getActivity(), "Ad Clicked", Toast.LENGTH_SHORT).show();
+    DebugToast.show(requireActivity(), "Ad Clicked", Toast.LENGTH_SHORT);
   }
 
   @Override

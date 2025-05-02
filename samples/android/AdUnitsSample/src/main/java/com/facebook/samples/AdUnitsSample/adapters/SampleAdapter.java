@@ -14,9 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import com.facebook.common.preconditions.Preconditions;
+import com.facebook.infer.annotation.Nullsafe;
 import com.facebook.samples.AdUnitsSample.AdUnitsSampleType;
 import com.facebook.samples.AdUnitsSample.R;
 
+@Nullsafe(Nullsafe.Mode.LOCAL)
 public class SampleAdapter extends ArrayAdapter<SampleAdapter.Item> {
 
   public static class Item {
@@ -64,6 +67,7 @@ public class SampleAdapter extends ArrayAdapter<SampleAdapter.Item> {
     add(new Item(AdUnitsSampleType.BANNER_TEMPLATE.getName()));
     add(new Item(AdUnitsSampleType.NATIVE_BANNER_WITH_IMAGE_VIEW.getName()));
 
+    // NULLSAFE_FIXME[Field Not Nullable]
     this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
   }
 
@@ -79,11 +83,11 @@ public class SampleAdapter extends ArrayAdapter<SampleAdapter.Item> {
         v.setLongClickable(false);
 
         final TextView title = (TextView) v.findViewById(R.id.list_item_section_text);
-        title.setText(item.title);
+        Preconditions.checkNotNull(title).setText(item.title);
       } else {
         v = inflater.inflate(android.R.layout.simple_list_item_1, parent, false);
         final TextView title = (TextView) v.findViewById(android.R.id.text1);
-        title.setText(item.title);
+        Preconditions.checkNotNull(title).setText(item.title);
       }
     }
     return v;

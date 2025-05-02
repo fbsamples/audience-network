@@ -14,9 +14,11 @@ import android.content.Context;
 import android.util.Log;
 import com.facebook.ads.AdSettings;
 import com.facebook.ads.AudienceNetworkAds;
+import com.facebook.infer.annotation.Nullsafe;
 import com.facebook.samples.ads.debugsettings.DebugSettings;
 
 /** Sample class that shows how to call initialize() method of Audience Network SDK. */
+@Nullsafe(Nullsafe.Mode.LOCAL)
 public class AudienceNetworkInitializeHelper implements AudienceNetworkAds.InitListener {
 
   private final Context mContext;

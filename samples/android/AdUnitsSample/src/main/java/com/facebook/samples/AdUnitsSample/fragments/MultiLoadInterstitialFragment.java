@@ -25,6 +25,7 @@ import com.facebook.ads.InterstitialAd;
 import com.facebook.ads.InterstitialAdExtendedListener;
 import com.facebook.ads.RewardData;
 import com.facebook.samples.AdUnitsSample.R;
+import com.facebook.samples.ads.debugsettings.DebugToast;
 import java.util.EnumSet;
 
 public class MultiLoadInterstitialFragment extends Fragment
@@ -289,16 +290,12 @@ public class MultiLoadInterstitialFragment extends Fragment
 
   @Override
   public void onInterstitialDisplayed(Ad ad) {
-    if (isAdded()) {
-      Toast.makeText(getActivity(), "Interstitial Displayed", Toast.LENGTH_SHORT).show();
-    }
+    showToast("Interstitial Displayed");
   }
 
   @Override
   public void onInterstitialDismissed(Ad ad) {
-    if (isAdded()) {
-      Toast.makeText(getActivity(), "Interstitial Dismissed", Toast.LENGTH_SHORT).show();
-    }
+    showToast("Interstitial Dismissed");
 
     // Cleanup.
     if (ad == mInterstitialAd) {
@@ -314,16 +311,14 @@ public class MultiLoadInterstitialFragment extends Fragment
 
   @Override
   public void onAdClicked(Ad ad) {
-    if (isAdded()) {
-      Toast.makeText(getActivity(), "Interstitial Clicked", Toast.LENGTH_SHORT).show();
-    }
+    showToast("Interstitial Clicked");
   }
 
   /** showing toast for tracking impression for manual testing */
   @Override
   public void onLoggingImpression(Ad ad) {
     Log.d(TAG, "onLoggingImpression");
-    Toast.makeText(getActivity(), "Interstitial Impression", Toast.LENGTH_SHORT).show();
+    showToast("Interstitial Impression");
   }
 
   private void setLabel(@Nullable TextView interstitialAdStatusLabel, String label) {
@@ -343,8 +338,13 @@ public class MultiLoadInterstitialFragment extends Fragment
 
   @Override
   public void onInterstitialActivityDestroyed() {
+    showToast("Activity destroyed");
+  }
+
+  private void showToast(String message) {
+    Log.d(TAG, message);
     if (isAdded()) {
-      Toast.makeText(getActivity(), "Activity destroyed", Toast.LENGTH_SHORT).show();
+      DebugToast.show(requireActivity(), message, Toast.LENGTH_SHORT);
     }
   }
 }

@@ -21,8 +21,12 @@ import com.facebook.ads.AdError;
 import com.facebook.ads.NativeAd;
 import com.facebook.ads.NativeAdScrollView;
 import com.facebook.ads.NativeAdsManager;
+import com.facebook.common.preconditions.Preconditions;
+import com.facebook.infer.annotation.Nullsafe;
 import com.facebook.samples.AdUnitsSample.R;
+import com.facebook.samples.ads.debugsettings.DebugToast;
 
+@Nullsafe(Nullsafe.Mode.LOCAL)
 public class NativeAdHScrollFragment extends Fragment implements NativeAdsManager.Listener {
 
   private static final int NATIVE_AD_VIEW_HEIGHT_DP = 300;
@@ -37,19 +41,22 @@ public class NativeAdHScrollFragment extends Fragment implements NativeAdsManage
     // Inflate the layout for this fragment
     View view = inflater.inflate(R.layout.fragment_native_ad_hscroll, container, false);
 
+    // NULLSAFE_FIXME[Parameter Not Nullable]
     manager = new NativeAdsManager(getActivity(), "YOUR_PLACEMENT_ID", 5);
     manager.setListener(this);
     manager.loadAds(NativeAd.MediaCacheFlag.ALL);
 
     Button reloadButton = (Button) view.findViewById(R.id.reload_hscroll);
-    reloadButton.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-            manager.loadAds();
-          }
-        });
+    Preconditions.checkNotNull(reloadButton)
+        .setOnClickListener(
+            new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                manager.loadAds();
+              }
+            });
 
+    // NULLSAFE_FIXME[Field Not Nullable]
     scrollViewContainer = (LinearLayout) view.findViewById(R.id.hscroll_container);
 
     return view;
@@ -61,7 +68,7 @@ public class NativeAdHScrollFragment extends Fragment implements NativeAdsManage
       return;
     }
 
-    Toast.makeText(getActivity(), "Ads loaded", Toast.LENGTH_SHORT).show();
+    DebugToast.show(getActivity(), "Ads loaded", Toast.LENGTH_SHORT);
 
     if (scrollView != null) {
       scrollViewContainer.removeView(scrollView);
@@ -74,9 +81,6 @@ public class NativeAdHScrollFragment extends Fragment implements NativeAdsManage
 
   @Override
   public void onAdError(AdError error) {
-    if (getActivity() != null) {
-      Toast.makeText(getActivity(), "Ad error: " + error.getErrorMessage(), Toast.LENGTH_SHORT)
-          .show();
-    }
+    DebugToast.show(requireActivity(), "Ad error: " + error.getErrorMessage(), Toast.LENGTH_SHORT);
   }
 }

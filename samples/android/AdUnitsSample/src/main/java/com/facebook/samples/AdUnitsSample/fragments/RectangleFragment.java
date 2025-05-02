@@ -24,8 +24,11 @@ import com.facebook.ads.AdError;
 import com.facebook.ads.AdListener;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
+import com.facebook.infer.annotation.Nullsafe;
 import com.facebook.samples.AdUnitsSample.R;
+import com.facebook.samples.ads.debugsettings.DebugToast;
 
+@Nullsafe(Nullsafe.Mode.LOCAL)
 public class RectangleFragment extends Fragment implements AdListener {
 
   private static final String TAG = RectangleFragment.class.getSimpleName();
@@ -40,8 +43,11 @@ public class RectangleFragment extends Fragment implements AdListener {
       LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_rectangle, container, false);
 
+    // NULLSAFE_FIXME[Field Not Nullable]
     rectangleStatusLabel = (TextView) view.findViewById(R.id.rectangleStatusLabel);
+    // NULLSAFE_FIXME[Field Not Nullable]
     rectangleAdContainer = (RelativeLayout) view.findViewById(R.id.rectangleAdContainer);
+    // NULLSAFE_FIXME[Field Not Nullable]
     refreshRectangleButton = (Button) view.findViewById(R.id.refreshRectangleButton);
     refreshRectangleButton.setOnClickListener(
         new View.OnClickListener() {
@@ -80,6 +86,7 @@ public class RectangleFragment extends Fragment implements AdListener {
 
     // Create a banner's ad view with a unique placement ID (generate your own on the Facebook
     // app settings). Use different ID for each ad placement in your app.
+    // NULLSAFE_FIXME[Parameter Not Nullable]
     rectangleAdView = new AdView(getActivity(), "YOUR_PLACEMENT_ID", AdSize.RECTANGLE_HEIGHT_250);
 
     // Reposition the ad and add it to the view hierarchy.
@@ -105,7 +112,7 @@ public class RectangleFragment extends Fragment implements AdListener {
 
   @Override
   public void onAdClicked(Ad ad) {
-    Toast.makeText(this.getActivity(), "Ad Clicked", Toast.LENGTH_SHORT).show();
+    DebugToast.show(requireActivity(), "Ad Clicked", Toast.LENGTH_SHORT);
   }
 
   @Override

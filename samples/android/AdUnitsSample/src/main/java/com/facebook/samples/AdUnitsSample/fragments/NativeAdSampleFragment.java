@@ -29,10 +29,14 @@ import com.facebook.ads.NativeAd;
 import com.facebook.ads.NativeAdBase.NativeComponentTag;
 import com.facebook.ads.NativeAdLayout;
 import com.facebook.ads.NativeAdListener;
+import com.facebook.common.preconditions.Preconditions;
+import com.facebook.infer.annotation.Nullsafe;
 import com.facebook.samples.AdUnitsSample.R;
+import com.facebook.samples.ads.debugsettings.DebugToast;
 import java.util.ArrayList;
 import java.util.List;
 
+@Nullsafe(Nullsafe.Mode.LOCAL)
 public class NativeAdSampleFragment extends Fragment implements NativeAdListener {
 
   protected static final String TAG = NativeAdSampleFragment.class.getSimpleName();
@@ -43,6 +47,7 @@ public class NativeAdSampleFragment extends Fragment implements NativeAdListener
   private @Nullable NativeAdLayout nativeAdLayout;
   private @Nullable NativeAd nativeAd;
   private @Nullable AdOptionsView adOptionsView;
+  // NULLSAFE_FIXME[Field Not Initialized]
   private MediaView nativeAdMedia;
 
   @Override
@@ -55,30 +60,35 @@ public class NativeAdSampleFragment extends Fragment implements NativeAdListener
     adChoicesContainer = view.findViewById(R.id.ad_choices_container);
 
     Button showNativeAdButton = view.findViewById(R.id.load_native_ad_button);
-    showNativeAdButton.setOnClickListener(
-        new View.OnClickListener() {
-          @Override
-          public void onClick(View view) {
-            if (nativeAdStatus != null) {
-              nativeAdStatus.setText(R.string.loading_status);
-            }
-            if (nativeAd != null) {
-              nativeAd.destroy();
-            }
+    Preconditions.checkNotNull(showNativeAdButton)
+        .setOnClickListener(
+            new View.OnClickListener() {
+              @Override
+              public void onClick(View view) {
+                if (nativeAdStatus != null) {
+                  nativeAdStatus.setText(R.string.loading_status);
+                }
+                if (nativeAd != null) {
+                  nativeAd.destroy();
+                }
 
-            // Create a native ad request with a unique placement ID (generate your own on the
-            // Facebook app settings). Use different ID for each ad placement in your app.
-            nativeAd = new NativeAd(getActivity(), "YOUR_PLACEMENT_ID");
+                // Create a native ad request with a unique placement ID (generate your own on the
+                // Facebook app settings). Use different ID for each ad placement in your app.
+                // NULLSAFE_FIXME[Parameter Not Nullable]
+                nativeAd = new NativeAd(getActivity(), "YOUR_PLACEMENT_ID");
 
-            // When testing on a device, add its hashed ID to force test ads.
-            // The hash ID is printed to log cat when running on a device and loading an ad.
-            // AdSettings.addTestDevice("THE HASHED ID AS PRINTED TO LOG CAT");
+                // When testing on a device, add its hashed ID to force test ads.
+                // The hash ID is printed to log cat when running on a device and loading an ad.
+                // AdSettings.addTestDevice("THE HASHED ID AS PRINTED TO LOG CAT");
 
-            // Initiate a request to load an ad.
-            nativeAd.loadAd(
-                nativeAd.buildLoadAdConfig().withAdListener(NativeAdSampleFragment.this).build());
-          }
-        });
+                // Initiate a request to load an ad.
+                nativeAd.loadAd(
+                    nativeAd
+                        .buildLoadAdConfig()
+                        .withAdListener(NativeAdSampleFragment.this)
+                        .build());
+              }
+            });
 
     // if we already have loaded ad, render it
     if (nativeAd != null) {
@@ -106,12 +116,12 @@ public class NativeAdSampleFragment extends Fragment implements NativeAdListener
 
   @Override
   public void onAdClicked(Ad ad) {
-    Toast.makeText(getActivity(), "Ad Clicked", Toast.LENGTH_SHORT).show();
+    showToast("Ad Clicked");
   }
 
   @Override
   public void onLoggingImpression(Ad ad) {
-    Toast.makeText(getActivity(), "Native Impression", Toast.LENGTH_SHORT).show();
+    showToast("Native Impression");
   }
 
   @Override
@@ -147,6 +157,7 @@ public class NativeAdSampleFragment extends Fragment implements NativeAdListener
     }
 
     if (adChoicesContainer != null) {
+      // NULLSAFE_FIXME[Parameter Not Nullable]
       adOptionsView = new AdOptionsView(getActivity(), nativeAd, nativeAdLayout);
       adChoicesContainer.removeAllViews();
       adChoicesContainer.addView(adOptionsView, 0);
@@ -188,15 +199,21 @@ public class NativeAdSampleFragment extends Fragment implements NativeAdListener
     TextView nativeAdSocialContext = adView.findViewById(R.id.native_ad_social_context);
     Button nativeAdCallToAction = adView.findViewById(R.id.native_ad_call_to_action);
 
+    // NULLSAFE_FIXME[Field Not Nullable]
     nativeAdMedia = adView.findViewById(R.id.native_ad_media);
     nativeAdMedia.setListener(getMediaViewListener());
 
     // Setting the Text
-    nativeAdSocialContext.setText(nativeAd.getAdSocialContext());
+    Preconditions.checkNotNull(nativeAdSocialContext).setText(nativeAd.getAdSocialContext());
+    // NULLSAFE_FIXME[Nullable Dereference]
     nativeAdCallToAction.setText(nativeAd.getAdCallToAction());
+    // NULLSAFE_FIXME[Nullable Dereference]
     nativeAdCallToAction.setVisibility(nativeAd.hasCallToAction() ? View.VISIBLE : View.INVISIBLE);
+    // NULLSAFE_FIXME[Nullable Dereference]
     nativeAdTitle.setText(nativeAd.getAdvertiserName());
+    // NULLSAFE_FIXME[Nullable Dereference]
     nativeAdBody.setText(nativeAd.getAdBodyText());
+    // NULLSAFE_FIXME[Nullable Dereference]
     sponsoredLabel.setText(R.string.sponsored);
 
     // You can use the following to specify the clickable areas.
@@ -205,13 +222,18 @@ public class NativeAdSampleFragment extends Fragment implements NativeAdListener
     clickableViews.add(nativeAdMedia);
     clickableViews.add(nativeAdCallToAction);
     nativeAd.registerViewForInteraction(
+        // NULLSAFE_FIXME[Parameter Not Nullable]
         nativeAdLayout, nativeAdMedia, nativeAdIcon, clickableViews);
 
     // Optional: tag views
+    // NULLSAFE_FIXME[Parameter Not Nullable]
     NativeComponentTag.tagView(nativeAdIcon, NativeComponentTag.AD_ICON);
+    // NULLSAFE_FIXME[Parameter Not Nullable]
     NativeComponentTag.tagView(nativeAdTitle, NativeComponentTag.AD_TITLE);
+    // NULLSAFE_FIXME[Parameter Not Nullable]
     NativeComponentTag.tagView(nativeAdBody, NativeComponentTag.AD_BODY);
     NativeComponentTag.tagView(nativeAdSocialContext, NativeComponentTag.AD_SOCIAL_CONTEXT);
+    // NULLSAFE_FIXME[Parameter Not Nullable]
     NativeComponentTag.tagView(nativeAdCallToAction, NativeComponentTag.AD_CALL_TO_ACTION);
   }
 
@@ -271,5 +293,11 @@ public class NativeAdSampleFragment extends Fragment implements NativeAdListener
         Log.i(TAG, "MediaViewEvent: Completed");
       }
     };
+  }
+
+  private void showToast(String message) {
+    if (isAdded()) {
+      DebugToast.show(requireActivity(), message, Toast.LENGTH_SHORT);
+    }
   }
 }

@@ -25,6 +25,7 @@ import com.facebook.ads.AdListener;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
 import com.facebook.samples.AdUnitsSample.R;
+import com.facebook.samples.ads.debugsettings.DebugToast;
 
 public class BannerFragment extends Fragment implements AdListener {
 
@@ -110,7 +111,7 @@ public class BannerFragment extends Fragment implements AdListener {
 
   @Override
   public void onAdClicked(Ad ad) {
-    Toast.makeText(this.getActivity(), "Ad Clicked", Toast.LENGTH_SHORT).show();
+    DebugToast.show(requireActivity(), "Ad Clicked", Toast.LENGTH_SHORT);
   }
 
   @Override

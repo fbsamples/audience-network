@@ -21,8 +21,12 @@ import com.facebook.ads.AdError;
 import com.facebook.ads.RewardData;
 import com.facebook.ads.RewardedInterstitialAd;
 import com.facebook.ads.S2SRewardedInterstitialAdListener;
+import com.facebook.infer.annotation.Nullsafe;
 import com.facebook.samples.AdUnitsSample.R;
+import com.facebook.samples.ads.debugsettings.DebugToast;
+import javax.annotation.Nullable;
 
+@Nullsafe(Nullsafe.Mode.LOCAL)
 public class RewardedInterstitialFragment extends Fragment
     implements S2SRewardedInterstitialAdListener {
 
@@ -30,7 +34,7 @@ public class RewardedInterstitialFragment extends Fragment
   private Button loadRewardedInterstitialButton;
   private Button showRewardedInterstitialButton;
 
-  private RewardedInterstitialAd rewardedInterstitialAd;
+  @Nullable private RewardedInterstitialAd rewardedInterstitialAd;
 
   @Override
   public View onCreateView(
@@ -38,10 +42,13 @@ public class RewardedInterstitialFragment extends Fragment
 
     View view = inflater.inflate(R.layout.fragment_rewarded_interstitial, container, false);
 
+    // NULLSAFE_FIXME[Field Not Nullable]
     rewardedInterstitialAdStatusLabel =
         (TextView) view.findViewById(R.id.rewardedInterstitialAdStatusLabel);
+    // NULLSAFE_FIXME[Field Not Nullable]
     loadRewardedInterstitialButton =
         (Button) view.findViewById(R.id.loadRewardedInterstitialButton);
+    // NULLSAFE_FIXME[Field Not Nullable]
     showRewardedInterstitialButton =
         (Button) view.findViewById(R.id.showRewardedInterstitialButton);
 
@@ -55,6 +62,7 @@ public class RewardedInterstitialFragment extends Fragment
             }
             rewardedInterstitialAd =
                 new RewardedInterstitialAd(
+                    // NULLSAFE_FIXME[Parameter Not Nullable]
                     RewardedInterstitialFragment.this.getActivity(), "YOUR_PLACEMENT_ID");
             RewardedInterstitialAd.RewardedInterstitialLoadAdConfig loadAdConfig =
                 rewardedInterstitialAd
@@ -113,7 +121,7 @@ public class RewardedInterstitialFragment extends Fragment
 
   private void showToast(String message) {
     if (isAdded()) {
-      Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+      DebugToast.show(requireActivity(), message, Toast.LENGTH_SHORT);
     }
   }
 

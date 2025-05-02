@@ -28,8 +28,10 @@ import com.facebook.ads.NativeAdListener;
 import com.facebook.ads.NativeAdViewAttributes;
 import com.facebook.ads.NativeBannerAd;
 import com.facebook.ads.NativeBannerAdView;
+import com.facebook.infer.annotation.Nullsafe;
 import com.facebook.samples.AdUnitsSample.R;
 
+@Nullsafe(Nullsafe.Mode.LOCAL)
 public class NativeBannerAdTemplateFragment extends Fragment implements NativeAdListener {
 
   private static final String TAG = NativeBannerAdTemplateFragment.class.getSimpleName();
@@ -55,14 +57,20 @@ public class NativeBannerAdTemplateFragment extends Fragment implements NativeAd
 
     View view = inflater.inflate(R.layout.fragment_native_banner_ad_template, container, false);
 
+    // NULLSAFE_FIXME[Field Not Nullable]
     mStatusText = view.findViewById(R.id.status);
+    // NULLSAFE_FIXME[Field Not Nullable]
     mNativeAdContainer = view.findViewById(R.id.templateContainer);
+    // NULLSAFE_FIXME[Field Not Nullable]
     mShowCodeButton = view.findViewById(R.id.showCodeButton);
+    // NULLSAFE_FIXME[Field Not Nullable]
     mBackgroundColorSpinner = view.findViewById(R.id.backgroundColorSpinner);
+    // NULLSAFE_FIXME[Field Not Nullable]
     mAdViewTypeSpinner = view.findViewById(R.id.adViewTypeSpinner);
 
     ArrayAdapter<CharSequence> backgroundColorSpinnerAdapter =
         ArrayAdapter.createFromResource(
+            // NULLSAFE_FIXME[Parameter Not Nullable]
             getActivity(), R.array.background_color_array, android.R.layout.simple_spinner_item);
     backgroundColorSpinnerAdapter.setDropDownViewResource(
         android.R.layout.simple_spinner_dropdown_item);
@@ -70,6 +78,7 @@ public class NativeBannerAdTemplateFragment extends Fragment implements NativeAd
 
     ArrayAdapter<CharSequence> adViewTypeSpinnerAdapter =
         ArrayAdapter.createFromResource(
+            // NULLSAFE_FIXME[Parameter Not Nullable]
             getActivity(), R.array.ad_bannerview_type_array, android.R.layout.simple_spinner_item);
     adViewTypeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     mAdViewTypeSpinner.setAdapter(adViewTypeSpinnerAdapter);
@@ -86,6 +95,7 @@ public class NativeBannerAdTemplateFragment extends Fragment implements NativeAd
     // Create a native banner ad request with a unique placement ID
     // (generate your own on the Facebook app settings).
     // Use different ID for each ad placement in your app.
+    // NULLSAFE_FIXME[Parameter Not Nullable]
     mNativeBannerAd = new NativeBannerAd(getContext(), "YOUR_PLACEMENT_ID");
 
     // Initiate a request to load an ad.
@@ -192,6 +202,7 @@ public class NativeBannerAdTemplateFragment extends Fragment implements NativeAd
       codeSnippet.append(line).append("\r\n");
     }
     mNativeAdContainer.removeAllViews();
+    // NULLSAFE_FIXME[Parameter Not Nullable]
     TextView code = new TextView(getActivity());
     code.setText(codeSnippet);
     code.setBackgroundColor(Color.WHITE);

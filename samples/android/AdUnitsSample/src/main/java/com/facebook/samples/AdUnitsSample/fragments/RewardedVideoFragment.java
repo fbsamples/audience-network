@@ -22,8 +22,12 @@ import com.facebook.ads.AdError;
 import com.facebook.ads.RewardData;
 import com.facebook.ads.RewardedVideoAd;
 import com.facebook.ads.S2SRewardedVideoAdListener;
+import com.facebook.infer.annotation.Nullsafe;
 import com.facebook.samples.AdUnitsSample.R;
+import com.facebook.samples.ads.debugsettings.DebugToast;
+import javax.annotation.Nullable;
 
+@Nullsafe(Nullsafe.Mode.LOCAL)
 public class RewardedVideoFragment extends Fragment implements S2SRewardedVideoAdListener {
 
   private static final String TAG = "RewardedVideoFragment";
@@ -31,7 +35,7 @@ public class RewardedVideoFragment extends Fragment implements S2SRewardedVideoA
   private Button loadRewardedVideoButton;
   private Button showRewardedVideoButton;
 
-  private RewardedVideoAd rewardedVideoAd;
+  @Nullable private RewardedVideoAd rewardedVideoAd;
 
   @Override
   public View onCreateView(
@@ -39,8 +43,11 @@ public class RewardedVideoFragment extends Fragment implements S2SRewardedVideoA
 
     View view = inflater.inflate(R.layout.fragment_rewarded_video, container, false);
 
+    // NULLSAFE_FIXME[Field Not Nullable]
     rewardedVideoAdStatusLabel = (TextView) view.findViewById(R.id.rewardedVideoAdStatusLabel);
+    // NULLSAFE_FIXME[Field Not Nullable]
     loadRewardedVideoButton = (Button) view.findViewById(R.id.loadRewardedVideoButton);
+    // NULLSAFE_FIXME[Field Not Nullable]
     showRewardedVideoButton = (Button) view.findViewById(R.id.showRewardedVideoButton);
 
     loadRewardedVideoButton.setOnClickListener(
@@ -52,6 +59,7 @@ public class RewardedVideoFragment extends Fragment implements S2SRewardedVideoA
               rewardedVideoAd = null;
             }
             rewardedVideoAd =
+                // NULLSAFE_FIXME[Parameter Not Nullable]
                 new RewardedVideoAd(RewardedVideoFragment.this.getActivity(), "YOUR_PLACEMENT_ID");
             RewardedVideoAd.RewardedVideoLoadAdConfig loadAdConfig =
                 rewardedVideoAd
@@ -111,7 +119,7 @@ public class RewardedVideoFragment extends Fragment implements S2SRewardedVideoA
   private void showToast(String message) {
     Log.d(TAG, message);
     if (isAdded()) {
-      Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+      DebugToast.show(requireActivity(), message, Toast.LENGTH_SHORT);
     }
   }
 

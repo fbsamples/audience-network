@@ -18,12 +18,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.facebook.ads.AdError;
 import com.facebook.ads.NativeAdsManager;
+import com.facebook.infer.annotation.Nullsafe;
 import com.facebook.samples.AdUnitsSample.R;
 import com.facebook.samples.AdUnitsSample.adapters.NativeAdRecyclerAdapter;
 import com.facebook.samples.AdUnitsSample.models.RecyclerPostItem;
 import com.facebook.samples.AdUnitsSample.thirdparty.DividerItemDecoration.DividerItemDecoration;
 import java.util.ArrayList;
 
+@Nullsafe(Nullsafe.Mode.LOCAL)
 public class NativeAdRecyclerFragment extends Fragment implements NativeAdsManager.Listener {
 
   private ArrayList<RecyclerPostItem> mPostItemList;
@@ -41,12 +43,14 @@ public class NativeAdRecyclerFragment extends Fragment implements NativeAdsManag
     }
 
     String placement_id = "YOUR_PLACEMENT_ID";
+    // NULLSAFE_FIXME[Parameter Not Nullable]
     mNativeAdsManager = new NativeAdsManager(getActivity(), placement_id, 5);
     mNativeAdsManager.loadAds();
     mNativeAdsManager.setListener(this);
 
     // Inflate the layout for this fragment
     View view = inflater.inflate(R.layout.fragment_native_ad_recycler, container, false);
+    // NULLSAFE_FIXME[Field Not Nullable]
     mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
     return view;
   }

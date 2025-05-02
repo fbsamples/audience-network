@@ -15,7 +15,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.Window;
 import android.view.WindowManager;
+import com.facebook.infer.annotation.Nullsafe;
 
+@Nullsafe(Nullsafe.Mode.LOCAL)
 public class SplashActivity extends Activity {
 
   private static final int SPLASH_TIME = 2000;
@@ -33,6 +35,7 @@ public class SplashActivity extends Activity {
     // Hide title and nav bar, must be done before setContentView.
     requestWindowFeature(Window.FEATURE_NO_TITLE);
     getWindow()
+        // NULLSAFE_FIXME[Nullable Dereference]
         .setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 

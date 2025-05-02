@@ -8,8 +8,12 @@
 
 package com.facebook.samples.AdUnitsSample.models;
 
+import com.facebook.infer.annotation.Nullsafe;
+
+@Nullsafe(Nullsafe.Mode.LOCAL)
 public class RecyclerPostItem {
 
+  // NULLSAFE_FIXME[Field Not Initialized]
   private String postContent;
 
   public RecyclerPostItem(String postContent) {

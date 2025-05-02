@@ -24,7 +24,9 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.facebook.infer.annotation.Nullsafe;
 
+@Nullsafe(Nullsafe.Mode.LOCAL)
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
   private static final int[] ATTRS = new int[] {android.R.attr.listDivider};
@@ -39,6 +41,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
   public DividerItemDecoration(Context context, int orientation) {
     final TypedArray a = context.obtainStyledAttributes(ATTRS);
+    // NULLSAFE_FIXME[Field Not Nullable]
     mDivider = a.getDrawable(0);
     a.recycle();
     setOrientation(orientation);

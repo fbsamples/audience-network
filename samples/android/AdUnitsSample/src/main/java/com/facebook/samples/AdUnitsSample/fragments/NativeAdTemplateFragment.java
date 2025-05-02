@@ -32,8 +32,10 @@ import com.facebook.ads.NativeAd;
 import com.facebook.ads.NativeAdListener;
 import com.facebook.ads.NativeAdView;
 import com.facebook.ads.NativeAdViewAttributes;
+import com.facebook.infer.annotation.Nullsafe;
 import com.facebook.samples.AdUnitsSample.R;
 
+@Nullsafe(Nullsafe.Mode.LOCAL)
 public class NativeAdTemplateFragment extends Fragment implements NativeAdListener {
 
   private static final String TAG = NativeAdTemplateFragment.class.getSimpleName();
@@ -57,7 +59,7 @@ public class NativeAdTemplateFragment extends Fragment implements NativeAdListen
   private Spinner mBackgroundColorSpinner;
   private Button mShowCodeButton, mReloadButton;
   private SeekBar mSeekBar;
-  private View mAdView;
+  @Nullable private View mAdView;
 
   @Override
   public View onCreateView(
@@ -65,11 +67,17 @@ public class NativeAdTemplateFragment extends Fragment implements NativeAdListen
 
     View view = inflater.inflate(R.layout.fragment_native_ad_template, container, false);
 
+    // NULLSAFE_FIXME[Field Not Nullable]
     mStatusText = view.findViewById(R.id.status);
+    // NULLSAFE_FIXME[Field Not Nullable]
     mNativeAdContainer = view.findViewById(R.id.templateContainer);
+    // NULLSAFE_FIXME[Field Not Nullable]
     mShowCodeButton = view.findViewById(R.id.showCodeButton);
+    // NULLSAFE_FIXME[Field Not Nullable]
     mReloadButton = view.findViewById(R.id.reloadAdButton);
+    // NULLSAFE_FIXME[Field Not Nullable]
     mBackgroundColorSpinner = view.findViewById(R.id.backgroundColorSpinner);
+    // NULLSAFE_FIXME[Field Not Nullable]
     mSeekBar = view.findViewById(R.id.seekBar);
 
     setUpLayoutBuilders();
@@ -122,6 +130,7 @@ public class NativeAdTemplateFragment extends Fragment implements NativeAdListen
     // Create a native ad request with a unique placement ID
     // (generate your own on the Facebook app settings).
     // Use different ID for each ad placement in your app.
+    // NULLSAFE_FIXME[Parameter Not Nullable]
     mNativeAd = new NativeAd(getActivity(), "YOUR_PLACEMENT_ID");
 
     // Initiate a request to load an ad.
@@ -161,6 +170,7 @@ public class NativeAdTemplateFragment extends Fragment implements NativeAdListen
   private void setUpLayoutBuilders() {
     ArrayAdapter<CharSequence> backgroundColorSpinnerAdapter =
         ArrayAdapter.createFromResource(
+            // NULLSAFE_FIXME[Parameter Not Nullable]
             getActivity(), R.array.background_color_array, android.R.layout.simple_spinner_item);
     backgroundColorSpinnerAdapter.setDropDownViewResource(
         android.R.layout.simple_spinner_dropdown_item);
@@ -250,6 +260,7 @@ public class NativeAdTemplateFragment extends Fragment implements NativeAdListen
       codeSnippet.append(line).append("\r\n");
     }
     mNativeAdContainer.removeAllViews();
+    // NULLSAFE_FIXME[Parameter Not Nullable]
     TextView code = new TextView(getActivity());
     code.setText(codeSnippet);
     code.setBackgroundColor(Color.WHITE);

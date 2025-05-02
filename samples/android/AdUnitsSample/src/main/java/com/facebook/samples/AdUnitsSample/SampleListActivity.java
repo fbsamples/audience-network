@@ -18,10 +18,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import androidx.fragment.app.Fragment;
+import com.facebook.infer.annotation.Nullsafe;
 import com.facebook.samples.AdUnitsSample.adapters.SampleAdapter;
 import com.facebook.samples.ads.debugsettings.DebugSettingsActivity;
 
 /** A simple {@link Fragment} subclass. */
+@Nullsafe(Nullsafe.Mode.LOCAL)
 public class SampleListActivity extends ListActivity {
 
   private static final String TAG = SampleListActivity.class.getSimpleName();
@@ -37,6 +39,12 @@ public class SampleListActivity extends ListActivity {
     // Bind to our new adapter.
     setListAdapter(adapter);
 
+    // added check for Android 35 to fix system toolbar issue
+    // used hard coded value, as VANILLA_ICE_CREAM won't be available for older versions
+    if (android.os.Build.VERSION.SDK_INT >= 35) {
+      getListView().setFitsSystemWindows(true);
+    }
+
     getListView()
         .setOnItemClickListener(
             new AdapterView.OnItemClickListener() {
@@ -46,6 +54,7 @@ public class SampleListActivity extends ListActivity {
                 Log.e(TAG, "List item clicked: " + position);
                 SampleAdapter.Item item = (SampleAdapter.Item) adapter.getItem(position);
 
+                // NULLSAFE_FIXME[Nullable Dereference]
                 String sampleName = item.getTitle();
                 AdUnitsSampleType type = AdUnitsSampleType.getSampleTypeFromName(sampleName);
                 if (type != null) {

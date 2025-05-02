@@ -25,11 +25,14 @@ import com.facebook.ads.NativeAd;
 import com.facebook.ads.NativeAdLayout;
 import com.facebook.ads.NativeAdListener;
 import com.facebook.ads.NativeAdsManager;
+import com.facebook.common.preconditions.Preconditions;
+import com.facebook.infer.annotation.Nullsafe;
 import com.facebook.samples.AdUnitsSample.R;
 import com.facebook.samples.AdUnitsSample.models.RecyclerPostItem;
 import java.util.ArrayList;
 import java.util.List;
 
+@Nullsafe(Nullsafe.Mode.LOCAL)
 public class NativeAdRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
   private List<RecyclerPostItem> mPostItems;
   private List<NativeAd> mAdItems;
@@ -107,7 +110,7 @@ public class NativeAdRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
                     Log.i(TAG, ((NativeAd) ad).getAdvertiserName() + " Ad Impression");
                   }
                 });
-        if (!ad.isAdInvalidated()) {
+        if (!Preconditions.checkNotNull(ad).isAdInvalidated()) {
           mAdItems.add(ad);
         } else {
           Log.w(NativeAdRecyclerAdapter.class.getSimpleName(), "Ad is invalidated!");
@@ -158,6 +161,7 @@ public class NativeAdRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     PostHolder(View view) {
       super(view);
+      // NULLSAFE_FIXME[Field Not Nullable]
       tvPostContent = view.findViewById(R.id.tvPostContent);
     }
   }
@@ -178,13 +182,21 @@ public class NativeAdRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
       super(adLayout);
 
       nativeAdLayout = adLayout;
+      // NULLSAFE_FIXME[Field Not Nullable]
       mvAdMedia = adLayout.findViewById(R.id.native_ad_media);
+      // NULLSAFE_FIXME[Field Not Nullable]
       tvAdTitle = adLayout.findViewById(R.id.native_ad_title);
+      // NULLSAFE_FIXME[Field Not Nullable]
       tvAdBody = adLayout.findViewById(R.id.native_ad_body);
+      // NULLSAFE_FIXME[Field Not Nullable]
       tvAdSocialContext = adLayout.findViewById(R.id.native_ad_social_context);
+      // NULLSAFE_FIXME[Field Not Nullable]
       tvAdSponsoredLabel = adLayout.findViewById(R.id.native_ad_sponsored_label);
+      // NULLSAFE_FIXME[Field Not Nullable]
       btnAdCallToAction = adLayout.findViewById(R.id.native_ad_call_to_action);
+      // NULLSAFE_FIXME[Field Not Nullable]
       ivAdIcon = adLayout.findViewById(R.id.native_ad_icon);
+      // NULLSAFE_FIXME[Field Not Nullable]
       adChoicesContainer = adLayout.findViewById(R.id.ad_choices_container);
     }
   }
