@@ -34,7 +34,7 @@ class RewardedInterstitialFragment : Fragment(), S2SRewardedInterstitialAdListen
   override fun onCreateView(
       inflater: LayoutInflater,
       container: ViewGroup?,
-      savedInstanceState: Bundle?
+      savedInstanceState: Bundle?,
   ): View? {
 
     val view = inflater.inflate(R.layout.fragment_rewarded_interstitial, container, false)
@@ -58,7 +58,8 @@ class RewardedInterstitialFragment : Fragment(), S2SRewardedInterstitialAdListen
                 .withAdListener(this)
                 .withFailOnCacheFailureEnabled(true)
                 .withRewardData(RewardData("YOUR_USER_ID", "YOUR_REWARD"))
-                .build())
+                .build()
+        )
       }
     }
 

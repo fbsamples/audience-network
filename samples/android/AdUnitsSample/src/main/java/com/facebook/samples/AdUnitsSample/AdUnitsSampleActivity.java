@@ -35,7 +35,6 @@ import com.facebook.samples.ads.debugsettings.DebugSettingsActivity;
 @Nullsafe(Nullsafe.Mode.LOCAL)
 public class AdUnitsSampleActivity extends FragmentActivity {
 
-  private static final String TAG = AdUnitsSampleActivity.class.getSimpleName();
   public static final String SAMPLE_TYPE = "SAMPLE_TYPE";
 
   @Override

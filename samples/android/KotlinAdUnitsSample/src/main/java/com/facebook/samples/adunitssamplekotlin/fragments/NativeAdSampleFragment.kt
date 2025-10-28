@@ -36,7 +36,7 @@ class NativeAdSampleFragment : Fragment(), NativeAdListener {
   override fun onCreateView(
       inflater: LayoutInflater,
       container: ViewGroup?,
-      savedInstanceState: Bundle?
+      savedInstanceState: Bundle?,
   ): View? {
     val view = inflater.inflate(R.layout.fragment_native_ad_sample, container, false)
     nativeAdLayout = view.findViewById(R.id.native_ad_container)
@@ -62,7 +62,8 @@ class NativeAdSampleFragment : Fragment(), NativeAdListener {
               .buildLoadAdConfig()
               // Set a listener to get notified when the ad was loaded.
               .withAdListener(this@NativeAdSampleFragment)
-              .build())
+              .build()
+      )
     }
 
     // if we already have loaded ad, render it
@@ -168,9 +169,13 @@ class NativeAdSampleFragment : Fragment(), NativeAdListener {
     NativeAdBase.NativeComponentTag.tagView(nativeAdTitle, NativeAdBase.NativeComponentTag.AD_TITLE)
     NativeAdBase.NativeComponentTag.tagView(nativeAdBody, NativeAdBase.NativeComponentTag.AD_BODY)
     NativeAdBase.NativeComponentTag.tagView(
-        nativeAdSocialContext, NativeAdBase.NativeComponentTag.AD_SOCIAL_CONTEXT)
+        nativeAdSocialContext,
+        NativeAdBase.NativeComponentTag.AD_SOCIAL_CONTEXT,
+    )
     NativeAdBase.NativeComponentTag.tagView(
-        nativeAdCallToAction, NativeAdBase.NativeComponentTag.AD_CALL_TO_ACTION)
+        nativeAdCallToAction,
+        NativeAdBase.NativeComponentTag.AD_CALL_TO_ACTION,
+    )
   }
 
   override fun onDestroy() {

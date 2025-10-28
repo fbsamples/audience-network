@@ -16,11 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.facebook.ads.Ad;
+import com.facebook.ads.AdClosedListener;
 import com.facebook.ads.AdError;
 import com.facebook.ads.AdOptionsView;
 import com.facebook.ads.MediaView;
@@ -49,6 +51,7 @@ public class NativeAdSampleFragment extends Fragment implements NativeAdListener
   private @Nullable AdOptionsView adOptionsView;
   // NULLSAFE_FIXME[Field Not Initialized]
   private MediaView nativeAdMedia;
+  private NativeAd.NativeOptions mNativeOptions;
 
   @Override
   public View onCreateView(
@@ -58,6 +61,27 @@ public class NativeAdSampleFragment extends Fragment implements NativeAdListener
 
     nativeAdStatus = view.findViewById(R.id.native_ad_status);
     adChoicesContainer = view.findViewById(R.id.ad_choices_container);
+
+    // Create native options to enable or disable the different options on media
+    mNativeOptions = new NativeAd.NativeOptions();
+
+    Switch disableFullScreenSwitch = view.findViewById(R.id.switch_fullscreen);
+    if (disableFullScreenSwitch != null) {
+      disableFullScreenSwitch.setOnCheckedChangeListener(
+          (compoundButton, isChecked) -> mNativeOptions.setDisableFullScreen(isChecked));
+    }
+
+    Switch unMuteSwitch = view.findViewById(R.id.switch_unmute);
+    if (unMuteSwitch != null) {
+      unMuteSwitch.setOnCheckedChangeListener(
+          (compoundButton, isChecked) -> mNativeOptions.setUnMuteVolume(isChecked));
+    }
+
+    Switch hideMediaControlsSwitch = view.findViewById(R.id.switch_hide_media_controls);
+    if (hideMediaControlsSwitch != null) {
+      hideMediaControlsSwitch.setOnCheckedChangeListener(
+          (compoundButton, isChecked) -> mNativeOptions.setHideMediaControls(isChecked));
+    }
 
     Button showNativeAdButton = view.findViewById(R.id.load_native_ad_button);
     Preconditions.checkNotNull(showNativeAdButton)
@@ -74,8 +98,7 @@ public class NativeAdSampleFragment extends Fragment implements NativeAdListener
 
                 // Create a native ad request with a unique placement ID (generate your own on the
                 // Facebook app settings). Use different ID for each ad placement in your app.
-                // NULLSAFE_FIXME[Parameter Not Nullable]
-                nativeAd = new NativeAd(getActivity(), "YOUR_PLACEMENT_ID");
+                nativeAd = new NativeAd(requireActivity(), "YOUR_PLACEMENT_ID", mNativeOptions);
 
                 // When testing on a device, add its hashed ID to force test ads.
                 // The hash ID is printed to log cat when running on a device and loading an ad.
@@ -159,6 +182,14 @@ public class NativeAdSampleFragment extends Fragment implements NativeAdListener
     if (adChoicesContainer != null) {
       // NULLSAFE_FIXME[Parameter Not Nullable]
       adOptionsView = new AdOptionsView(getActivity(), nativeAd, nativeAdLayout);
+      adOptionsView.setOnAdClosedListener(
+          new AdClosedListener() {
+            @Override
+            public void onAdClosed() {
+              // Ad closed by user move to next ad
+              showToast("Ad closed by user!");
+            }
+          });
       adChoicesContainer.removeAllViews();
       adChoicesContainer.addView(adOptionsView, 0);
     }
@@ -224,6 +255,11 @@ public class NativeAdSampleFragment extends Fragment implements NativeAdListener
     nativeAd.registerViewForInteraction(
         // NULLSAFE_FIXME[Parameter Not Nullable]
         nativeAdLayout, nativeAdMedia, nativeAdIcon, clickableViews);
+
+    if (nativeAdMedia.isVideoContent()) {
+      showToast("This is video content!!!");
+      showToast("Video duration: " + nativeAdMedia.getVideoDuration());
+    }
 
     // Optional: tag views
     // NULLSAFE_FIXME[Parameter Not Nullable]

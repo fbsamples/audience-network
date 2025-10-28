@@ -30,7 +30,9 @@ class SplashActivity : Activity() {
     // Hide title and nav bar, must be done before setContentView.
     requestWindowFeature(Window.FEATURE_NO_TITLE)
     window.setFlags(
-        WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        WindowManager.LayoutParams.FLAG_FULLSCREEN,
+    )
 
     setContentView(R.layout.activity_splash)
 
@@ -40,7 +42,8 @@ class SplashActivity : Activity() {
           val intent = Intent(this@SplashActivity, SampleListActivity::class.java)
           startActivity(intent)
         },
-        SPLASH_TIME.toLong())
+        SPLASH_TIME.toLong(),
+    )
   }
 
   companion object {

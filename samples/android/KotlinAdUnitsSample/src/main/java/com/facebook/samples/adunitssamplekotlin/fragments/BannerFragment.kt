@@ -34,7 +34,7 @@ class BannerFragment : Fragment(), AdListener {
   override fun onCreateView(
       inflater: LayoutInflater,
       container: ViewGroup?,
-      savedInstanceState: Bundle?
+      savedInstanceState: Bundle?,
   ): View? {
     val view = inflater.inflate(R.layout.fragment_banner, container, false)
 
@@ -80,7 +80,8 @@ class BannerFragment : Fragment(), AdListener {
     bannerAdView?.let { nonNullBannerAdView ->
       bannerAdContainer?.addView(nonNullBannerAdView)
       nonNullBannerAdView.loadAd(
-          nonNullBannerAdView.buildLoadAdConfig().withAdListener(this).build())
+          nonNullBannerAdView.buildLoadAdConfig().withAdListener(this).build()
+      )
     }
   }
 }

@@ -24,7 +24,7 @@ class SampleListFragment : ListFragment() {
   override fun onCreateView(
       inflater: LayoutInflater,
       container: ViewGroup?,
-      savedInstanceState: Bundle?
+      savedInstanceState: Bundle?,
   ): View? {
     listAdapter = SampleAdapter(inflater.context)
     return super.onCreateView(inflater, container, savedInstanceState)

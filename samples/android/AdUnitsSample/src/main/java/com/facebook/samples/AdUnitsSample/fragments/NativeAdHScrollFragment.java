@@ -41,8 +41,14 @@ public class NativeAdHScrollFragment extends Fragment implements NativeAdsManage
     // Inflate the layout for this fragment
     View view = inflater.inflate(R.layout.fragment_native_ad_hscroll, container, false);
 
-    // NULLSAFE_FIXME[Parameter Not Nullable]
-    manager = new NativeAdsManager(getActivity(), "YOUR_PLACEMENT_ID", 5);
+    // Create native options to enable or disable the different options on media
+    NativeAd.NativeOptions nativeOptions =
+        new NativeAd.NativeOptions()
+            .setDisableFullScreen(false)
+            .setHideMediaControls(false)
+            .setUnMuteVolume(false);
+
+    manager = new NativeAdsManager(requireActivity(), "YOUR_PLACEMENT_ID", 5, nativeOptions);
     manager.setListener(this);
     manager.loadAds(NativeAd.MediaCacheFlag.ALL);
 

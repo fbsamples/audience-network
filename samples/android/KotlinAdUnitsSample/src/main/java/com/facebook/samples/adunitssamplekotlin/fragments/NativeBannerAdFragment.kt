@@ -34,7 +34,7 @@ class NativeBannerAdFragment : Fragment(), NativeAdListener {
   override fun onCreateView(
       inflater: LayoutInflater,
       container: ViewGroup?,
-      savedInstanceState: Bundle?
+      savedInstanceState: Bundle?,
   ): View? {
 
     val view = inflater.inflate(R.layout.fragment_native_banner_ad, container, false)
@@ -66,7 +66,8 @@ class NativeBannerAdFragment : Fragment(), NativeAdListener {
               // Set a listener to get notified when the ad was loaded.
               .withAdListener(this)
               .withMediaCacheFlag(NativeAdBase.MediaCacheFlag.ALL)
-              .build())
+              .build()
+      )
     }
     //  load the Native Banner when this fragment is created
     //  as the Banner in BannerFragment does.
@@ -103,7 +104,8 @@ class NativeBannerAdFragment : Fragment(), NativeAdListener {
             nativeBannerAd,
             nativeBannerAdContainer,
             AdOptionsView.Orientation.HORIZONTAL,
-            20)
+            20,
+        )
     adChoicesContainer?.removeAllViews()
     adChoicesContainer?.addView(adOptionsView)
 
@@ -157,7 +159,10 @@ class NativeBannerAdFragment : Fragment(), NativeAdListener {
     val clickableViews = ArrayList<View>()
     clickableViews.add(nativeAdCallToAction)
     nativeBannerAd.registerViewForInteraction(
-        nativeBannerAdContainer, nativeAdIconView, clickableViews)
+        nativeBannerAdContainer,
+        nativeAdIconView,
+        clickableViews,
+    )
 
     sponsoredLabel.setText(R.string.sponsored)
   }

@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.facebook.ads.AdError;
+import com.facebook.ads.NativeAd;
 import com.facebook.ads.NativeAdsManager;
 import com.facebook.infer.annotation.Nullsafe;
 import com.facebook.samples.AdUnitsSample.R;
@@ -43,8 +44,13 @@ public class NativeAdRecyclerFragment extends Fragment implements NativeAdsManag
     }
 
     String placement_id = "YOUR_PLACEMENT_ID";
-    // NULLSAFE_FIXME[Parameter Not Nullable]
-    mNativeAdsManager = new NativeAdsManager(getActivity(), placement_id, 5);
+    // Create native options to enable or disable the different options on media
+    NativeAd.NativeOptions nativeOptions =
+        new NativeAd.NativeOptions()
+            .setDisableFullScreen(false)
+            .setHideMediaControls(false)
+            .setUnMuteVolume(false);
+    mNativeAdsManager = new NativeAdsManager(requireActivity(), placement_id, 5, nativeOptions);
     mNativeAdsManager.loadAds();
     mNativeAdsManager.setListener(this);
 

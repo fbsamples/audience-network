@@ -43,7 +43,7 @@ class NativeAdTemplateFragment : Fragment(), NativeAdListener {
   override fun onCreateView(
       inflater: LayoutInflater,
       container: ViewGroup?,
-      savedInstanceState: Bundle?
+      savedInstanceState: Bundle?,
   ): View? {
 
     val view = inflater.inflate(R.layout.fragment_native_ad_template, container, false)
@@ -107,7 +107,8 @@ class NativeAdTemplateFragment : Fragment(), NativeAdListener {
             .buildLoadAdConfig()
             // Set a listener to get notified when the ad was loaded.
             .withAdListener(this)
-            .build())
+            .build()
+    )
 
     statusText?.setText(R.string.ad_loading)
   }
@@ -131,7 +132,9 @@ class NativeAdTemplateFragment : Fragment(), NativeAdListener {
       adView = NativeAdView.render(activity, nativeAd!!, attributes)
 
       nativeAdContainer!!.addView(
-          adView, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0))
+          adView,
+          ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0),
+      )
       updateAdViewParams()
 
       showCodeButton!!.setText(R.string.show_code)
@@ -141,9 +144,13 @@ class NativeAdTemplateFragment : Fragment(), NativeAdListener {
   private fun setUpLayoutBuilders(context: Context) {
     val backgroundColorSpinnerAdapter =
         ArrayAdapter.createFromResource(
-            context, R.array.background_color_array, android.R.layout.simple_spinner_item)
+            context,
+            R.array.background_color_array,
+            android.R.layout.simple_spinner_item,
+        )
     backgroundColorSpinnerAdapter.setDropDownViewResource(
-        android.R.layout.simple_spinner_dropdown_item)
+        android.R.layout.simple_spinner_dropdown_item
+    )
     backgroundColorSpinner!!.adapter = backgroundColorSpinnerAdapter
 
     backgroundColorSpinner!!.onItemSelectedListener =
@@ -182,7 +189,8 @@ class NativeAdTemplateFragment : Fragment(), NativeAdListener {
           override fun onStartTrackingTouch(seekBar: SeekBar) = Unit
 
           override fun onStopTrackingTouch(seekBar: SeekBar) = Unit
-        })
+        }
+    )
   }
 
   private fun updateAdViewParams() {

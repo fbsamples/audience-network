@@ -25,7 +25,7 @@ import java.util.ArrayList
 class NativeAdRecyclerAdapter(
     private val activity: Activity,
     private val postItems: List<RecyclerPostItem>,
-    private val nativeAdsManager: NativeAdsManager
+    private val nativeAdsManager: NativeAdsManager,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
   private val adItems: MutableList<NativeAd>
 
@@ -84,7 +84,11 @@ class NativeAdRecyclerAdapter(
         clickableViews.add(adHolder.mvAdMedia)
         clickableViews.add(adHolder.btnAdCallToAction)
         nonNullAd.registerViewForInteraction(
-            adHolder.nativeAdLayout, adHolder.mvAdMedia, adHolder.ivAdIcon, clickableViews)
+            adHolder.nativeAdLayout,
+            adHolder.mvAdMedia,
+            adHolder.ivAdIcon,
+            clickableViews,
+        )
       }
     } else {
       val postHolder = holder as PostHolder

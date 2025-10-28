@@ -7,10 +7,14 @@
     android:background="@android:color/white"
     >
 
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_above="@+id/bottom_container">
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="50dp"
+            android:paddingBottom="10dp"
             >
 
             <include layout="@layout/native_ad_unit"
@@ -21,30 +25,76 @@
                  android:paddingBottom="5dp"/>
 
         </ScrollView>
+  </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@android:color/background_light"
-            android:paddingBottom="2dp"
-            >
+  <LinearLayout
+      android:id="@+id/bottom_container"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:background="@android:color/background_light"
+      android:orientation="vertical"
+      android:paddingBottom="2dp"
+      >
 
-            <Button
-                android:id="@+id/load_native_ad_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/load_native_ad"
-                android:textSize="12sp"
-                />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
 
-            <TextView
-                android:id="@+id/native_ad_status"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:textColor="@android:color/darker_gray"
-                />
-        </LinearLayout>
+      <Button
+          android:id="@+id/load_native_ad_button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/load_native_ad"
+          android:textSize="12sp"
+          />
+
+      <TextView
+          android:id="@+id/native_ad_status"
+          android:layout_width="0dp"
+          android:layout_height="match_parent"
+          android:layout_weight="1"
+          android:gravity="center"
+          android:textColor="@android:color/darker_gray"
+          />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+      <Switch
+          android:id="@+id/switch_fullscreen"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:text="Disable fullscreen"
+          android:textSize="12sp"
+          />
+
+      <Switch
+          android:id="@+id/switch_unmute"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:text="Unmute video"
+          android:textSize="12sp"
+          />
+
+      <Switch
+          android:id="@+id/switch_hide_media_controls"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="8dp"
+          android:text="Hide media controls"
+          android:textSize="12sp"
+          />
+
+    </LinearLayout>
+  </LinearLayout>
 
 </RelativeLayout>

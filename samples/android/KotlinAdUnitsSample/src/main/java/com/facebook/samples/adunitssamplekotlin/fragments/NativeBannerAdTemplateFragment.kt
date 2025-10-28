@@ -39,7 +39,7 @@ class NativeBannerAdTemplateFragment : Fragment(), NativeAdListener {
   override fun onCreateView(
       inflater: LayoutInflater,
       container: ViewGroup?,
-      savedInstanceState: Bundle?
+      savedInstanceState: Bundle?,
   ): View? {
 
     val view = inflater.inflate(R.layout.fragment_native_banner_ad_template, container, false)
@@ -52,16 +52,21 @@ class NativeBannerAdTemplateFragment : Fragment(), NativeAdListener {
 
     val backgroundColorSpinnerAdapter =
         ArrayAdapter.createFromResource(
-            inflater.context, R.array.background_color_array, android.R.layout.simple_spinner_item)
+            inflater.context,
+            R.array.background_color_array,
+            android.R.layout.simple_spinner_item,
+        )
     backgroundColorSpinnerAdapter.setDropDownViewResource(
-        android.R.layout.simple_spinner_dropdown_item)
+        android.R.layout.simple_spinner_dropdown_item
+    )
     backgroundColorSpinner!!.adapter = backgroundColorSpinnerAdapter
 
     val adViewTypeSpinnerAdapter =
         ArrayAdapter.createFromResource(
             inflater.context,
             R.array.ad_bannerview_type_array,
-            android.R.layout.simple_spinner_item)
+            android.R.layout.simple_spinner_item,
+        )
     adViewTypeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
     adViewTypeSpinner!!.adapter = adViewTypeSpinnerAdapter
 
@@ -85,7 +90,8 @@ class NativeBannerAdTemplateFragment : Fragment(), NativeAdListener {
             .buildLoadAdConfig()
             // Set a listener to get notified when the ad was loaded.
             .withAdListener(this)
-            .build())
+            .build()
+    )
 
     statusText?.setText(R.string.ad_loading)
   }

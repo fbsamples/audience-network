@@ -31,7 +31,7 @@ class NativeAdHScrollFragment : Fragment(), NativeAdsManager.Listener {
   override fun onCreateView(
       inflater: LayoutInflater,
       container: ViewGroup?,
-      savedInstanceState: Bundle?
+      savedInstanceState: Bundle?,
   ): View? {
     // Inflate the layout for this fragment
     val view = inflater.inflate(R.layout.fragment_native_ad_hscroll, container, false)
