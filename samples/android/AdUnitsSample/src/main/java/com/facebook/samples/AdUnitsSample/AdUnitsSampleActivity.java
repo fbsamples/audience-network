@@ -9,10 +9,13 @@
 package com.facebook.samples.AdUnitsSample;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -41,6 +44,12 @@ public class AdUnitsSampleActivity extends FragmentActivity {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
+    // Check if we should display over lock screen (for reminder testing)
+    Intent intent = getIntent();
+    if (intent.getBooleanExtra(ReminderAlarmManager.EXTRA_SHOW_OVER_LOCK_SCREEN, false)) {
+      setupLockScreenDisplay();
+    }
+
     // If you call AudienceNetworkAds.buildInitSettings(Context).initialize()
     // in Application.onCreate() this call is not really necessary.
     // Otherwise call initialize() onCreate() of all Activities that contain ads or
@@ -58,7 +67,6 @@ public class AdUnitsSampleActivity extends FragmentActivity {
       return;
     }
 
-    Intent intent = getIntent();
     String sampleType = intent.getStringExtra(SAMPLE_TYPE);
     Fragment fragment = null;
 
@@ -135,5 +143,25 @@ public class AdUnitsSampleActivity extends FragmentActivity {
     }
 
     return super.onOptionsItemSelected(item);
+  }
+
+  /**
+   * Setup the activity to display over the lock screen. Uses modern API 27+ methods with fallback
+   * to window flags for older devices.
+   */
+  private void setupLockScreenDisplay() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+      // Modern approach (API 27+)
+      setShowWhenLocked(true);
+      setTurnScreenOn(true);
+    } else {
+      // Fallback for older devices
+      Window window = getWindow();
+      if (window != null) {
+        window.addFlags(
+            WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+      }
+    }
   }
 }

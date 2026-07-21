@@ -24,7 +24,10 @@ import com.facebook.ads.AdError;
 import com.facebook.ads.AdListener;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
+import com.facebook.samples.AdUnitsSample.AdUnitsSampleType;
 import com.facebook.samples.AdUnitsSample.R;
+import com.facebook.samples.AdUnitsSample.ReminderAlarmManager;
+import com.facebook.samples.ads.debugsettings.DebugSettings;
 import com.facebook.samples.ads.debugsettings.DebugToast;
 
 public class BannerFragment extends Fragment implements AdListener {
@@ -35,6 +38,7 @@ public class BannerFragment extends Fragment implements AdListener {
   private Button refreshBannerButton;
   private TextView bannerStatusLabel;
   private @Nullable AdView bannerAdView;
+  private @Nullable ReminderAlarmManager reminderAlarmManager;
 
   @Override
   public View onCreateView(
@@ -51,6 +55,27 @@ public class BannerFragment extends Fragment implements AdListener {
             loadAdView();
           }
         });
+
+    Button scheduleButton = (Button) view.findViewById(R.id.scheduleReminderButton);
+    if (DebugSettings.shouldShowScheduleReminder(requireContext())) {
+      reminderAlarmManager = new ReminderAlarmManager(requireActivity(), AdUnitsSampleType.BANNER);
+      scheduleButton.setOnClickListener(
+          new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              if (reminderAlarmManager != null) {
+                reminderAlarmManager.scheduleReminderInSeconds(10);
+                DebugToast.show(
+                    requireActivity(),
+                    "Reminder scheduled in 10 seconds. Lock your phone!",
+                    Toast.LENGTH_LONG);
+              }
+            }
+          });
+    } else {
+      scheduleButton.setVisibility(View.GONE);
+    }
+
     loadAdView();
     return view;
   }
@@ -117,6 +142,7 @@ public class BannerFragment extends Fragment implements AdListener {
   @Override
   public void onLoggingImpression(Ad ad) {
     Log.d(TAG, "onLoggingImpression");
+    DebugToast.show(requireActivity(), "Banner Impression", Toast.LENGTH_SHORT);
   }
 
   private void setLabel(String status) {

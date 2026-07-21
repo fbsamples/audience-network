@@ -37,11 +37,11 @@ class NativeAdHScrollFragment : Fragment(), NativeAdsManager.Listener {
     val view = inflater.inflate(R.layout.fragment_native_ad_hscroll, container, false)
 
     manager = NativeAdsManager(activity, "YOUR_PLACEMENT_ID", 5)
-    manager!!.setListener(this)
-    manager!!.loadAds(NativeAdBase.MediaCacheFlag.ALL)
+    manager?.setListener(this)
+    manager?.loadAds(NativeAdBase.MediaCacheFlag.ALL)
 
     val reloadButton = view.findViewById(R.id.reload_hscroll) as Button
-    reloadButton.setOnClickListener { manager!!.loadAds() }
+    reloadButton.setOnClickListener { manager?.loadAds() }
 
     scrollViewContainer = view.findViewById(R.id.hscroll_container)
 

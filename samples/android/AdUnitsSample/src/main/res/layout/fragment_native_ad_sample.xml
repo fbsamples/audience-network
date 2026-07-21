@@ -17,12 +17,12 @@
             android:paddingBottom="10dp"
             >
 
-            <include layout="@layout/native_ad_unit"
-                 android:id="@+id/native_ad_container"
+            <include android:id="@+id/native_ad_container"
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
                  android:background="@android:color/white"
-                 android:paddingBottom="5dp"/>
+                 android:paddingBottom="5dp"
+                 layout="@layout/native_ad_unit"/>
 
         </ScrollView>
   </LinearLayout>

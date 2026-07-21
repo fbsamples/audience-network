@@ -57,13 +57,14 @@ class NativeAdSampleFragment : Fragment(), NativeAdListener {
       // AdSettings.addTestDevice("THE HASHED ID AS PRINTED TO LOG CAT");
 
       // Initiate a request to load an ad.
-      nativeAd?.loadAd(
-          nativeAd!!
-              .buildLoadAdConfig()
-              // Set a listener to get notified when the ad was loaded.
-              .withAdListener(this@NativeAdSampleFragment)
-              .build()
-      )
+      nativeAd?.let { ad ->
+        ad.loadAd(
+            ad.buildLoadAdConfig()
+                // Set a listener to get notified when the ad was loaded.
+                .withAdListener(this@NativeAdSampleFragment)
+                .build()
+        )
+      }
     }
 
     // if we already have loaded ad, render it
@@ -109,7 +110,7 @@ class NativeAdSampleFragment : Fragment(), NativeAdListener {
     }
 
     // Unregister last ad
-    nativeAd!!.unregisterView()
+    nativeAd?.unregisterView()
     nativeAdStatus?.text = ""
 
     if (adChoicesContainer != null) {
@@ -118,13 +119,15 @@ class NativeAdSampleFragment : Fragment(), NativeAdListener {
       adChoicesContainer?.addView(adOptionsView, 0)
     }
 
-    inflateAd(nativeAd!!, nativeAdLayout!!)
+    val currentAd = nativeAd ?: return
+    val currentAdLayout = nativeAdLayout ?: return
+    inflateAd(currentAd, currentAdLayout)
 
     // Registering a touch listener to log which ad component receives the touch event.
     // We always return false from onTouch so that we don't swallow the touch event (which
     // would prevent click events from reaching the NativeAd control).
     // The touch listener could be used to do animations.
-    nativeAd!!.setOnTouchListener { view, event ->
+    currentAd.setOnTouchListener { view, event ->
       if (event.action == MotionEvent.ACTION_DOWN) {
         when (view.id) {
           R.id.native_ad_call_to_action -> Log.d(TAG, "Call to action button clicked")
@@ -160,7 +163,7 @@ class NativeAdSampleFragment : Fragment(), NativeAdListener {
     // You can use the following to specify the clickable areas.
     val clickableViews = ArrayList<View>()
     clickableViews.add(nativeAdIcon)
-    clickableViews.add(nativeAdMedia!!)
+    nativeAdMedia?.let { clickableViews.add(it) }
     clickableViews.add(nativeAdCallToAction)
     nativeAd.registerViewForInteraction(nativeAdLayout, nativeAdMedia, nativeAdIcon, clickableViews)
 

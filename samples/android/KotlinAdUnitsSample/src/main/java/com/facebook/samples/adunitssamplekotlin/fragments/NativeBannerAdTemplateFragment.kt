@@ -59,7 +59,7 @@ class NativeBannerAdTemplateFragment : Fragment(), NativeAdListener {
     backgroundColorSpinnerAdapter.setDropDownViewResource(
         android.R.layout.simple_spinner_dropdown_item
     )
-    backgroundColorSpinner!!.adapter = backgroundColorSpinnerAdapter
+    backgroundColorSpinner?.adapter = backgroundColorSpinnerAdapter
 
     val adViewTypeSpinnerAdapter =
         ArrayAdapter.createFromResource(
@@ -68,7 +68,7 @@ class NativeBannerAdTemplateFragment : Fragment(), NativeAdListener {
             android.R.layout.simple_spinner_item,
         )
     adViewTypeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-    adViewTypeSpinner!!.adapter = adViewTypeSpinnerAdapter
+    adViewTypeSpinner?.adapter = adViewTypeSpinnerAdapter
 
     setSpinnerListeners()
     setButtonListeners()
@@ -85,12 +85,12 @@ class NativeBannerAdTemplateFragment : Fragment(), NativeAdListener {
     nativeBannerAd = NativeBannerAd(context, "YOUR_PLACEMENT_ID")
 
     // Initiate a request to load an ad.
-    nativeBannerAd!!.loadAd(
-        nativeBannerAd!!
-            .buildLoadAdConfig()
+    nativeBannerAd?.loadAd(
+        nativeBannerAd
+            ?.buildLoadAdConfig()
             // Set a listener to get notified when the ad was loaded.
-            .withAdListener(this)
-            .build()
+            ?.withAdListener(this)
+            ?.build()
     )
 
     statusText?.setText(R.string.ad_loading)
@@ -98,8 +98,8 @@ class NativeBannerAdTemplateFragment : Fragment(), NativeAdListener {
 
   private fun reloadAdContainer() {
     val activity = activity
-    if (activity != null && nativeBannerAd != null && nativeBannerAd!!.isAdLoaded) {
-      nativeAdContainer!!.removeAllViews()
+    if (activity != null && nativeBannerAd != null && nativeBannerAd?.isAdLoaded == true) {
+      nativeAdContainer?.removeAllViews()
 
       // Create a NativeAdViewAttributes object and set the attributes
       val attributes =
@@ -112,21 +112,24 @@ class NativeBannerAdTemplateFragment : Fragment(), NativeAdListener {
               .setButtonColor(ctaBgColor)
 
       // Use NativeAdView.render to generate the ad View
-      val adView = NativeBannerAdView.render(activity, nativeBannerAd!!, viewType, attributes)
+      val adView = nativeBannerAd?.let {
+        NativeBannerAdView.render(activity, it, viewType, attributes)
+      }
 
       // Add adView to the container showing Ads
-      nativeAdContainer!!.addView(adView, 0)
-      nativeAdContainer!!.setBackgroundColor(Color.TRANSPARENT)
-
-      showCodeButton!!.setText(R.string.show_code)
+      adView?.let { view ->
+        nativeAdContainer?.addView(view, 0)
+        nativeAdContainer?.setBackgroundColor(Color.TRANSPARENT)
+        showCodeButton?.setText(R.string.show_code)
+      }
     }
   }
 
   private fun setSpinnerListeners() {
-    backgroundColorSpinner!!.onItemSelectedListener =
+    backgroundColorSpinner?.onItemSelectedListener =
         object : AdapterView.OnItemSelectedListener {
           override fun onItemSelected(arg0: AdapterView<*>, view: View, position: Int, id: Long) {
-            when (backgroundColorSpinner!!.selectedItemPosition) {
+            when (backgroundColorSpinner?.selectedItemPosition ?: 0) {
               0 -> {
                 adBackgroundColor = Color.WHITE
                 titleColor = COLOR_DARK_GRAY
@@ -148,10 +151,10 @@ class NativeBannerAdTemplateFragment : Fragment(), NativeAdListener {
           override fun onNothingSelected(parent: AdapterView<*>) = Unit
         }
 
-    adViewTypeSpinner!!.onItemSelectedListener =
+    adViewTypeSpinner?.onItemSelectedListener =
         object : android.widget.AdapterView.OnItemSelectedListener {
           override fun onItemSelected(arg0: AdapterView<*>, view: View, position: Int, id: Long) {
-            when (adViewTypeSpinner!!.selectedItemPosition) {
+            when (adViewTypeSpinner?.selectedItemPosition ?: 0) {
               0 -> viewType = NativeBannerAdView.Type.HEIGHT_50
               1 -> viewType = NativeBannerAdView.Type.HEIGHT_100
               2 -> viewType = NativeBannerAdView.Type.HEIGHT_120
@@ -164,8 +167,8 @@ class NativeBannerAdTemplateFragment : Fragment(), NativeAdListener {
   }
 
   private fun setButtonListeners() {
-    showCodeButton!!.setOnClickListener {
-      if (showCodeButton!!.text === resources.getString(R.string.show_ad)) {
+    showCodeButton?.setOnClickListener {
+      if (showCodeButton?.text === resources.getString(R.string.show_ad)) {
         reloadAdContainer()
       } else {
         showCodeInAdContainer()
@@ -179,14 +182,14 @@ class NativeBannerAdTemplateFragment : Fragment(), NativeAdListener {
     for (line in lines) {
       codeSnippet.append(line).append("\r\n")
     }
-    nativeAdContainer!!.removeAllViews()
+    nativeAdContainer?.removeAllViews()
     val code = TextView(activity)
     code.text = codeSnippet
     code.setBackgroundColor(Color.WHITE)
     code.setTextColor(Color.BLACK)
-    nativeAdContainer!!.addView(code, 0)
+    nativeAdContainer?.addView(code, 0)
 
-    showCodeButton!!.setText(R.string.show_ad)
+    showCodeButton?.setText(R.string.show_ad)
   }
 
   override fun onAdLoaded(ad: Ad) {

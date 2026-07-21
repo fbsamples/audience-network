@@ -22,15 +22,14 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.facebook.ads.Ad;
-import com.facebook.ads.AdClosedListener;
 import com.facebook.ads.AdError;
-import com.facebook.ads.AdOptionsView;
 import com.facebook.ads.MediaView;
 import com.facebook.ads.MediaViewListener;
 import com.facebook.ads.NativeAd;
 import com.facebook.ads.NativeAdBase.NativeComponentTag;
 import com.facebook.ads.NativeAdLayout;
 import com.facebook.ads.NativeAdListener;
+import com.facebook.ads.NativeAdOptionsViewPosition;
 import com.facebook.common.preconditions.Preconditions;
 import com.facebook.infer.annotation.Nullsafe;
 import com.facebook.samples.AdUnitsSample.R;
@@ -48,7 +47,6 @@ public class NativeAdSampleFragment extends Fragment implements NativeAdListener
 
   private @Nullable NativeAdLayout nativeAdLayout;
   private @Nullable NativeAd nativeAd;
-  private @Nullable AdOptionsView adOptionsView;
   // NULLSAFE_FIXME[Field Not Initialized]
   private MediaView nativeAdMedia;
   private NativeAd.NativeOptions mNativeOptions;
@@ -125,7 +123,6 @@ public class NativeAdSampleFragment extends Fragment implements NativeAdListener
   public void onDestroyView() {
     adChoicesContainer = null;
     nativeAdLayout = null;
-    adOptionsView = null;
     nativeAdStatus = null;
     super.onDestroyView();
   }
@@ -179,20 +176,14 @@ public class NativeAdSampleFragment extends Fragment implements NativeAdListener
       return;
     }
 
+    // Let the SDK place the AdOptions icon and the "Ads served by Meta" credit line in the
+    // top-right corner of the registered view. The publisher no longer needs to construct an
+    // AdOptionsView or carve out container space for it — see
+    // NativeBannerAdFragment for a back-compat example that still uses AdOptionsView directly.
     if (adChoicesContainer != null) {
-      // NULLSAFE_FIXME[Parameter Not Nullable]
-      adOptionsView = new AdOptionsView(getActivity(), nativeAd, nativeAdLayout);
-      adOptionsView.setOnAdClosedListener(
-          new AdClosedListener() {
-            @Override
-            public void onAdClosed() {
-              // Ad closed by user move to next ad
-              showToast("Ad closed by user!");
-            }
-          });
       adChoicesContainer.removeAllViews();
-      adChoicesContainer.addView(adOptionsView, 0);
     }
+    nativeAd.setPreferredAdOptionsViewPosition(NativeAdOptionsViewPosition.TOP_RIGHT);
 
     inflateAd(nativeAd, nativeAdLayout);
 

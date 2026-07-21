@@ -38,13 +38,13 @@ class NativeAdRecyclerFragment : Fragment(), NativeAdsManager.Listener {
     // Create some dummy post items
     postItemList = ArrayList()
     for (i in 1..100) {
-      postItemList!!.add(RecyclerPostItem("RecyclerView Item #$i"))
+      postItemList?.add(RecyclerPostItem("RecyclerView Item #$i"))
     }
 
     val placementId = "YOUR_PLACEMENT_ID"
     nativeAdsManager = NativeAdsManager(activity, placementId, 5)
-    nativeAdsManager!!.loadAds()
-    nativeAdsManager!!.setListener(this)
+    nativeAdsManager?.loadAds()
+    nativeAdsManager?.setListener(this)
 
     // Inflate the layout for this fragment
     val view = inflater.inflate(R.layout.fragment_native_ad_recycler, container, false)
@@ -53,15 +53,24 @@ class NativeAdRecyclerFragment : Fragment(), NativeAdsManager.Listener {
   }
 
   override fun onAdsLoaded() {
-    if (activity == null) {
-      return
-    }
+    val currentActivity = activity
+    val currentRecyclerView = recyclerView
+    val currentPostItemList = postItemList
+    val currentNativeAdsManager = nativeAdsManager
 
-    recyclerView!!.layoutManager = LinearLayoutManager(activity)
-    val itemDecoration = DividerItemDecoration(activity, DividerItemDecoration.VERTICAL)
-    recyclerView!!.addItemDecoration(itemDecoration)
-    val adapter = NativeAdRecyclerAdapter(activity!!, postItemList!!, nativeAdsManager!!)
-    recyclerView!!.adapter = adapter
+    if (
+        currentActivity != null &&
+            currentRecyclerView != null &&
+            currentPostItemList != null &&
+            currentNativeAdsManager != null
+    ) {
+      currentRecyclerView.layoutManager = LinearLayoutManager(currentActivity)
+      val itemDecoration = DividerItemDecoration(currentActivity, DividerItemDecoration.VERTICAL)
+      currentRecyclerView.addItemDecoration(itemDecoration)
+      val adapter =
+          NativeAdRecyclerAdapter(currentActivity, currentPostItemList, currentNativeAdsManager)
+      currentRecyclerView.adapter = adapter
+    }
   }
 
   override fun onAdError(error: AdError) = Unit

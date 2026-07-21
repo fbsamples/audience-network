@@ -29,8 +29,12 @@ import com.facebook.ads.MediaView;
 import com.facebook.ads.NativeAdBase;
 import com.facebook.ads.NativeAdLayout;
 import com.facebook.ads.NativeAdListener;
+import com.facebook.ads.NativeAdOptionsViewPosition;
 import com.facebook.ads.NativeBannerAd;
+import com.facebook.samples.AdUnitsSample.AdUnitsSampleType;
 import com.facebook.samples.AdUnitsSample.R;
+import com.facebook.samples.AdUnitsSample.ReminderAlarmManager;
+import com.facebook.samples.ads.debugsettings.DebugSettings;
 import com.facebook.samples.ads.debugsettings.DebugToast;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +54,8 @@ public class NativeBannerAdFragment extends Fragment implements NativeAdListener
   private boolean isAdViewAdded;
 
   private boolean mUseImageView;
+
+  private @Nullable ReminderAlarmManager mReminderAlarmManager;
 
   public static NativeBannerAdFragment newInstance(boolean useImageView) {
     NativeBannerAdFragment myFragment = new NativeBannerAdFragment();
@@ -110,6 +116,28 @@ public class NativeBannerAdFragment extends Fragment implements NativeAdListener
                     .build());
           }
         });
+
+    Button scheduleButton = view.findViewById(R.id.scheduleReminderButton);
+    if (DebugSettings.shouldShowScheduleReminder(requireContext())) {
+      mReminderAlarmManager =
+          new ReminderAlarmManager(requireActivity(), AdUnitsSampleType.NATIVE_BANNER);
+      scheduleButton.setOnClickListener(
+          new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              if (mReminderAlarmManager != null) {
+                mReminderAlarmManager.scheduleReminderInSeconds(10);
+                DebugToast.show(
+                    requireActivity(),
+                    "Reminder scheduled in 10 seconds. Lock your phone!",
+                    Toast.LENGTH_LONG);
+              }
+            }
+          });
+    } else {
+      scheduleButton.setVisibility(View.GONE);
+    }
+
     //  load the Native Banner when this fragment is created
     //  as the Banner in BannerFragment does.
     showNativeBannerAdButton.performClick();
@@ -142,10 +170,12 @@ public class NativeBannerAdFragment extends Fragment implements NativeAdListener
       return;
     }
 
-    // Using the AdOptionsView is optional, but your native ad unit should
-    // be clearly delineated from the rest of your app content. See
-    // https://developers.facebook.com/docs/audience-network/guidelines/native-ads#native
-    // for details. We recommend using the AdOptionsView.
+    // Back-compat example: manually constructing AdOptionsView is still supported for publishers
+    // that haven't migrated. When the publisher creates AdOptionsView before
+    // registerViewForInteraction(), the SDK skips its own injection so the manual placement wins.
+    // The recommended path is shown in NativeAdSampleFragment:
+    //   nativeAd.setPreferredAdOptionsViewPosition(NativeAdOptionsViewPosition.TOP_RIGHT);
+    @SuppressWarnings("deprecation")
     AdOptionsView adOptionsView =
         new AdOptionsView(
             getActivity(),
@@ -155,6 +185,10 @@ public class NativeBannerAdFragment extends Fragment implements NativeAdListener
             20);
     mAdChoicesContainer.removeAllViews();
     mAdChoicesContainer.addView(adOptionsView);
+
+    // Even though this fragment demonstrates the back-compat path above, the new property is set
+    // here so the field is exercised end-to-end and dumpapp can read it.
+    mNativeBannerAd.setPreferredAdOptionsViewPosition(NativeAdOptionsViewPosition.TOP_RIGHT);
 
     inflateAd(mNativeBannerAd, mAdView);
 
@@ -189,6 +223,7 @@ public class NativeBannerAdFragment extends Fragment implements NativeAdListener
   @Override
   public void onLoggingImpression(Ad ad) {
     Log.d(TAG, "onLoggingImpression");
+    DebugToast.show(requireActivity(), "Native Banner Impression", Toast.LENGTH_SHORT);
   }
 
   @Override

@@ -45,11 +45,11 @@ class NativeBannerAdFragment : Fragment(), NativeAdListener {
         inflater.inflate(R.layout.native_banner_ad_unit, nativeBannerAdContainer, false)
             as LinearLayout
 
-    adChoicesContainer = adView!!.findViewById(R.id.ad_choices_container)
+    adChoicesContainer = adView?.findViewById(R.id.ad_choices_container)
 
     val showNativeBannerAdButton = view.findViewById<Button>(R.id.refresh_native_banner_button)
     showNativeBannerAdButton.setOnClickListener {
-      nativeBannerAdStatusLabel!!.text = getString(R.string.loading_status)
+      nativeBannerAdStatusLabel?.text = getString(R.string.loading_status)
 
       // Create a native ad request with a unique placement ID (generate your own on the
       // Facebook app settings). Use different ID for each ad placement in your app.
@@ -60,14 +60,15 @@ class NativeBannerAdFragment : Fragment(), NativeAdListener {
       // AdSettings.addTestDevice("THE HASHED ID AS PRINTED TO LOG CAT");
 
       // Initiate a request to load an ad.
-      nativeBannerAd!!.loadAd(
-          nativeBannerAd!!
-              .buildLoadAdConfig()
-              // Set a listener to get notified when the ad was loaded.
-              .withAdListener(this)
-              .withMediaCacheFlag(NativeAdBase.MediaCacheFlag.ALL)
-              .build()
-      )
+      nativeBannerAd?.let { ad ->
+        ad.loadAd(
+            ad.buildLoadAdConfig()
+                // Set a listener to get notified when the ad was loaded.
+                .withAdListener(this)
+                .withMediaCacheFlag(NativeAdBase.MediaCacheFlag.ALL)
+                .build()
+        )
+      }
     }
     //  load the Native Banner when this fragment is created
     //  as the Banner in BannerFragment does.
@@ -87,10 +88,10 @@ class NativeBannerAdFragment : Fragment(), NativeAdListener {
     }
     if (!isAdViewAdded) {
       isAdViewAdded = true
-      nativeBannerAdContainer!!.addView(adView)
+      nativeBannerAdContainer?.addView(adView)
     }
     // Unregister last ad
-    nativeBannerAd!!.unregisterView()
+    nativeBannerAd?.unregisterView()
 
     nativeBannerAdStatusLabel?.text = ""
 
@@ -109,13 +110,13 @@ class NativeBannerAdFragment : Fragment(), NativeAdListener {
     adChoicesContainer?.removeAllViews()
     adChoicesContainer?.addView(adOptionsView)
 
-    inflateAd(nativeBannerAd!!, adView!!)
+    nativeBannerAd?.let { ad -> adView?.let { view -> inflateAd(ad, view) } }
 
     // Registering a touch listener to log which ad component receives the touch event.
     // We always return false from onTouch so that we don't swallow the touch event (which
     // would prevent click events from reaching the NativeAd control).
     // The touch listener could be used to do animations.
-    nativeBannerAd!!.setOnTouchListener { view, event ->
+    nativeBannerAd?.setOnTouchListener { view, event ->
       if (event.action == MotionEvent.ACTION_DOWN) {
         when (view.id) {
           R.id.native_ad_call_to_action -> Log.d(TAG, "Call to action button clicked")
@@ -168,10 +169,8 @@ class NativeBannerAdFragment : Fragment(), NativeAdListener {
   }
 
   override fun onDestroy() {
-    if (nativeBannerAd != null) {
-      nativeBannerAd!!.unregisterView()
-      nativeBannerAd = null
-    }
+    nativeBannerAd?.unregisterView()
+    nativeBannerAd = null
     super.onDestroy()
   }
 

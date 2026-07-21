@@ -7,9 +7,9 @@
 
     <TextView
             android:id="@+id/interstitialAdStatusLabel"
-            android:gravity="center"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:textColor="@android:color/darker_gray"
             android:textSize="15sp"
             />
@@ -20,9 +20,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="50dp"
             android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="50dp">
+            android:gravity="center">
 
         <Button
                 android:id="@+id/loadInterstitialButton"

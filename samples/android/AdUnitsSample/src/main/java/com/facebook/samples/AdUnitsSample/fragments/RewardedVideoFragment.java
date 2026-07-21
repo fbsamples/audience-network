@@ -9,6 +9,8 @@
 package com.facebook.samples.AdUnitsSample.fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +36,7 @@ public class RewardedVideoFragment extends Fragment implements S2SRewardedVideoA
   private TextView rewardedVideoAdStatusLabel;
   private Button loadRewardedVideoButton;
   private Button showRewardedVideoButton;
+  private TextView rewardGrantStatusLabel;
 
   @Nullable private RewardedVideoAd rewardedVideoAd;
 
@@ -49,7 +52,8 @@ public class RewardedVideoFragment extends Fragment implements S2SRewardedVideoA
     loadRewardedVideoButton = (Button) view.findViewById(R.id.loadRewardedVideoButton);
     // NULLSAFE_FIXME[Field Not Nullable]
     showRewardedVideoButton = (Button) view.findViewById(R.id.showRewardedVideoButton);
-
+    // NULLSAFE_FIXME[Field Not Nullable]
+    rewardGrantStatusLabel = (TextView) view.findViewById(R.id.show_reward_grant_status);
     loadRewardedVideoButton.setOnClickListener(
         new View.OnClickListener() {
           @Override
@@ -70,6 +74,7 @@ public class RewardedVideoFragment extends Fragment implements S2SRewardedVideoA
                     .build();
             rewardedVideoAd.loadAd(loadAdConfig);
             setStatusLabelText("Loading rewarded video ad...");
+            rewardGrantStatusLabel.setText("");
           }
         });
 
@@ -84,6 +89,16 @@ public class RewardedVideoFragment extends Fragment implements S2SRewardedVideoA
             } else {
               setStatusLabelText("");
               rewardedVideoAd.show();
+
+              new Handler(Looper.getMainLooper())
+                  .postDelayed(
+                      new Runnable() {
+                        @Override
+                        public void run() {
+                          setRewardGrantStatusLabelText("Reward grant failed");
+                        }
+                      },
+                      2000);
             }
           }
         });
@@ -116,6 +131,12 @@ public class RewardedVideoFragment extends Fragment implements S2SRewardedVideoA
     }
   }
 
+  private void setRewardGrantStatusLabelText(String label) {
+    if (rewardGrantStatusLabel != null) {
+      rewardGrantStatusLabel.setText(label);
+    }
+  }
+
   private void showToast(String message) {
     Log.d(TAG, message);
     if (isAdded()) {
@@ -140,11 +161,13 @@ public class RewardedVideoFragment extends Fragment implements S2SRewardedVideoA
 
   @Override
   public void onRewardServerFailed() {
+    setRewardGrantStatusLabelText("Reward grant failed");
     showToast("Reward Video Server Failed");
   }
 
   @Override
   public void onRewardServerSuccess() {
+    setRewardGrantStatusLabelText("Reward granted");
     showToast("Reward Video Server Succeeded");
   }
 }

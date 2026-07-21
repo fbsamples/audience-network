@@ -45,21 +45,22 @@ class RewardedVideoFragment : Fragment(), S2SRewardedVideoAdListener {
 
       rewardedVideoAd = RewardedVideoAd(this@RewardedVideoFragment.activity, "YOUR_PLACEMENT_ID")
       setStatusLabelText("Loading rewarded video ad...")
-      rewardedVideoAd?.loadAd(
-          rewardedVideoAd!!
-              .buildLoadAdConfig()
-              .withAdListener(this)
-              .withFailOnCacheFailureEnabled(true)
-              .withRewardData(RewardData("YOUR_USER_ID", "YOUR_REWARD"))
-              .build()
-      )
+      rewardedVideoAd?.let { ad ->
+        ad.loadAd(
+            ad.buildLoadAdConfig()
+                .withAdListener(this)
+                .withFailOnCacheFailureEnabled(true)
+                .withRewardData(RewardData("YOUR_USER_ID", "YOUR_REWARD"))
+                .build()
+        )
+      }
     }
 
     showRewardedVideoButton?.setOnClickListener {
-      if (rewardedVideoAd == null || !rewardedVideoAd!!.isAdLoaded) {
+      if (rewardedVideoAd?.isAdLoaded != true) {
         setStatusLabelText("Ad not loaded. Click load to request an ad.")
       } else {
-        rewardedVideoAd!!.show()
+        rewardedVideoAd?.show()
         setStatusLabelText("")
       }
     }

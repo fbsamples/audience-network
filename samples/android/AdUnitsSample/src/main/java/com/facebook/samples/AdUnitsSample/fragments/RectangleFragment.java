@@ -25,7 +25,10 @@ import com.facebook.ads.AdListener;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
 import com.facebook.infer.annotation.Nullsafe;
+import com.facebook.samples.AdUnitsSample.AdUnitsSampleType;
 import com.facebook.samples.AdUnitsSample.R;
+import com.facebook.samples.AdUnitsSample.ReminderAlarmManager;
+import com.facebook.samples.ads.debugsettings.DebugSettings;
 import com.facebook.samples.ads.debugsettings.DebugToast;
 
 @Nullsafe(Nullsafe.Mode.LOCAL)
@@ -37,6 +40,7 @@ public class RectangleFragment extends Fragment implements AdListener {
   private Button refreshRectangleButton;
   private TextView rectangleStatusLabel;
   private @Nullable AdView rectangleAdView;
+  private @Nullable ReminderAlarmManager reminderAlarmManager;
 
   @Override
   public View onCreateView(
@@ -56,6 +60,28 @@ public class RectangleFragment extends Fragment implements AdListener {
             loadAdView();
           }
         });
+
+    reminderAlarmManager = new ReminderAlarmManager(requireActivity(), AdUnitsSampleType.RECTANGLE);
+    Button scheduleButton = (Button) view.findViewById(R.id.scheduleReminderButton);
+    if (DebugSettings.shouldShowScheduleReminder(requireContext())) {
+      // NULLSAFE_FIXME[Parameter Not Nullable]
+      scheduleButton.setOnClickListener(
+          new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              if (reminderAlarmManager != null) {
+                reminderAlarmManager.scheduleReminderInSeconds(10);
+                DebugToast.show(
+                    requireActivity(),
+                    "Reminder scheduled in 10 seconds. Lock your phone!",
+                    Toast.LENGTH_LONG);
+              }
+            }
+          });
+    } else {
+      scheduleButton.setVisibility(View.GONE);
+    }
+
     loadAdView();
     return view;
   }
@@ -118,6 +144,7 @@ public class RectangleFragment extends Fragment implements AdListener {
   @Override
   public void onLoggingImpression(Ad ad) {
     Log.d(TAG, "onLoggingImpression");
+    DebugToast.show(requireActivity(), "Rectangle Impression", Toast.LENGTH_SHORT);
   }
 
   private void setLabel(String status) {

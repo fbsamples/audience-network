@@ -50,9 +50,10 @@ class InterstitialFragment : Fragment(), InterstitialAdListener {
       }
       setLabel("Loading interstitial ad...")
 
-      interstitialAd = InterstitialAd(this.activity, "YOUR_PLACEMENT_ID")
-      interstitialAd?.loadAd(
-          interstitialAd!!
+      val newInterstitialAd = InterstitialAd(this.activity, "YOUR_PLACEMENT_ID")
+      interstitialAd = newInterstitialAd
+      newInterstitialAd.loadAd(
+          newInterstitialAd
               .buildLoadAdConfig()
               .withAdListener(this)
               .withCacheFlags(EnumSet.of(CacheFlag.VIDEO))
@@ -61,10 +62,11 @@ class InterstitialFragment : Fragment(), InterstitialAdListener {
     }
 
     showInterstitialButton?.setOnClickListener {
-      if (interstitialAd == null || !interstitialAd!!.isAdLoaded) {
+      val ad = interstitialAd
+      if (ad == null || !ad.isAdLoaded) {
         setLabel("Ad not loaded. Click load to request an ad.")
       } else {
-        interstitialAd?.show()
+        ad.show()
         setLabel("")
       }
     }

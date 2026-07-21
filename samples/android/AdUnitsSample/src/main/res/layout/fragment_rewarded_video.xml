@@ -7,9 +7,9 @@
 
     <TextView
             android:id="@+id/rewardedVideoAdStatusLabel"
-            android:gravity="center"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:textColor="@android:color/darker_gray"
             android:textSize="15sp"
             />
@@ -20,9 +20,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="50dp"
             android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="50dp">
+            android:gravity="center">
 
         <Button
                 android:id="@+id/loadRewardedVideoButton"
@@ -41,5 +41,13 @@
                 />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/show_reward_grant_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rewardedVideoAdControls"
+        android:layout_marginTop="32dp"
+        android:gravity="center_horizontal"/>
 
 </RelativeLayout>
